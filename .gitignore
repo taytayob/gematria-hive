@@ -49,3 +49,4 @@ data/
 *.csv
 *.db
 *.sqlite
+FETCH_HEAD
