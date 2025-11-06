@@ -8,7 +8,17 @@
 
 ## 🚀 Quick Start
 
-### Create Conda Environment
+### Option 1: Use Existing Environment (if you have `gematria_env`)
+
+```bash
+# Activate existing environment
+conda activate gematria_env
+
+# Install/update dependencies
+pip install -r requirements.txt
+```
+
+### Option 2: Create New Environment from environment.yml
 
 ```bash
 # Create environment from environment.yml
