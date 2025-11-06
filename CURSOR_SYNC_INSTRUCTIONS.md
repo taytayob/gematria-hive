@@ -14,75 +14,69 @@
 
 ---
 
-## Step 1: Clone Repository in Cursor
+## 📍 STEP 1: Clone Repository in Cursor
 
-### Option A: Using Cursor UI
+### A. Install Cursor (if you haven't):
 
-1. Open **Cursor IDE**
-2. Click **File → Open Folder** (or Cmd/Ctrl+O)
-3. Click **Clone Repository** button
-4. Enter your GitHub repo URL:
-   ```
-   https://github.com/YOUR_USERNAME/gematria-hive.git
-   ```
-   Or SSH:
-   ```
-   git@github.com:YOUR_USERNAME/gematria-hive.git
-   ```
-5. Choose local directory (e.g., `~/projects/gematria-hive`)
-6. Click **Clone**
+Go to https://cursor.sh
 
-### Option B: Using Terminal (in Cursor)
+Download and install for your OS (Mac/Windows/Linux)
 
-1. Open **Cursor IDE**
-2. Open integrated terminal (Ctrl+` or View → Terminal)
-3. Navigate to your projects directory:
-   ```bash
-   cd ~/projects
-   ```
-4. Clone the repo:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/gematria-hive.git
-   cd gematria-hive
-   ```
-5. Open the folder in Cursor: **File → Open Folder** → select `gematria-hive`
+### B. Clone Repository in Cursor:
+
+**Option 1: Using Cursor UI**
+
+1. Open Cursor → File → Clone Repository
+2. Paste your GitHub URL: `https://github.com/taytayob13/gematria-hive.git`
+3. Choose folder location
+4. Click Clone
+
+**Option 2: Using Terminal (in Cursor)**
+
+Open Cursor → Terminal (Ctrl+` or View → Terminal), then:
+
+```bash
+# Navigate to where you want the project
+cd ~/projects  # or wherever you keep projects
+
+# Clone your repo
+git clone https://github.com/taytayob13/gematria-hive.git
+
+# Enter the directory
+cd gematria-hive
+
+# Open in Cursor
+code .
+```
 
 ---
 
-## Step 2: Set Up Python Environment in Cursor
+## 📍 STEP 2: Set Up Cursor (On Your Local Machine)
 
-### Install Python (if not already installed)
-
-**macOS:**
-```bash
-brew install python@3.11
-```
-
-**Ubuntu/Debian:**
-```bash
-sudo apt update
-sudo apt install python3.11 python3.11-venv
-```
-
-**Windows:**
-Download from [python.org](https://www.python.org/downloads/)
-
-### Create Virtual Environment
-
-In Cursor's terminal:
+### C. Set Up Python Environment in Cursor:
 
 ```bash
-# Create venv
-python3.11 -m venv venv
+# Create virtual environment
+python3.12 -m venv venv
 
-# Activate (macOS/Linux)
-source venv/bin/activate
+# Activate it
+source venv/bin/activate  # Mac/Linux
 
-# Activate (Windows)
-venv\Scripts\activate
+# OR
+venv\Scripts\activate  # Windows
 
 # Install dependencies
 pip install -r requirements.txt
+```
+
+### D. Create .env file (for local development):
+
+```bash
+# Copy the example
+cp .env.example .env
+
+# Edit .env and add your actual values (when you get them in Phase 2)
+nano .env  # or use Cursor to edit
 ```
 
 ### Configure Cursor Python Interpreter
@@ -92,28 +86,6 @@ pip install -r requirements.txt
 3. Choose the venv you just created:
    - macOS/Linux: `./venv/bin/python`
    - Windows: `.\venv\Scripts\python.exe`
-
----
-
-## Step 3: Set Up Environment Variables
-
-Create `.env` file in Cursor (copied from `.env.example`):
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your actual credentials:
-
-```env
-SUPABASE_URL=your_actual_supabase_url_here
-SUPABASE_KEY=your_actual_supabase_key_here
-CLICKHOUSE_HOST=your_clickhouse_host_here
-CLICKHOUSE_USER=default
-CLICKHOUSE_PASSWORD=your_password_here
-```
-
-**Important:** `.env` is in `.gitignore` and won't be committed (for security).
 
 ---
 
@@ -145,38 +117,42 @@ Open `http://localhost:8501` in your browser to test.
 
 ---
 
-## Step 5: Bidirectional Sync Workflow
+## 📍 STEP 3: Daily Workflow (After Setup)
 
-### Work in Cursor → Push to Replit
+### When you work in Replit:
+
+```bash
+# Make changes in Replit
+# Test with Run button
+# Commit via Git pane (Steps 1-6 above)
+# Push to GitHub
+```
+
+Then pull to Cursor:
+
+```bash
+# In Cursor terminal
+git pull origin main
+```
+
+### When you work in Cursor:
 
 ```bash
 # Make changes in Cursor
-# ... edit files ...
-
-# Stage and commit
+# Test locally: streamlit run app.py
+# Commit and push
 git add .
-git commit -m "feat: Add new feature from Cursor"
-
-# Push to GitHub
+git commit -m "your message"
 git push origin main
 ```
 
-Then in **Replit Shell**:
+Then pull to Replit:
+
 ```bash
+# In Replit Shell
 git pull origin main
-# Replit auto-deploys after pull
+# App auto-redeploys
 ```
-
-### Work in Replit → Pull to Cursor
-
-After making changes in Replit and pushing (see `GIT_COMMIT_INSTRUCTIONS.md`):
-
-In **Cursor terminal**:
-```bash
-git pull origin main
-```
-
-Your local copy is now synced!
 
 ---
 
@@ -194,13 +170,13 @@ Create `.cursorrules` in project root:
 # Gematria Hive - Cursor AI Rules
 
 ## Project Context
-- Python 3.11 Streamlit app for gematria calculations
+- Python 3.12 Streamlit app for gematria calculations
 - Phase-based development (currently Phase 1)
 - Cost-conscious (track API usage)
 - See staging/ docs for architecture and roadmap
 
 ## Coding Standards
-- Use type hints (Python 3.11+)
+- Use type hints (Python 3.12+)
 - Follow PEP 8 style guide
 - Prefer composition over inheritance
 - Keep functions small (<50 lines)
@@ -265,7 +241,7 @@ pip install -r requirements.txt
 **Common causes:**
 - Port difference (Cursor: 8501, Replit: 5000) - expected
 - Environment variables missing - check `.env` file
-- Python version mismatch - both should use 3.11
+- Python version mismatch - both should use 3.12
 
 ### Issue: Git conflicts when pulling
 
@@ -290,7 +266,7 @@ git commit -m "Resolve merge conflicts"
 **Solution:**
 ```bash
 # Check Python version
-python --version  # Should be 3.11.x
+python --version  # Should be 3.12.x
 
 # Reinstall Streamlit
 pip uninstall streamlit
