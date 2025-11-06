@@ -34,7 +34,7 @@ venv.bak/
 .env.local
 
 # IDE
-.vscode/
+# .vscode/  # Uncomment to ignore VSCode/Cursor settings
 .idea/
 *.swp
 *.swo
