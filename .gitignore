@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -27,9 +26,12 @@ gematria_env/
 venv/
 ENV/
 env/
+env.bak/
+venv.bak/
 
 # Environment variables
 .env
+.env.local
 
 # IDE
 .vscode/
@@ -50,37 +52,9 @@ data/
 *.csv
 *.db
 *.sqlite
-FETCH_HEAD
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-gematria_env/
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Logs
+*.log
 
 # PyInstaller
 *.manifest
@@ -97,27 +71,3 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-
-# Streamlit
-.streamlit/secrets.toml
-
-# Environment variables
-.env
-.env.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-=======
-FETCH_HEAD
->>>>>>> 414720bfd3506fa98215db020bd5646de858c570
