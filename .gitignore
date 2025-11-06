@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -117,3 +118,6 @@ Thumbs.db
 
 # Logs
 *.log
+=======
+FETCH_HEAD
+>>>>>>> 414720bfd3506fa98215db020bd5646de858c570
