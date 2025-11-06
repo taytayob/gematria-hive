@@ -1,4 +1,8 @@
 modules = ["python-3.12"]
+
+[env]
+PYTHON_VERSION = "3.12"
+
 [agent]
 expertMode = true
 
@@ -24,7 +28,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "streamlit run app.py"
+args = "streamlit run app.py --server.port 5000"
 waitForPort = 5000
 
 [workflows.workflow.metadata]
@@ -36,4 +40,4 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["streamlit", "run", "app.py", "--server.port=5000", "--server.address=0.0.0.0"]
+run = "streamlit run app.py --server.port 5000"
