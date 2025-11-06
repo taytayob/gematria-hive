@@ -313,12 +313,14 @@ streamlit run app.py
 
 ## Quick Reference Commands
 
-| Action | Platform | Command |
-|--------|----------|---------|
-| **Setup** | Cursor | `python3.12 -m venv venv && source venv/bin/activate && pip install -r requirements.txt` |
-| **Run locally** | Cursor | `streamlit run app.py` |
-| **Pull changes** | Either | `git pull origin main` |
-| **Push changes** | Either | `git add . && git commit -m "msg" && git push` |
+| Action | Replit | CLI/Cursor |
+|--------|--------|------------|
+| **Setup** | Auto (uses `.replit` config) | `python3.12 -m venv venv && source venv/bin/activate && pip install -r requirements.txt` |
+| **Run locally** | Click Run button | `source venv/bin/activate && streamlit run app.py` |
+| **Pull changes** | `git pull origin main` | `git pull origin main` |
+| **Push changes** | `git add . && git commit -m "msg" && git push` | `git add . && git commit -m "msg" && git push` |
+| **Install deps** | `pip install -r requirements.txt` | `source venv/bin/activate && pip install -r requirements.txt` |
+| **Check status** | `git status` | `git status` |
 
 ### Additional Commands
 
