@@ -1,0 +1,391 @@
+"""
+Supabase Python Integration Script (Ingestion Pass #1)
+
+Purpose: Foundation for ingestion - Pulling data, understanding category/relevance,
+logging all steps, segmenting scope into phases.
+
+Optimized for efficiency (chunking for large data, StringZilla for fast text ops)
+and future-proofed (modular functions for adding agents/MCP, master/dynamic DB copies).
+
+Author: Gematria Hive Team
+Date: November 6, 2025
+"""
+
+import os
+import json
+import logging
+from typing import List, Dict, Tuple, Optional
+from datetime import datetime
+
+# Core dependencies
+from supabase import create_client, Client
+from sentence_transformers import SentenceTransformer, util
+import pandas as pd
+
+# Performance optimizations
+try:
+    import stringzilla as sz  # Fast string ops
+    HAS_STRINGZILLA = True
+except ImportError:
+    HAS_STRINGZILLA = False
+    print("Warning: stringzilla not installed, using standard string ops")
+
+# Future-proofed libraries (some may be optional for pass #1)
+try:
+    from pixeltable import create_dir, create_table, udf, Array, String, Float32
+    HAS_PIXELTABLE = True
+except ImportError:
+    HAS_PIXELTABLE = False
+    print("Warning: pixeltable not installed, using direct Supabase ingestion")
+
+try:
+    from langchain.agents import create_react_agent
+    HAS_LANGCHAIN = True
+except ImportError:
+    HAS_LANGCHAIN = False
+    print("Warning: langchain not installed, agent features disabled")
+
+try:
+    from langgraph.graph import StateGraph
+    HAS_LANGGRAPH = True
+except ImportError:
+    HAS_LANGGRAPH = False
+    print("Warning: langgraph not installed, graph flows disabled")
+
+try:
+    from vllm import LLM
+    HAS_VLLM = True
+except ImportError:
+    HAS_VLLM = False
+    print("Warning: vllm not installed, using standard inference")
+
+# Image/OCR processing
+try:
+    import cv2
+    import pytesseract
+    from PIL import Image
+    HAS_OCR = True
+except ImportError:
+    HAS_OCR = False
+    print("Warning: OCR libraries not installed, photo processing disabled")
+
+# Web scraping
+try:
+    import requests
+    from bs4 import BeautifulSoup
+    HAS_SCRAPING = True
+except ImportError:
+    HAS_SCRAPING = False
+    print("Warning: scraping libraries not installed, URL pulls disabled")
+
+# Quantum sims (future-proofing)
+try:
+    import qiskit
+    HAS_QISKIT = True
+except ImportError:
+    HAS_QISKIT = False
+    print("Warning: qiskit not installed, quantum sims disabled")
+
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
+
+# Environment variables (set in .replit or .env)
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise ValueError("SUPABASE_URL and SUPABASE_KEY must be set in environment variables")
+
+# Logging setup (consolidate to file/console for full visibility/hunches)
+logging.basicConfig(
+    filename='ingestion_log.txt',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filemode='a'  # Append mode
+)
+logger = logging.getLogger()
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logger.addHandler(console_handler)
+
+# Consolidated vision keywords for relevance (from project—expand dynamically)
+VISION_KEYWORDS = [
+    'gematria', 'numerology', 'sacred geometry', 'vibration', 'harmonics',
+    'quantum', 'duality', '369', 'Pi', 'esoteric', 'consciousness', 'DNA',
+    'frequencies', 'light', 'love', 'synchronicity', 'ancient wisdom',
+    'occult', 'mysticism', 'spirituality', 'mathematics', 'physics'
+]
+
+# Supabase client (consolidate connection)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+# Embedding model (consolidate for relevance scoring)
+embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+vision_embeds = embed_model.encode(VISION_KEYWORDS)  # Pre-embed for cosine checks
+
+logger.info(f"Initialized with {len(VISION_KEYWORDS)} vision keywords")
+
+
+def pull_data(source: str = 'dewey_json.json') -> List[Dict]:
+    """
+    Pull/extract data (manual/JSON for pass #1; future: agents/Dewey API).
+    
+    Args:
+        source: Path to JSON file, image file, or URL
+        
+    Returns:
+        List of dictionaries with 'url', 'summary', and 'tags' keys
+    """
+    data = []
+    
+    if source.endswith('.json'):
+        try:
+            with open(source, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            logger.info(f"Loaded {len(data)} items from JSON file: {source}")
+        except FileNotFoundError:
+            logger.error(f"JSON file not found: {source}")
+            return []
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in {source}: {e}")
+            return []
+            
+    elif HAS_OCR and (source.endswith('.jpg') or source.endswith('.png') or 
+                      source.endswith('.jpeg') or source.endswith('.gif')):
+        # Photo OCR
+        try:
+            img = cv2.imread(source)
+            if img is None:
+                logger.error(f"Could not read image: {source}")
+                return []
+            text = pytesseract.image_to_string(Image.fromarray(img))
+            data = [{'url': source, 'summary': text, 'tags': []}]
+            logger.info(f"Extracted text from image: {source}")
+        except Exception as e:
+            logger.error(f"Error processing image {source}: {e}")
+            return []
+            
+    elif HAS_SCRAPING and source.startswith('http'):
+        # URL pull
+        try:
+            response = requests.get(source, timeout=10)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.text, 'html.parser')
+            text = soup.get_text()
+            data = [{'url': source, 'summary': text, 'tags': []}]
+            logger.info(f"Scraped content from URL: {source}")
+        except Exception as e:
+            logger.error(f"Error scraping URL {source}: {e}")
+            return []
+    else:
+        logger.error(f"Unsupported source type: {source}")
+        return []
+    
+    logger.info(f"Pulled {len(data)} items from {source}")
+    return data
+
+
+def categorize_relevance(item: Dict) -> Tuple[str, float, List[str]]:
+    """
+    Understand category/relevance: Embed summary, cosine to vision, tag/phase segment.
+    
+    Args:
+        item: Dictionary with 'summary' key
+        
+    Returns:
+        Tuple of (phase, max_score, tags)
+    """
+    if not item.get('summary'):
+        return 'phase1_basic', 0.0, []
+    
+    # Normalize summary text
+    summary = item['summary']
+    if HAS_STRINGZILLA:
+        summary = sz.normalize(summary)
+    
+    # Embed and compute similarity
+    item_emb = embed_model.encode(summary)
+    scores = util.cos_sim(item_emb, vision_embeds)[0]
+    max_score = float(scores.max().item())
+    
+    # Segment for further processing
+    phase = 'phase1_basic' if max_score > 0.5 else 'phase2_deep'
+    
+    # Consolidate tags (threshold: 0.5)
+    tags = [VISION_KEYWORDS[i] for i, score in enumerate(scores) if float(score.item()) > 0.5]
+    
+    logger.info(f"Item {item.get('url', 'unknown')}: Relevance {max_score:.3f}, phase {phase}, tags {tags}")
+    return phase, max_score, tags
+
+
+def ingest_to_db(data: List[Dict]) -> int:
+    """
+    Ingestion: Process data and insert to Supabase (master copy).
+    
+    Args:
+        data: List of dictionaries with item data
+        
+    Returns:
+        Number of items successfully ingested
+    """
+    insert_data = []
+    successful = 0
+    
+    for item in data:
+        try:
+            phase, score, tags = categorize_relevance(item)
+            
+            # Prepare data for Supabase
+            supabase_item = {
+                'url': item.get('url', ''),
+                'summary': item.get('summary', ''),
+                'tags': tags,
+                'phase': phase,
+                'relevance_score': score,
+                'timestamp': datetime.utcnow().isoformat()
+            }
+            
+            # Generate embedding
+            if item.get('summary'):
+                embedding = embed_model.encode(item['summary']).tolist()
+                supabase_item['embedding'] = embedding
+            
+            insert_data.append(supabase_item)
+            
+        except Exception as e:
+            logger.error(f"Error processing item {item.get('url', 'unknown')}: {e}")
+            continue
+    
+    # Batch insert to Supabase
+    if insert_data:
+        try:
+            # Insert in chunks to avoid payload limits
+            chunk_size = 50
+            for i in range(0, len(insert_data), chunk_size):
+                chunk = insert_data[i:i+chunk_size]
+                result = supabase.table('bookmarks').insert(chunk).execute()
+                successful += len(chunk)
+                logger.info(f"Inserted chunk of {len(chunk)} items to Supabase")
+        except Exception as e:
+            logger.error(f"Error inserting to Supabase: {e}")
+            # Try individual inserts as fallback
+            for item in insert_data:
+                try:
+                    supabase.table('bookmarks').insert(item).execute()
+                    successful += 1
+                except Exception as e2:
+                    logger.error(f"Error inserting individual item: {e2}")
+    
+    # Log hunch for leaps
+    try:
+        avg_relevance = sum(score for _, score, _ in [categorize_relevance(d) for d in data]) / len(data) if data else 0.0
+        hunch_content = f"Ingestion pass #1 complete: {successful} items ingested, avg relevance {avg_relevance:.3f}"
+        supabase.table('hunches').insert({
+            'content': hunch_content,
+            'timestamp': datetime.utcnow().isoformat(),
+            'status': 'completed',
+            'cost': 0.0  # Track costs in future
+        }).execute()
+        logger.info(f"Logged hunch: {hunch_content}")
+    except Exception as e:
+        logger.error(f"Error logging hunch: {e}")
+    
+    logger.info(f"Ingestion complete: {successful}/{len(data)} items successfully ingested")
+    return successful
+
+
+def run_ingestion_pass1(source: str = 'dewey_json.json', chunk_size: int = 50) -> Dict:
+    """
+    Main Pass #1 ingestion function (optimize with chunks for large data).
+    
+    Args:
+        source: Path to data source (JSON, image, or URL)
+        chunk_size: Number of items to process per chunk
+        
+    Returns:
+        Dictionary with ingestion results
+    """
+    logger.info(f"Starting ingestion pass #1 from source: {source}")
+    
+    # Pull data
+    data = pull_data(source)
+    if not data:
+        logger.warning(f"No data pulled from {source}")
+        return {'success': False, 'items_processed': 0, 'items_ingested': 0}
+    
+    # Process in chunks
+    total_ingested = 0
+    for i in range(0, len(data), chunk_size):
+        chunk = data[i:i+chunk_size]
+        logger.info(f"Processing chunk {i//chunk_size + 1} ({len(chunk)} items)")
+        ingested = ingest_to_db(chunk)
+        total_ingested += ingested
+    
+    # Export for Claude skills (future-proof)
+    try:
+        result = supabase.table('bookmarks').select('*').limit(1000).execute()
+        export_data = [dict(row) for row in result.data]
+        
+        with open('claude_export.json', 'w', encoding='utf-8') as f:
+            json.dump(export_data, f, indent=2, default=str)
+        logger.info(f"Exported {len(export_data)} items to claude_export.json")
+    except Exception as e:
+        logger.error(f"Error creating Claude export: {e}")
+    
+    results = {
+        'success': True,
+        'items_processed': len(data),
+        'items_ingested': total_ingested,
+        'source': source
+    }
+    
+    logger.info(f"Ingestion pass #1 complete: {results}")
+    return results
+
+
+# MCP/Agent Prep (self-scaffolding foundation—expand later)
+if HAS_LANGGRAPH:
+    graph = StateGraph()
+    # Add nodes/layers (e.g., extraction -> distill -> ingest); use LangGraph for flow
+    logger.info("LangGraph initialized for future agent workflows")
+
+
+# Claude Skill Prompt Template (copy to Claude after export)
+CLAUDE_SKILL_PROMPT = """
+System: Unify gematria/esoteric with math—log leaps, measure costs.
+
+MCP: Triangulate data, segment phases, update master DB.
+
+Task: From uploaded json, query 'best vector libs'—return summaries/tags/relevance; flag for phase2 if score <0.5.
+"""
+
+
+if __name__ == "__main__":
+    import sys
+    
+    # Allow source to be passed as command line argument
+    source = sys.argv[1] if len(sys.argv) > 1 else 'dewey_json.json'
+    chunk_size = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+    
+    logger.info("=" * 60)
+    logger.info("Gematria Hive - Ingestion Pass #1")
+    logger.info("=" * 60)
+    
+    results = run_ingestion_pass1(source=source, chunk_size=chunk_size)
+    
+    print("\n" + "=" * 60)
+    print("Ingestion Results:")
+    print("=" * 60)
+    print(f"Source: {results['source']}")
+    print(f"Items Processed: {results['items_processed']}")
+    print(f"Items Ingested: {results['items_ingested']}")
+    print(f"Success: {results['success']}")
+    print("=" * 60)
+    
+    if results['success']:
+        print("\n✅ Ingestion complete! Check ingestion_log.txt for details.")
+        print("📊 Data exported to claude_export.json for Claude skills.")
+    else:
+        print("\n❌ Ingestion failed. Check ingestion_log.txt for errors.")
+
