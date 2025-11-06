@@ -1,0 +1,38 @@
+# Core dependencies
+streamlit
+pandas
+python-dotenv
+numpy
+
+# Supabase integration
+supabase
+
+# Embeddings and ML
+sentence-transformers
+transformers
+
+# Performance optimizations
+stringzilla
+simsimd
+
+# Data pipelines
+pixeltable
+
+# Agent/MCP frameworks
+langchain
+langgraph
+
+# Efficient inference (optional for pass #1)
+vllm
+
+# Web scraping
+requests
+beautifulsoup4
+
+# Image/OCR processing
+opencv-python
+pytesseract
+pillow
+
+# Quantum sims (future-proofing)
+qiskit

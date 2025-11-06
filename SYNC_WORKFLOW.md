@@ -52,25 +52,41 @@ git clone https://github.com/taytayob13/gematria-hive.git
 cd gematria-hive
 ```
 
-**Step 2: Create Virtual Environment**
+**Step 2: Create Environment (Choose ONE option)**
+
+**Option A: Conda (Recommended for data science)**
+```bash
+# In Cursor/CLI terminal
+conda create -n gematria-hive python=3.12 -y
+conda activate gematria-hive
+```
+
+**Option B: venv (Standard Python)**
 ```bash
 # In Cursor/CLI terminal
 python3.12 -m venv venv
-```
 
-**Step 3: Activate Virtual Environment**
-```bash
-# In Cursor/CLI terminal (Mac/Linux)
+# Activate (Mac/Linux)
 source venv/bin/activate
 
-# OR (Windows)
+# OR Activate (Windows)
 venv\Scripts\activate
+```
+
+**Step 3: Verify Environment Active**
+```bash
+# Should show your environment's python
+which python
+python --version  # Should show Python 3.12.x
 ```
 
 **Step 4: Install Dependencies**
 ```bash
-# In Cursor/CLI terminal (with venv activated)
+# In Cursor/CLI terminal (with conda OR venv activated)
 pip install -r requirements.txt
+
+# For full package set (all 221 packages):
+# pip install -r requirements-full.txt
 ```
 
 **Step 5: Verify Installation**
@@ -121,10 +137,16 @@ git pull origin main
 cd /Users/cooperladd/Desktop/gematria-hive/gematria-hive
 ```
 
-**Step 2: Activate Virtual Environment**
+**Step 2: Activate Environment**
 ```bash
-# In Cursor/CLI terminal
+# In Cursor/CLI terminal (conda)
+conda activate gematria-hive
+
+# OR (venv Mac/Linux)
 source venv/bin/activate
+
+# OR (venv Windows)
+venv\Scripts\activate
 ```
 
 **Step 3: Pull Latest Changes**
