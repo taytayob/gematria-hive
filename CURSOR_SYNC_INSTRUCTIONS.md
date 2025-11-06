@@ -313,19 +313,16 @@ streamlit run app.py
 
 ## Quick Reference Commands
 
-### Git Sync
+| Action | Platform | Command |
+|--------|----------|---------|
+| **Setup** | Cursor | `python3.12 -m venv venv && source venv/bin/activate && pip install -r requirements.txt` |
+| **Run locally** | Cursor | `streamlit run app.py` |
+| **Pull changes** | Either | `git pull origin main` |
+| **Push changes** | Either | `git add . && git commit -m "msg" && git push` |
 
-```bash
-# Pull latest from GitHub
-git pull origin main
+### Additional Commands
 
-# Push your changes
-git add .
-git commit -m "Your message"
-git push origin main
-```
-
-### Python Environment
+#### Python Environment
 
 ```bash
 # Activate venv (run every new terminal session)
@@ -334,12 +331,9 @@ venv\Scripts\activate     # Windows
 
 # Install/update packages
 pip install -r requirements.txt
-
-# Run app
-streamlit run app.py
 ```
 
-### Cursor AI
+#### Cursor AI
 
 ```bash
 # Open AI chat
