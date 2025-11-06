@@ -17,14 +17,20 @@ This is a fresh project setup containing:
 
 ```
 gematria-hive/
-├── app.py                  # Main Streamlit application
-├── requirements.txt        # Python dependencies
-├── .env.example           # Environment variable template
+├── app.py                         # Main Streamlit application
+├── requirements.txt               # Python dependencies
+├── .env.example                   # Environment variable template
 ├── .streamlit/
-│   └── config.toml        # Streamlit configuration
-├── .gitignore             # Git ignore patterns
-├── README.md              # Original project documentation
-└── replit.md              # This file (project memory)
+│   └── config.toml               # Streamlit configuration
+├── .gitignore                    # Git ignore patterns
+├── README.md                     # Original project documentation
+├── replit.md                     # This file (project memory)
+└── staging/                      # Comprehensive planning & tracking
+    ├── README.md                 # Staging area index & guide
+    ├── libraries-registry.md     # All deps, repos, costs, integration plans
+    ├── development-phases.md     # Detailed roadmap with milestones
+    ├── architecture-decisions.md # ADR log with rationale
+    └── cost-optimization.md      # Cost tracking, efficiency metrics, ROI
 ```
 
 ## Tech Stack
@@ -105,7 +111,11 @@ The application runs automatically via Replit workflow:
 
 ## User Preferences
 
-_None configured yet. This section will track user preferences for coding style, workflow, and tools._
+- **Planning & Documentation:** Uses comprehensive staging area (`staging/`) for tracking libraries, costs, roadmap, and architecture decisions
+- **Development Approach:** Phased development with clear milestones and success metrics
+- **Cost Consciousness:** Careful budget tracking and optimization (see `staging/cost-optimization.md`)
+- **IDE Preference:** Hybrid approach - Replit for hosting/deployment, option to use Cursor for heavy development
+- **Documentation Style:** Detailed, structured, with rationale and alternatives considered
 
 ## Recent Changes
 
@@ -116,3 +126,10 @@ _None configured yet. This section will track user preferences for coding style,
 - Added project structure and documentation
 - Created .gitignore for Python projects
 - Added environment variable templates
+- **Created comprehensive staging area** (`staging/`) for project tracking:
+  - Libraries registry with costs and synergies
+  - 5-phase development roadmap with milestones
+  - Architecture decision records (ADRs)
+  - Cost optimization and efficiency tracking
+- Fixed gematria calculator to implement distinct methods (Standard vs Reduced/Pythagorean)
+- Configured deployment settings (autoscale)
