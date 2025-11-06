@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Streamlit App",
+      "type": "shell",
+      "command": "${workspaceFolder}/venv/bin/streamlit run ${workspaceFolder}/app.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "default"
+      }
+    },
+    {
+      "label": "Activate Venv and Run Streamlit",
+      "type": "shell",
+      "command": "source ${workspaceFolder}/venv/bin/activate && streamlit run ${workspaceFolder}/app.py",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}
+
