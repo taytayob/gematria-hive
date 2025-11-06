@@ -37,7 +37,7 @@ gematria-hive/
 
 ### Current Implementation (Phase 1)
 - **Frontend:** Streamlit (Python web framework)
-- **Language:** Python 3.11
+- **Language:** Python 3.12
 - **Core Libraries:** pandas, python-dotenv
 - **Port:** 5000 (configured for Replit webview)
 
@@ -121,7 +121,7 @@ The application runs automatically via Replit workflow:
 
 **November 6, 2025** - Initial Project Setup
 - Created basic Streamlit application with gematria calculator
-- Set up Python 3.11 environment
+- Set up Python 3.12 environment
 - Configured Streamlit for Replit (port 5000, CORS disabled)
 - Added project structure and documentation
 - Created .gitignore for Python projects
