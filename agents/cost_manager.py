@@ -59,6 +59,16 @@ class CostManagerAgent:
         self.cost_cap = COST_CAP
         self.alert_threshold = COST_ALERT_THRESHOLD
         self.alert_email = COST_ALERT_EMAIL
+        
+        # Initialize MCP tool registry access
+        try:
+            from agents.mcp_tool_registry import get_tool_registry
+            self.tool_registry = get_tool_registry()
+            logger.info(f"Agent {self.name} initialized with MCP tool registry access")
+        except Exception as e:
+            logger.warning(f"Could not initialize MCP tool registry for {self.name}: {e}")
+            self.tool_registry = None
+        
         logger.info(f"Initialized {self.name} with ${self.cost_cap} cap")
     
     def track_cost(self, cost_type: str, api_name: str, operation: str, 
