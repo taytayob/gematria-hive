@@ -53,6 +53,11 @@ data/
 *.db
 *.sqlite
 
+# Large files
+*.zip
+*.checkpoint
+purchased-gematrix789.*
+
 # Temporary/archive files
 docs/archive/
 
