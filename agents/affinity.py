@@ -16,6 +16,7 @@ import os
 import json
 import random
 import math
+import asyncio
 from typing import Dict, List, Optional, Tuple, Set
 from datetime import datetime, timedelta
 from collections import defaultdict, Counter
@@ -57,9 +58,9 @@ class Symbol:
     id: str
     symbol: str  # The symbol itself (text, number, pattern)
     meaning: str
+    domain: str  # 'geometric', 'numerological', 'kabbalistic', 'hermetic', etc.
     gematria_value: Optional[int] = None
     related_symbols: List[str] = field(default_factory=list)
-    domain: str  # 'geometric', 'numerological', 'kabbalistic', 'hermetic', etc.
     affinity_score: float = 0.0  # Quantum affinity score
 
 
@@ -196,6 +197,85 @@ class AffinityAgent:
             
         except Exception as e:
             logger.error(f"Affinity agent error: {e}")
+            state["status"] = "failed"
+            state["error"] = str(e)
+        
+        return state
+    
+    async def execute_async(self, state: AgentState) -> AgentState:
+        """
+        Execute affinity task asynchronously
+        
+        Args:
+            state: Agent state with data
+            
+        Returns:
+            Updated state with synchronicities, symbols, and quantum insights
+        """
+        task = state.get("task", {})
+        task_type = task.get("type", "detect")
+        query = task.get("query", "")
+        
+        logger.info(f"Affinity agent (async): {task_type} for query: {query}")
+        
+        if not self.supabase or not self.embed_model:
+            logger.warning("Affinity agent: Dependencies not available, skipping")
+            return state
+        
+        try:
+            results = []
+            
+            if task_type == "detect":
+                # Detect synchronicities and patterns asynchronously
+                synchronicities = await self.detect_synchronicities_async(state)
+                results.append({
+                    "agent": self.name,
+                    "action": "detect",
+                    "synchronicities_count": len(synchronicities),
+                    "synchronicities": [self._synchronicity_to_dict(s) for s in synchronicities]
+                })
+            
+            elif task_type == "quantum_inference":
+                # Quantum-like probabilistic inference asynchronously
+                quantum_insights = await self.quantum_inference_async(state, query)
+                results.append({
+                    "agent": self.name,
+                    "action": "quantum_inference",
+                    "insights": quantum_insights
+                })
+            
+            elif task_type == "symbol_analysis":
+                # Analyze signs and symbols asynchronously
+                symbol_analysis = await self.analyze_symbols_async(state, query)
+                results.append({
+                    "agent": self.name,
+                    "action": "symbol_analysis",
+                    "symbols": symbol_analysis
+                })
+            
+            elif task_type == "unknown_known":
+                # Explore unknown known - latent patterns asynchronously
+                latent_patterns = await self.explore_unknown_known_async(state, query)
+                results.append({
+                    "agent": self.name,
+                    "action": "unknown_known",
+                    "latent_patterns": latent_patterns
+                })
+            
+            elif task_type == "affinity_map":
+                # Generate affinity map asynchronously
+                affinity_map = await self.generate_affinity_map_async(state)
+                results.append({
+                    "agent": self.name,
+                    "action": "affinity_map",
+                    "affinity_map": affinity_map
+                })
+            
+            state["results"].extend(results)
+            logger.info(f"Affinity agent (async) complete: {len(results)} results")
+            
+        except Exception as e:
+            logger.error(f"Affinity agent (async) error: {e}")
             state["status"] = "failed"
             state["error"] = str(e)
         
@@ -373,6 +453,20 @@ class AffinityAgent:
         
         return synchronicities
     
+    async def detect_synchronicities_async(self, state: AgentState) -> List[Synchronicity]:
+        """
+        Detect synchronicities asynchronously - meaningful coincidences and patterns
+        
+        Args:
+            state: Agent state with data
+            
+        Returns:
+            List of detected synchronicities
+        """
+        # Run synchronous method in executor
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.detect_synchronicities, state)
+    
     def quantum_inference(self, state: AgentState, query: str) -> List[Dict]:
         """
         Quantum-like probabilistic inference
@@ -428,6 +522,20 @@ class AffinityAgent:
             })
         
         return insights
+    
+    async def quantum_inference_async(self, state: AgentState, query: str) -> List[Dict]:
+        """
+        Quantum-like probabilistic inference asynchronously
+        
+        Args:
+            state: Agent state
+            query: Query string
+            
+        Returns:
+            List of quantum insights
+        """
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.quantum_inference, state, query)
     
     def analyze_symbols(self, state: AgentState, query: str) -> List[Dict]:
         """
@@ -498,6 +606,20 @@ class AffinityAgent:
             })
         
         return symbols
+    
+    async def analyze_symbols_async(self, state: AgentState, query: str) -> List[Dict]:
+        """
+        Analyze signs and symbols asynchronously
+        
+        Args:
+            state: Agent state
+            query: Query string
+            
+        Returns:
+            List of symbol analyses
+        """
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.analyze_symbols, state, query)
     
     def explore_unknown_known(self, state: AgentState, query: str) -> List[Dict]:
         """
@@ -580,6 +702,33 @@ class AffinityAgent:
                 k: dict(v) for k, v in self.affinity_graph.items()
             }
         }
+    
+    async def explore_unknown_known_async(self, state: AgentState, query: str) -> List[Dict]:
+        """
+        Explore the "unknown known" asynchronously - latent patterns that exist but aren't recognized
+        
+        Args:
+            state: Agent state
+            query: Query string
+            
+        Returns:
+            List of latent patterns
+        """
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.explore_unknown_known, state, query)
+    
+    async def generate_affinity_map_async(self, state: AgentState) -> Dict:
+        """
+        Generate affinity map asynchronously showing connections between elements
+        
+        Args:
+            state: Agent state
+            
+        Returns:
+            Affinity map dictionary
+        """
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, self.generate_affinity_map, state)
     
     # Helper methods
     

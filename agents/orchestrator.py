@@ -11,6 +11,7 @@ Date: November 6, 2025
 import os
 import logging
 import concurrent.futures
+import asyncio
 from typing import Dict, List, Optional, TypedDict
 from datetime import datetime
 from dotenv import load_dotenv
@@ -200,7 +201,7 @@ class MCPOrchestrator:
         # All analysis agents run in parallel after extraction
         # Use conditional edges to run all agents simultaneously
         def route_to_all_agents(state: AgentState) -> List[str]:
-            """Route to all analysis agents simultaneously"""
+            """Route to all analysis agents simultaneously - INCLUDING AFFINITY"""
             agents_to_run = []
             if 'distillation' in self.agents:
                 agents_to_run.append("distillation")
@@ -208,6 +209,7 @@ class MCPOrchestrator:
                 agents_to_run.append("ingestion")
             if 'inference' in self.agents:
                 agents_to_run.append("inference")
+            # AFFINITY AGENT - Always included in parallel execution
             if 'affinity' in self.agents:
                 agents_to_run.append("affinity")
             if 'symbol_extractor' in self.agents:
@@ -226,13 +228,15 @@ class MCPOrchestrator:
                 agents_to_run.append("deep_research_browser")
             if 'resource_discoverer' in self.agents:
                 agents_to_run.append("resource_discoverer")
+            if 'perplexity_integrator' in self.agents:
+                agents_to_run.append("perplexity_integrator")
             return agents_to_run
         
-        # Add conditional edge to run all agents
+        # Add conditional edge to run all agents in parallel
         self.graph.add_conditional_edges(
             "extraction",
             route_to_all_agents,
-            {agent: agent for agent in self.agents.keys() if agent != 'extraction'}
+            {agent: agent for agent in self.agents.keys() if agent not in ['extraction', 'proof']}
         )
         
         # All agents converge to proof
@@ -430,11 +434,23 @@ class MCPOrchestrator:
         except Exception as e:
             logger.error(f"Extraction agent error: {e}")
         
+        # Import affinity agent
+        try:
+            from .affinity import AffinityAgent
+            affinity = AffinityAgent()
+        except ImportError as e:
+            logger.warning(f"Affinity agent not available: {e}")
+            affinity = None
+        
         # Execute ALL analysis agents SIMULTANEOUSLY (parallel execution)
         agents_to_run = [
             ('distillation', distillation),
             ('ingestion', ingestion),
         ]
+        
+        # Add affinity agent - ALWAYS included in parallel execution
+        if affinity:
+            agents_to_run.append(('affinity', affinity))
         
         # Add new agents if available
         try:
@@ -451,17 +467,19 @@ class MCPOrchestrator:
                 from .source_tracker import SourceTrackerAgent
                 from .deep_research_browser import DeepResearchBrowserAgent
                 from .resource_discoverer import ResourceDiscovererAgent
+                from .inference import InferenceAgent
                 agents_to_run.extend([
                     ('source_tracker', SourceTrackerAgent()),
                     ('deep_research_browser', DeepResearchBrowserAgent()),
                     ('resource_discoverer', ResourceDiscovererAgent()),
+                    ('inference', InferenceAgent()),
                 ])
             except ImportError as e:
                 logger.warning(f"Some agents not available: {e}")
         except Exception as e:
             logger.warning(f"Error adding new agents: {e}")
         
-        # Run all agents in parallel
+        # Run all agents in parallel (including affinity agent)
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(agents_to_run)) as executor:
             futures = {executor.submit(agent.execute, state): name for name, agent in agents_to_run}
             
@@ -474,8 +492,203 @@ class MCPOrchestrator:
                         state["results"].extend(result_state["results"])
                     if result_state.get("context"):
                         state["context"].update(result_state["context"])
+                    # Merge affinity-specific data
+                    if agent_name == "affinity" and result_state.get("context", {}).get("synchronicities"):
+                        if "synchronicities" not in state["context"]:
+                            state["context"]["synchronicities"] = []
+                        state["context"]["synchronicities"].extend(
+                            result_state["context"].get("synchronicities", [])
+                        )
                 except Exception as e:
                     logger.error(f"Agent {agent_name} error: {e}")
+        
+        state["status"] = "completed"
+        return state
+    
+    async def execute_async(self, task: Dict) -> Dict:
+        """
+        Execute a task asynchronously through the agent workflow
+        
+        Args:
+            task: Task dictionary with 'type', 'source', 'query', etc.
+            
+        Returns:
+            Dictionary with results, cost, and status
+        """
+        # Initialize state
+        initial_state: AgentState = {
+            "task": task,
+            "data": [],
+            "context": {
+                "started_at": datetime.utcnow().isoformat(),
+                "task_type": task.get("type", "unknown")
+            },
+            "results": [],
+            "cost": 0.0,
+            "status": "pending",
+            "memory_id": None
+        }
+        
+        # Save to memory
+        if self.supabase:
+            try:
+                memory_result = self.supabase.table("agent_memory").insert({
+                    "agent_id": "orchestrator",
+                    "context": str(initial_state["context"]),
+                    "state": initial_state,
+                    "expires_at": (datetime.utcnow().timestamp() + 86400)  # 24h
+                }).execute()
+                if memory_result.data:
+                    initial_state["memory_id"] = memory_result.data[0]["id"]
+            except Exception as e:
+                logger.error(f"Error saving to memory: {e}")
+        
+        # Execute workflow asynchronously
+        try:
+            # Track execution start
+            if self.observer:
+                self.observer.observe("execution_start", {
+                    "task": task,
+                    "task_type": task.get("type", "unknown")
+                }, "orchestrator")
+            
+            import time
+            start_time = time.time()
+            
+            # Run all agents in parallel asynchronously
+            final_state = await self._execute_parallel_async(initial_state)
+            execution_time = time.time() - start_time
+            
+            final_state["status"] = "completed"
+            
+            # Track execution completion
+            if self.observer:
+                self.observer.track_execution("orchestrator", final_state, execution_time)
+            
+            logger.info(f"Async workflow completed: {final_state['status']}")
+        except Exception as e:
+            logger.error(f"Async workflow error: {e}")
+            final_state = initial_state
+            final_state["status"] = "failed"
+            final_state["error"] = str(e)
+            
+            # Track error
+            if self.observer:
+                self.observer.record_error("orchestrator", e, {"task": task})
+        
+        # Update memory
+        if self.supabase and initial_state["memory_id"]:
+            try:
+                self.supabase.table("agent_memory").update({
+                    "state": final_state,
+                    "context": str(final_state["context"])
+                }).eq("id", initial_state["memory_id"]).execute()
+            except Exception as e:
+                logger.error(f"Error updating memory: {e}")
+        
+        # Track costs
+        if self.cost_manager and final_state.get("cost", 0) > 0:
+            try:
+                self.cost_manager.track_cost(
+                    cost_type="api",
+                    api_name="orchestrator",
+                    operation="async_workflow_execution",
+                    cost_amount=final_state.get("cost", 0),
+                    metadata={
+                        "task_type": task.get("type", "unknown"),
+                        "agents_executed": len(final_state.get("results", [])),
+                        "status": final_state.get("status", "unknown")
+                    }
+                )
+            except Exception as e:
+                logger.warning(f"Error tracking cost: {e}")
+        
+        return final_state
+    
+    async def _execute_parallel_async(self, state: AgentState) -> AgentState:
+        """
+        Execute all agents in parallel asynchronously - INCLUDING AFFINITY AGENT
+        
+        Args:
+            state: Agent state with task and data
+            
+        Returns:
+            Updated state with all agent results merged
+        """
+        from .extraction import ExtractionAgent
+        from .distillation import DistillationAgent
+        from .ingestion import IngestionAgent
+        from .inference import InferenceAgent
+        from .affinity import AffinityAgent
+        
+        # Initialize agents
+        extraction = ExtractionAgent()
+        distillation = DistillationAgent()
+        ingestion = IngestionAgent()
+        inference = InferenceAgent()
+        affinity = AffinityAgent()
+        
+        # Execute extraction first
+        try:
+            state = extraction.execute(state)
+        except Exception as e:
+            logger.error(f"Extraction agent error: {e}")
+        
+        # Execute ALL analysis agents SIMULTANEOUSLY (async parallel execution)
+        agents_to_run = [
+            ('distillation', distillation),
+            ('ingestion', ingestion),
+            ('inference', inference),
+            ('affinity', affinity),  # AFFINITY AGENT - Always included
+        ]
+        
+        # Add new agents if available
+        try:
+            from .symbol_extractor import SymbolExtractorAgent
+            from .phonetic_analyzer import PhoneticAnalyzerAgent
+            from .pattern_detector import PatternDetectorAgent
+            from .gematria_integrator import GematriaIntegratorAgent
+            
+            agents_to_run.extend([
+                ('symbol_extractor', SymbolExtractorAgent()),
+                ('phonetic_analyzer', PhoneticAnalyzerAgent()),
+                ('pattern_detector', PatternDetectorAgent()),
+                ('gematria_integrator', GematriaIntegratorAgent()),
+            ])
+        except ImportError as e:
+            logger.warning(f"Some agents not available: {e}")
+        
+        # Run all agents in parallel asynchronously
+        async def execute_agent(name: str, agent) -> Dict:
+            """Execute a single agent asynchronously"""
+            try:
+                # Run in thread pool for sync agents
+                loop = asyncio.get_event_loop()
+                result_state = await loop.run_in_executor(None, agent.execute, state)
+                return {"name": name, "state": result_state, "success": True}
+            except Exception as e:
+                logger.error(f"Agent {name} async error: {e}")
+                return {"name": name, "state": state, "success": False, "error": str(e)}
+        
+        # Execute all agents concurrently
+        tasks = [execute_agent(name, agent) for name, agent in agents_to_run]
+        results = await asyncio.gather(*tasks)
+        
+        # Merge results from all agents
+        for result in results:
+            if result.get("success") and result.get("state"):
+                result_state = result["state"]
+                if result_state.get("results"):
+                    state["results"].extend(result_state["results"])
+                if result_state.get("context"):
+                    state["context"].update(result_state["context"])
+                # Merge affinity-specific data
+                if result["name"] == "affinity" and result_state.get("context", {}).get("synchronicities"):
+                    if "synchronicities" not in state["context"]:
+                        state["context"]["synchronicities"] = []
+                    state["context"]["synchronicities"].extend(
+                        result_state["context"].get("synchronicities", [])
+                    )
         
         state["status"] = "completed"
         return state

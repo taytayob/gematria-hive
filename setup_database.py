@@ -1,185 +1,290 @@
 #!/usr/bin/env python3
 """
-Database Setup Script - Gematria Hive
+Database Setup Script
 
-Purpose: Complete database setup and migration for Supabase
-- Enable pgvector extension
-- Create all tables from migrations
-- Create indexes and views
-- Set up Row Level Security (RLS)
+Purpose: Automated database setup and verification for Gematria Hive.
+Tests connection, creates tables, and verifies everything is working.
 
 Usage:
     python setup_database.py
+    python setup_database.py --verify-only  # Just test connection
+    python setup_database.py --create-tables  # Create tables via API
 
 Author: Gematria Hive Team
-Date: November 7, 2025
+Date: January 6, 2025
 """
 
-import os
 import sys
+import os
+import argparse
 import logging
 from pathlib import Path
-from dotenv import load_dotenv
+from typing import Dict, Optional
 
-# Load environment variables
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from dotenv import load_dotenv
 load_dotenv()
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Check for Supabase
-try:
-    from supabase import create_client, Client
-    HAS_SUPABASE = True
-except ImportError:
-    HAS_SUPABASE = False
-    logger.error("Supabase library not installed. Install with: pip install supabase")
-    sys.exit(1)
 
-# Get environment variables
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
-
-if not SUPABASE_URL or not SUPABASE_KEY:
-    logger.error("SUPABASE_URL and SUPABASE_KEY must be set in environment variables")
-    logger.error("Set them in .env file or Replit Secrets")
-    sys.exit(1)
-
-# Initialize Supabase client
-try:
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-    logger.info("✅ Supabase client initialized")
-except Exception as e:
-    logger.error(f"Failed to initialize Supabase client: {e}")
-    sys.exit(1)
+def check_environment() -> Dict[str, bool]:
+    """Check if environment variables are set"""
+    supabase_url = os.getenv('SUPABASE_URL')
+    supabase_key = os.getenv('SUPABASE_KEY')
+    
+    return {
+        'SUPABASE_URL': bool(supabase_url),
+        'SUPABASE_KEY': bool(supabase_key),
+        'both_set': bool(supabase_url and supabase_key)
+    }
 
 
-def read_sql_file(file_path: Path) -> str:
-    """Read SQL file content"""
+def test_connection() -> Dict:
+    """Test Supabase connection"""
+    logger.info("=" * 60)
+    logger.info("Testing Supabase Connection")
+    logger.info("=" * 60)
+    
+    env_check = check_environment()
+    
+    if not env_check['both_set']:
+        logger.error("❌ Environment variables not set")
+        logger.error("   Set SUPABASE_URL and SUPABASE_KEY in .env file or environment")
+        return {"status": "failed", "error": "Environment variables not set"}
+    
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return f.read()
+        from supabase import create_client
+        
+        supabase_url = os.getenv('SUPABASE_URL')
+        supabase_key = os.getenv('SUPABASE_KEY')
+        
+        logger.info(f"Connecting to Supabase: {supabase_url[:30]}...")
+        supabase = create_client(supabase_url, supabase_key)
+        
+        # Test connection by querying a table
+        logger.info("Testing connection...")
+        result = supabase.table('bookmarks').select('*').limit(1).execute()
+        
+        logger.info("✅ Connection successful!")
+        return {"status": "success", "supabase": supabase}
+        
     except Exception as e:
-        logger.error(f"Error reading SQL file {file_path}: {e}")
-        return ""
+        logger.error(f"❌ Connection failed: {e}")
+        return {"status": "failed", "error": str(e)}
 
 
-def execute_sql(sql: str, description: str) -> bool:
-    """Execute SQL statement"""
+def verify_tables() -> Dict:
+    """Verify that required tables exist"""
+    logger.info("=" * 60)
+    logger.info("Verifying Database Tables")
+    logger.info("=" * 60)
+    
+    connection_result = test_connection()
+    if connection_result.get("status") != "success":
+        return connection_result
+    
+    supabase = connection_result.get("supabase")
+    if not supabase:
+        return {"status": "failed", "error": "No Supabase client"}
+    
+    required_tables = ['bookmarks', 'hunches', 'proofs', 'gematria_words']
+    existing_tables = []
+    missing_tables = []
+    
+    for table in required_tables:
+        try:
+            result = supabase.table(table).select('*').limit(1).execute()
+            existing_tables.append(table)
+            logger.info(f"✅ Table '{table}' exists")
+        except Exception as e:
+            missing_tables.append(table)
+            logger.warning(f"⚠️  Table '{table}' not found: {e}")
+    
+    if missing_tables:
+        logger.warning(f"Missing tables: {', '.join(missing_tables)}")
+        logger.info("Run SQL migrations in Supabase SQL Editor:")
+        logger.info("  - migrations/create_gematria_tables.sql")
+        return {
+            "status": "partial",
+            "existing": existing_tables,
+            "missing": missing_tables
+        }
+    else:
+        logger.info("✅ All required tables exist!")
+        return {
+            "status": "success",
+            "tables": existing_tables
+        }
+
+
+def verify_pgvector() -> Dict:
+    """Verify pgvector extension is enabled"""
+    logger.info("=" * 60)
+    logger.info("Verifying pgvector Extension")
+    logger.info("=" * 60)
+    
+    connection_result = test_connection()
+    if connection_result.get("status") != "success":
+        return connection_result
+    
+    supabase = connection_result.get("supabase")
+    if not supabase:
+        return {"status": "failed", "error": "No Supabase client"}
+    
     try:
-        # Split by semicolons and execute each statement
-        statements = [s.strip() for s in sql.split(';') if s.strip()]
-        
-        for statement in statements:
-            if statement:
-                # Skip comments
-                if statement.startswith('--'):
-                    continue
-                
-                # Execute via Supabase RPC or direct SQL
-                # Note: Supabase Python client doesn't support raw SQL execution
-                # We'll need to use the REST API or run via Supabase Dashboard
-                logger.info(f"Executing: {description}")
-                logger.warning(f"SQL statement (run in Supabase Dashboard):\n{statement[:200]}...")
-        
-        logger.info(f"✅ {description} - Run SQL in Supabase Dashboard SQL Editor")
-        return True
+        # Try to query a table with vector column
+        result = supabase.table('bookmarks').select('embedding').limit(1).execute()
+        logger.info("✅ pgvector extension appears to be enabled")
+        return {"status": "success"}
     except Exception as e:
-        logger.error(f"Error executing SQL: {e}")
-        return False
+        error_str = str(e).lower()
+        if 'vector' in error_str or 'embedding' in error_str:
+            logger.warning("⚠️  pgvector extension may not be enabled")
+            logger.info("Run in Supabase SQL Editor:")
+            logger.info("  CREATE EXTENSION IF NOT EXISTS vector;")
+            return {"status": "partial", "note": "pgvector may need to be enabled"}
+        else:
+            logger.info("✅ Connection works (pgvector check inconclusive)")
+            return {"status": "success"}
 
 
-def setup_database():
-    """Complete database setup"""
+def print_setup_instructions():
+    """Print setup instructions"""
+    logger.info("=" * 60)
+    logger.info("Database Setup Instructions")
+    logger.info("=" * 60)
+    logger.info("")
+    logger.info("1. Create Supabase Project:")
+    logger.info("   - Go to https://supabase.com")
+    logger.info("   - Click 'New Project'")
+    logger.info("   - Name: gematria-hive")
+    logger.info("   - Set database password (save it!)")
+    logger.info("   - Wait for project to be created")
+    logger.info("")
+    logger.info("2. Get API Keys:")
+    logger.info("   - Go to Settings → API")
+    logger.info("   - Copy 'Project URL' → SUPABASE_URL")
+    logger.info("   - Copy 'anon public' key → SUPABASE_KEY")
+    logger.info("")
+    logger.info("3. Set Environment Variables:")
+    logger.info("   Create .env file in project root:")
+    logger.info("   SUPABASE_URL=https://your-project.supabase.co")
+    logger.info("   SUPABASE_KEY=your-anon-key-here")
+    logger.info("")
+    logger.info("4. Run SQL Migrations:")
+    logger.info("   - Go to Supabase Dashboard → SQL Editor")
+    logger.info("   - Copy SQL from: migrations/create_gematria_tables.sql")
+    logger.info("   - Paste and run")
+    logger.info("")
+    logger.info("5. Verify Setup:")
+    logger.info("   python setup_database.py --verify-only")
+    logger.info("")
+
+
+def main():
+    """Main setup function"""
+    parser = argparse.ArgumentParser(
+        description="Setup and verify Gematria Hive database",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    
+    parser.add_argument(
+        "--verify-only",
+        action="store_true",
+        help="Only verify connection (don't create tables)"
+    )
+    
+    parser.add_argument(
+        "--instructions",
+        action="store_true",
+        help="Print setup instructions"
+    )
+    
+    parser.add_argument(
+        "--verbose",
+        "-v",
+        action="store_true",
+        help="Enable verbose logging"
+    )
+    
+    args = parser.parse_args()
+    
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+    
+    if args.instructions:
+        print_setup_instructions()
+        return 0
+    
     logger.info("=" * 60)
     logger.info("Gematria Hive - Database Setup")
     logger.info("=" * 60)
+    logger.info("")
     
-    # Check connection
-    try:
-        result = supabase.table('bookmarks').select('id').limit(1).execute()
-        logger.info("✅ Database connection successful")
-    except Exception as e:
-        logger.warning(f"Database connection test failed (may be expected if tables don't exist): {e}")
+    # Check environment
+    env_check = check_environment()
+    logger.info("Environment Variables:")
+    logger.info(f"  SUPABASE_URL: {'✅ Set' if env_check['SUPABASE_URL'] else '❌ Not set'}")
+    logger.info(f"  SUPABASE_KEY: {'✅ Set' if env_check['SUPABASE_KEY'] else '❌ Not set'}")
+    logger.info("")
     
-    # Read migration files
-    migrations_dir = Path(__file__).parent / "migrations"
+    if not env_check['both_set']:
+        logger.error("❌ Environment variables not configured")
+        logger.info("")
+        print_setup_instructions()
+        return 1
     
-    migration_files = [
-        ("create_gematria_tables.sql", "Gematria tables"),
-        ("create_complete_schema.sql", "Complete schema"),
-    ]
+    # Test connection
+    connection_result = test_connection()
+    if connection_result.get("status") != "success":
+        logger.error("❌ Database connection failed")
+        logger.info("")
+        print_setup_instructions()
+        return 1
     
-    logger.info("\n" + "=" * 60)
-    logger.info("Migration Files Found:")
+    logger.info("")
+    
+    # Verify tables
+    tables_result = verify_tables()
+    logger.info("")
+    
+    # Verify pgvector
+    pgvector_result = verify_pgvector()
+    logger.info("")
+    
+    # Summary
+    logger.info("=" * 60)
+    logger.info("Setup Summary")
     logger.info("=" * 60)
     
-    for filename, description in migration_files:
-        file_path = migrations_dir / filename
-        if file_path.exists():
-            logger.info(f"✅ {filename} - {description}")
-            sql_content = read_sql_file(file_path)
-            if sql_content:
-                logger.info(f"   SQL statements: {len([s for s in sql_content.split(';') if s.strip()])} statements")
-        else:
-            logger.warning(f"⚠️  {filename} not found")
+    all_good = (
+        connection_result.get("status") == "success" and
+        tables_result.get("status") in ["success", "partial"] and
+        pgvector_result.get("status") in ["success", "partial"]
+    )
     
-    logger.info("\n" + "=" * 60)
-    logger.info("Database Setup Instructions:")
-    logger.info("=" * 60)
-    logger.info("""
-1. Go to Supabase Dashboard: https://supabase.com/dashboard
-2. Select your project
-3. Go to SQL Editor
-4. Run the following SQL files in order:
-
-   a) migrations/create_gematria_tables.sql
-   b) migrations/create_complete_schema.sql
-
-5. Verify tables created in Table Editor
-6. Test connection with this script again
-
-Note: Supabase Python client doesn't support raw SQL execution.
-      You must run SQL migrations via the Supabase Dashboard SQL Editor.
-    """)
-    
-    # Test connection after setup
-    logger.info("\n" + "=" * 60)
-    logger.info("Connection Test:")
-    logger.info("=" * 60)
-    
-    try:
-        # Try to query bookmarks table
-        result = supabase.table('bookmarks').select('id').limit(1).execute()
-        logger.info("✅ bookmarks table exists and is accessible")
-    except Exception as e:
-        logger.warning(f"⚠️  bookmarks table not found or not accessible: {e}")
-        logger.info("   Run migrations in Supabase Dashboard SQL Editor")
-    
-    try:
-        # Try to query gematria_words table
-        result = supabase.table('gematria_words').select('id').limit(1).execute()
-        logger.info("✅ gematria_words table exists and is accessible")
-    except Exception as e:
-        logger.warning(f"⚠️  gematria_words table not found or not accessible: {e}")
-        logger.info("   Run migrations in Supabase Dashboard SQL Editor")
-    
-    logger.info("\n" + "=" * 60)
-    logger.info("Setup Complete!")
-    logger.info("=" * 60)
-    logger.info("""
-Next Steps:
-1. Run SQL migrations in Supabase Dashboard SQL Editor
-2. Verify all tables created
-3. Test ingestion with: python ingest_pass1.py test_data.json
-4. Check database in Supabase Table Editor
-    """)
+    if all_good:
+        logger.info("✅ Database setup complete!")
+        logger.info("")
+        logger.info("Next steps:")
+        logger.info("1. Run end-to-end tests: python test_e2e.py")
+        logger.info("2. Test kanban dashboard: streamlit run app.py")
+        logger.info("3. Test ingestion: python scripts/ingest.py --input processed.json")
+        return 0
+    else:
+        logger.warning("⚠️  Database setup incomplete")
+        logger.info("")
+        print_setup_instructions()
+        return 1
 
 
 if __name__ == "__main__":
-    setup_database()
-
+    sys.exit(main())

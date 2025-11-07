@@ -63,3 +63,131 @@
 2025-11-07 11:19:39,034 - WARNING - Supabase library not installed - install with: pip install supabase
 2025-11-07 11:19:39,034 - WARNING - sentence-transformers not installed - embeddings will be disabled
 2025-11-07 11:19:39,034 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:20:26,217 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:20:26,217 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:20:26,217 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:20:26,217 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:20:26,293 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:20:26,293 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:20:26,293 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:20:26,293 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:20:26,298 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:20:26,298 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:20:26,298 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:20:26,298 - INFO - Gematria calculator initialized
+2025-11-07 11:20:53,904 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:20:53,904 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:20:53,904 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:20:53,904 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:20:53,908 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:20:53,908 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:20:53,908 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:20:53,908 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:21:24,349 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:24,349 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:24,349 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:24,349 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:21:24,420 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:24,420 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:24,420 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:24,420 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:21:24,423 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:21:24,423 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:21:24,423 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:24,423 - INFO - OneTab scraper initialized
+2025-11-07 11:21:24,423 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:21:24,423 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:21:24,423 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:21:24,423 - INFO - Gematria calculator initialized
+2025-11-07 11:21:37,958 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:37,958 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:37,958 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:37,958 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:21:38,029 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:38,029 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:38,029 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:38,029 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:21:38,030 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:21:38,030 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:21:38,030 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:38,030 - INFO - Gematrix.org scraper initialized
+2025-11-07 11:21:38,031 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:21:38,031 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:21:38,031 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:38,032 - INFO - OneTab scraper initialized
+2025-11-07 11:21:38,032 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:21:38,032 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:21:38,032 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:21:38,032 - INFO - Gematria calculator initialized
+2025-11-07 11:21:44,789 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:44,789 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:44,789 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:44,789 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:21:44,790 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:44,790 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:44,790 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:44,790 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:21:45,728 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:45,728 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:45,728 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:45,728 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:21:45,730 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:21:45,730 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:21:45,730 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:45,730 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:24:03,690 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:24:03,690 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:24:03,690 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:24:03,690 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:24:03,770 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:24:03,771 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:24:03,771 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:24:03,771 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:24:03,773 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:24:03,773 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:24:03,773 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:24:03,773 - INFO - Gematrix.org scraper initialized
+2025-11-07 11:24:03,774 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:24:03,774 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:24:03,774 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:24:03,774 - INFO - OneTab scraper initialized
+2025-11-07 11:24:03,774 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:24:03,774 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:24:03,774 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:24:03,774 - INFO - Gematria calculator initialized
+2025-11-07 11:24:31,553 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:24:31,554 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:24:31,568 - INFO - Use pytorch device_name: mps
+2025-11-07 11:24:31,568 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:24:34,155 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:24:34,155 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:24:34,159 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:24:34,159 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:24:34,160 - INFO - Use pytorch device_name: mps
+2025-11-07 11:24:34,160 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:24:35,958 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:25:01,707 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:25:01,707 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:25:01,719 - INFO - Use pytorch device_name: mps
+2025-11-07 11:25:01,719 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:25:04,165 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:25:04,165 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:25:04,167 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:25:04,167 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:25:04,168 - INFO - Use pytorch device_name: mps
+2025-11-07 11:25:04,168 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:25:06,117 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:25:18,770 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:25:18,770 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:25:18,784 - INFO - Use pytorch device_name: mps
+2025-11-07 11:25:18,784 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:25:21,231 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:25:21,231 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:25:21,232 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:25:21,232 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:25:21,234 - INFO - Use pytorch device_name: mps
+2025-11-07 11:25:21,234 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:25:23,343 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:25:23,375 - WARNING - Supabase not configured, DataTable operations disabled
+2025-11-07 11:25:23,377 - WARNING - Plotly not installed, 3D visualization disabled
+2025-11-07 11:25:23,377 - WARNING - Matplotlib not installed, 3D visualization disabled

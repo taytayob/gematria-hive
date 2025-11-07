@@ -1,0 +1,4 @@
+2025-11-07 11:21:35,802 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited
+2025-11-07 11:21:35,802 - WARNING - Supabase not configured - scraping will be limited
+2025-11-07 11:21:35,802 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:21:35,802 - INFO - Gematrix.org scraper initialized

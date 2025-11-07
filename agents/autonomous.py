@@ -343,7 +343,6 @@ class AutonomousAgent:
         
         try:
             # Here you can integrate with other agents or custom logic
-            # For now, this is a placeholder that can be extended
             action = task.get('action', 'process')
             
             if action == 'commit':
@@ -359,6 +358,53 @@ class AutonomousAgent:
                 time.sleep(wait_seconds)
                 result['success'] = True
                 result['output'] = f"Waited {wait_seconds} seconds"
+            
+            elif action == 'affinity' or task_type == 'affinity':
+                # Process affinity agent task
+                try:
+                    from .affinity import AffinityAgent
+                    from .orchestrator import AgentState
+                    
+                    affinity = AffinityAgent()
+                    agent_state: AgentState = {
+                        "task": task,
+                        "data": task.get('data', []),
+                        "context": {},
+                        "results": [],
+                        "cost": 0.0,
+                        "status": "pending",
+                        "memory_id": None
+                    }
+                    
+                    affinity_result = affinity.execute(agent_state)
+                    result['success'] = affinity_result.get('status') != 'failed'
+                    result['output'] = {
+                        'synchronicities': len(affinity_result.get('results', [])),
+                        'status': affinity_result.get('status'),
+                        'results': affinity_result.get('results', [])
+                    }
+                except Exception as e:
+                    logger.error(f"Affinity agent error: {e}")
+                    result['error'] = str(e)
+                    result['output'] = f"Affinity agent failed: {e}"
+            
+            elif action == 'orchestrator' or task_type == 'orchestrator':
+                # Process orchestrator task (includes affinity in parallel)
+                try:
+                    from .orchestrator import get_orchestrator
+                    
+                    orchestrator = get_orchestrator()
+                    orchestrator_result = orchestrator.execute(task)
+                    result['success'] = orchestrator_result.get('status') != 'failed'
+                    result['output'] = {
+                        'status': orchestrator_result.get('status'),
+                        'results_count': len(orchestrator_result.get('results', [])),
+                        'synchronicities': orchestrator_result.get('context', {}).get('synchronicities', [])
+                    }
+                except Exception as e:
+                    logger.error(f"Orchestrator error: {e}")
+                    result['error'] = str(e)
+                    result['output'] = f"Orchestrator failed: {e}"
             
             else:
                 # Default: just log the task

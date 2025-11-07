@@ -20,21 +20,26 @@ from typing import List, Dict, Optional
 from datetime import datetime
 
 from scraper import BaseScraper
-from supabase import create_client, Client
-from sentence_transformers import SentenceTransformer
+
+try:
+    from supabase import create_client, Client
+    HAS_SUPABASE_LIB = True
+except ImportError:
+    HAS_SUPABASE_LIB = False
+    Client = None
+
+try:
+    from sentence_transformers import SentenceTransformer
+    HAS_SENTENCE_TRANSFORMERS = True
+except ImportError:
+    HAS_SENTENCE_TRANSFORMERS = False
+    SentenceTransformer = None
 
 # Load environment variables
 from dotenv import load_dotenv
 load_dotenv()
 
-# Environment variables
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
-
-if not SUPABASE_URL or not SUPABASE_KEY:
-    raise ValueError("SUPABASE_URL and SUPABASE_KEY must be set in environment variables")
-
-# Logging setup
+# Logging setup (must be before Supabase check to use logger)
 logging.basicConfig(
     filename='gematrix_scraping_log.txt',
     level=logging.INFO,
@@ -46,11 +51,36 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 logger.addHandler(console_handler)
 
+# Environment variables
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+
+# Make Supabase optional - fail gracefully at runtime
+HAS_SUPABASE = bool(SUPABASE_URL and SUPABASE_KEY)
+if not HAS_SUPABASE:
+    logger.warning("SUPABASE_URL and SUPABASE_KEY not set - scraping will be limited")
+
 # Supabase client
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+supabase: Optional[Client] = None
+if SUPABASE_URL and SUPABASE_KEY and HAS_SUPABASE_LIB:
+    try:
+        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        logger.warning(f"Could not initialize Supabase client: {e}")
+        supabase = None
+else:
+    logger.warning("Supabase not configured - scraping will be limited")
 
 # Embedding model
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+embed_model = None
+if HAS_SENTENCE_TRANSFORMERS:
+    try:
+        embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+    except Exception as e:
+        logger.warning(f"Could not initialize embedding model: {e}")
+        embed_model = None
+else:
+    logger.warning("sentence-transformers not installed - embeddings will be disabled")
 
 logger.info("Gematrix.org scraper initialized")
 
