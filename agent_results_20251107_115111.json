@@ -1,0 +1,483 @@
+[
+  {
+    "task": {
+      "type": "extraction",
+      "source": "test",
+      "description": "Extract data from test source"
+    },
+    "result": {
+      "task": {
+        "type": "extraction",
+        "source": "test",
+        "description": "Extract data from test source"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:04.978464",
+        "task_type": "extraction",
+        "extraction_source": "test",
+        "extraction_count": 0,
+        "distillation_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "test"
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:05.941562"
+  },
+  {
+    "task": {
+      "type": "distillation",
+      "description": "Process and distill extracted data"
+    },
+    "result": {
+      "task": {
+        "type": "distillation",
+        "description": "Process and distill extracted data"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:05.942119",
+        "task_type": "distillation",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "distillation_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:06.552091"
+  },
+  {
+    "task": {
+      "type": "ingestion",
+      "description": "Ingest processed data into database"
+    },
+    "result": {
+      "task": {
+        "type": "ingestion",
+        "description": "Ingest processed data into database"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:06.552776",
+        "task_type": "ingestion",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "distillation_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:07.162495"
+  },
+  {
+    "task": {
+      "type": "inference",
+      "query": "gematria numerology sacred geometry",
+      "description": "Generate insights and hunches"
+    },
+    "result": {
+      "task": {
+        "type": "inference",
+        "query": "gematria numerology sacred geometry",
+        "description": "Generate insights and hunches"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:07.163109",
+        "task_type": "inference",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "claude_analysis": {
+          "error": "Claude API not available",
+          "query": "gematria numerology sacred geometry"
+        },
+        "distillation_count": 0,
+        "discovered_resources": [],
+        "resources_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "claude_integrator_agent",
+          "action": "claude_analysis",
+          "query": "gematria numerology sacred geometry",
+          "personas_used": [
+            "default"
+          ],
+          "result": {
+            "error": "Claude API not available",
+            "query": "gematria numerology sacred geometry"
+          }
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "resource_discoverer_agent",
+          "action": "discover_resources",
+          "query": "gematria numerology sacred geometry",
+          "resources_count": 0,
+          "resources": []
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:08.991050"
+  },
+  {
+    "task": {
+      "type": "affinity",
+      "query": "synchronicities patterns",
+      "description": "Detect synchronicities and patterns"
+    },
+    "result": {
+      "task": {
+        "type": "affinity",
+        "query": "synchronicities patterns",
+        "description": "Detect synchronicities and patterns"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:08.991567",
+        "task_type": "affinity",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "claude_analysis": {
+          "error": "Claude API not available",
+          "query": "synchronicities patterns"
+        },
+        "distillation_count": 0,
+        "discovered_resources": [],
+        "resources_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "claude_integrator_agent",
+          "action": "claude_analysis",
+          "query": "synchronicities patterns",
+          "personas_used": [
+            "default"
+          ],
+          "result": {
+            "error": "Claude API not available",
+            "query": "synchronicities patterns"
+          }
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "resource_discoverer_agent",
+          "action": "discover_resources",
+          "query": "synchronicities patterns",
+          "resources_count": 0,
+          "resources": []
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:09.894795"
+  },
+  {
+    "task": {
+      "type": "pattern_detector",
+      "query": "gematria patterns",
+      "description": "Detect patterns in data"
+    },
+    "result": {
+      "task": {
+        "type": "pattern_detector",
+        "query": "gematria patterns",
+        "description": "Detect patterns in data"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:09.895384",
+        "task_type": "pattern_detector",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "claude_analysis": {
+          "error": "Claude API not available",
+          "query": "gematria patterns"
+        },
+        "distillation_count": 0,
+        "discovered_resources": [],
+        "resources_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "claude_integrator_agent",
+          "action": "claude_analysis",
+          "query": "gematria patterns",
+          "personas_used": [
+            "default"
+          ],
+          "result": {
+            "error": "Claude API not available",
+            "query": "gematria patterns"
+          }
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "resource_discoverer_agent",
+          "action": "discover_resources",
+          "query": "gematria patterns",
+          "resources_count": 0,
+          "resources": []
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:10.882454"
+  },
+  {
+    "task": {
+      "type": "gematria_integrator",
+      "query": "calculate gematria values",
+      "description": "Integrate gematria calculations"
+    },
+    "result": {
+      "task": {
+        "type": "gematria_integrator",
+        "query": "calculate gematria values",
+        "description": "Integrate gematria calculations"
+      },
+      "data": [],
+      "context": {
+        "started_at": "2025-11-07T19:51:10.883057",
+        "task_type": "gematria_integrator",
+        "extraction_source": "dewey_json.json",
+        "extraction_count": 0,
+        "claude_analysis": {
+          "error": "Claude API not available",
+          "query": "calculate gematria values"
+        },
+        "distillation_count": 0,
+        "discovered_resources": [],
+        "resources_count": 0,
+        "ingestion_count": 0
+      },
+      "results": [
+        {
+          "agent": "extraction_agent",
+          "action": "extract",
+          "count": 0,
+          "source": "dewey_json.json"
+        },
+        {
+          "agent": "claude_integrator_agent",
+          "action": "claude_analysis",
+          "query": "calculate gematria values",
+          "personas_used": [
+            "default"
+          ],
+          "result": {
+            "error": "Claude API not available",
+            "query": "calculate gematria values"
+          }
+        },
+        {
+          "agent": "distillation_agent",
+          "action": "distill",
+          "count": 0,
+          "avg_relevance": 0.0
+        },
+        {
+          "agent": "resource_discoverer_agent",
+          "action": "discover_resources",
+          "query": "calculate gematria values",
+          "resources_count": 0,
+          "resources": []
+        },
+        {
+          "agent": "ingestion_agent",
+          "action": "ingest",
+          "count": 0,
+          "total": 0
+        },
+        {
+          "agent": "inference_agent",
+          "action": "infer",
+          "insights_count": 0,
+          "hunches_count": 0,
+          "insights": []
+        }
+      ],
+      "cost": 0.0,
+      "status": "failed",
+      "memory_id": null,
+      "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+    },
+    "timestamp": "2025-11-07T11:51:11.597950"
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "total_items": 8,
+  "sources": {
+    "database": [
+      {
+        "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:05.543016+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:05.744123+00:00",
+        "updated_at": "2025-11-07T19:51:05.744123+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "039ca029-8971-4005-bc46-263c9240676c",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:06.278046+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:06.379905+00:00",
+        "updated_at": "2025-11-07T19:51:06.379905+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:06.878239+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:06.974811+00:00",
+        "updated_at": "2025-11-07T19:51:06.974811+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:07.512478+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:07.604561+00:00",
+        "updated_at": "2025-11-07T19:51:07.604561+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:09.278643+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:09.392573+00:00",
+        "updated_at": "2025-11-07T19:51:09.392573+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:10.198815+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:10.309605+00:00",
+        "updated_at": "2025-11-07T19:51:10.309605+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:51:11.178319+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:51:11.2868+00:00",
+        "updated_at": "2025-11-07T19:51:11.2868+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      },
+      {
+        "id": "5dc94911-8321-4f1e-b103-40e3598eff25",
+        "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+        "timestamp": "2025-11-07T19:54:19.362687+00:00",
+        "status": "completed",
+        "cost": 0,
+        "links": null,
+        "created_at": "2025-11-07T19:54:19.563016+00:00",
+        "updated_at": "2025-11-07T19:54:19.563016+00:00",
+        "_source": "hunches",
+        "_ingestion_source": "database"
+      }
+    ],
+    "websites": [],
+    "csv_files": [],
+    "bookmarks": []
+  },
+  "all_data": [
+    {
+      "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:05.543016+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:05.744123+00:00",
+      "updated_at": "2025-11-07T19:51:05.744123+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "039ca029-8971-4005-bc46-263c9240676c",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:06.278046+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:06.379905+00:00",
+      "updated_at": "2025-11-07T19:51:06.379905+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:06.878239+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:06.974811+00:00",
+      "updated_at": "2025-11-07T19:51:06.974811+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:07.512478+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:07.604561+00:00",
+      "updated_at": "2025-11-07T19:51:07.604561+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:09.278643+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:09.392573+00:00",
+      "updated_at": "2025-11-07T19:51:09.392573+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:10.198815+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:10.309605+00:00",
+      "updated_at": "2025-11-07T19:51:10.309605+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:51:11.178319+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:51:11.2868+00:00",
+      "updated_at": "2025-11-07T19:51:11.2868+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    },
+    {
+      "id": "5dc94911-8321-4f1e-b103-40e3598eff25",
+      "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+      "timestamp": "2025-11-07T19:54:19.362687+00:00",
+      "status": "completed",
+      "cost": 0,
+      "links": null,
+      "created_at": "2025-11-07T19:54:19.563016+00:00",
+      "updated_at": "2025-11-07T19:54:19.563016+00:00",
+      "_source": "hunches",
+      "_ingestion_source": "database"
+    }
+  ],
+  "duration": 9.505376,
+  "timestamp": "2025-11-07T11:55:26.736910"
+}

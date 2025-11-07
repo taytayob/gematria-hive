@@ -1,0 +1,3830 @@
+{
+  "execution_time": 43.823851,
+  "data_count": 7,
+  "agent_results": {
+    "results": [
+      {
+        "task": {
+          "type": "processing",
+          "data": [
+            {
+              "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:05.543016+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:05.744123+00:00",
+              "updated_at": "2025-11-07T19:51:05.744123+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "039ca029-8971-4005-bc46-263c9240676c",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:06.278046+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:06.379905+00:00",
+              "updated_at": "2025-11-07T19:51:06.379905+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:06.878239+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:06.974811+00:00",
+              "updated_at": "2025-11-07T19:51:06.974811+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:07.512478+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:07.604561+00:00",
+              "updated_at": "2025-11-07T19:51:07.604561+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:09.278643+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:09.392573+00:00",
+              "updated_at": "2025-11-07T19:51:09.392573+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:10.198815+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:10.309605+00:00",
+              "updated_at": "2025-11-07T19:51:10.309605+00:00",
+              "_source": "hunches"
+            },
+            {
+              "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+              "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+              "timestamp": "2025-11-07T19:51:11.178319+00:00",
+              "status": "completed",
+              "cost": 0,
+              "links": null,
+              "created_at": "2025-11-07T19:51:11.2868+00:00",
+              "updated_at": "2025-11-07T19:51:11.2868+00:00",
+              "_source": "hunches"
+            }
+          ],
+          "batch_number": 1,
+          "total_batches": 1
+        },
+        "data": [],
+        "context": {
+          "started_at": "2025-11-07T19:54:18.871131",
+          "task_type": "processing",
+          "extraction_source": "dewey_json.json",
+          "extraction_count": 0,
+          "distillation_count": 0,
+          "ingestion_count": 0
+        },
+        "results": [
+          {
+            "agent": "extraction_agent",
+            "action": "extract",
+            "count": 0,
+            "source": "dewey_json.json"
+          },
+          {
+            "agent": "inference_agent",
+            "action": "infer",
+            "insights_count": 0,
+            "hunches_count": 0,
+            "insights": []
+          },
+          {
+            "agent": "distillation_agent",
+            "action": "distill",
+            "count": 0,
+            "avg_relevance": 0.0
+          },
+          {
+            "agent": "ingestion_agent",
+            "action": "ingest",
+            "count": 0,
+            "total": 0
+          }
+        ],
+        "cost": 0.0,
+        "status": "failed",
+        "memory_id": null,
+        "error": "At key 'task': Can receive only one value per step. Use an Annotated key to handle multiple values.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/INVALID_CONCURRENT_GRAPH_UPDATE"
+      }
+    ],
+    "total_tasks": 1
+  },
+  "pattern_results": {
+    "pattern_detector": {
+      "task": {
+        "type": "pattern_detection",
+        "data": [
+          {
+            "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:05.543016+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:05.744123+00:00",
+            "updated_at": "2025-11-07T19:51:05.744123+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "039ca029-8971-4005-bc46-263c9240676c",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.278046+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.379905+00:00",
+            "updated_at": "2025-11-07T19:51:06.379905+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.878239+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.974811+00:00",
+            "updated_at": "2025-11-07T19:51:06.974811+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:07.512478+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:07.604561+00:00",
+            "updated_at": "2025-11-07T19:51:07.604561+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:09.278643+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:09.392573+00:00",
+            "updated_at": "2025-11-07T19:51:09.392573+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:10.198815+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:10.309605+00:00",
+            "updated_at": "2025-11-07T19:51:10.309605+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:11.178319+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:11.2868+00:00",
+            "updated_at": "2025-11-07T19:51:11.2868+00:00",
+            "_source": "hunches"
+          }
+        ]
+      },
+      "data": [
+        {
+          "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:05.543016+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:05.744123+00:00",
+          "updated_at": "2025-11-07T19:51:05.744123+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "039ca029-8971-4005-bc46-263c9240676c",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.278046+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.379905+00:00",
+          "updated_at": "2025-11-07T19:51:06.379905+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.878239+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.974811+00:00",
+          "updated_at": "2025-11-07T19:51:06.974811+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:07.512478+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:07.604561+00:00",
+          "updated_at": "2025-11-07T19:51:07.604561+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:09.278643+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:09.392573+00:00",
+          "updated_at": "2025-11-07T19:51:09.392573+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:10.198815+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:10.309605+00:00",
+          "updated_at": "2025-11-07T19:51:10.309605+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:11.178319+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:11.2868+00:00",
+          "updated_at": "2025-11-07T19:51:11.2868+00:00",
+          "_source": "hunches"
+        }
+      ],
+      "context": {
+        "detected_patterns": [],
+        "pattern_count": 0,
+        "term_frequencies": {},
+        "gematria_processed": [
+          {
+            "source_id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "039ca029-8971-4005-bc46-263c9240676c",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          }
+        ],
+        "total_terms": 49,
+        "total_related_terms": 0
+      },
+      "results": [
+        {
+          "agent": "pattern_detector_agent",
+          "action": "detect_patterns",
+          "patterns_detected": 0,
+          "cross_domain": 0,
+          "temporal": 0,
+          "symbolic": 0,
+          "phonetic": 0,
+          "gematria": 0
+        },
+        {
+          "agent": "gematria_integrator_agent",
+          "action": "integrate_gematria",
+          "sources_processed": 7,
+          "total_terms": 49,
+          "total_related_terms": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "pending",
+      "memory_id": null
+    },
+    "affinity": {
+      "task": {
+        "type": "pattern_detection",
+        "data": [
+          {
+            "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:05.543016+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:05.744123+00:00",
+            "updated_at": "2025-11-07T19:51:05.744123+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "039ca029-8971-4005-bc46-263c9240676c",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.278046+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.379905+00:00",
+            "updated_at": "2025-11-07T19:51:06.379905+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.878239+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.974811+00:00",
+            "updated_at": "2025-11-07T19:51:06.974811+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:07.512478+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:07.604561+00:00",
+            "updated_at": "2025-11-07T19:51:07.604561+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:09.278643+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:09.392573+00:00",
+            "updated_at": "2025-11-07T19:51:09.392573+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:10.198815+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:10.309605+00:00",
+            "updated_at": "2025-11-07T19:51:10.309605+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:11.178319+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:11.2868+00:00",
+            "updated_at": "2025-11-07T19:51:11.2868+00:00",
+            "_source": "hunches"
+          }
+        ]
+      },
+      "data": [
+        {
+          "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:05.543016+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:05.744123+00:00",
+          "updated_at": "2025-11-07T19:51:05.744123+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "039ca029-8971-4005-bc46-263c9240676c",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.278046+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.379905+00:00",
+          "updated_at": "2025-11-07T19:51:06.379905+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.878239+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.974811+00:00",
+          "updated_at": "2025-11-07T19:51:06.974811+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:07.512478+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:07.604561+00:00",
+          "updated_at": "2025-11-07T19:51:07.604561+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:09.278643+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:09.392573+00:00",
+          "updated_at": "2025-11-07T19:51:09.392573+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:10.198815+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:10.309605+00:00",
+          "updated_at": "2025-11-07T19:51:10.309605+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:11.178319+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:11.2868+00:00",
+          "updated_at": "2025-11-07T19:51:11.2868+00:00",
+          "_source": "hunches"
+        }
+      ],
+      "context": {
+        "detected_patterns": [],
+        "pattern_count": 0,
+        "term_frequencies": {},
+        "gematria_processed": [
+          {
+            "source_id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "039ca029-8971-4005-bc46-263c9240676c",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          }
+        ],
+        "total_terms": 49,
+        "total_related_terms": 0
+      },
+      "results": [
+        {
+          "agent": "pattern_detector_agent",
+          "action": "detect_patterns",
+          "patterns_detected": 0,
+          "cross_domain": 0,
+          "temporal": 0,
+          "symbolic": 0,
+          "phonetic": 0,
+          "gematria": 0
+        },
+        {
+          "agent": "gematria_integrator_agent",
+          "action": "integrate_gematria",
+          "sources_processed": 7,
+          "total_terms": 49,
+          "total_related_terms": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "pending",
+      "memory_id": null
+    },
+    "gematria_integrator": {
+      "task": {
+        "type": "pattern_detection",
+        "data": [
+          {
+            "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:05.543016+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:05.744123+00:00",
+            "updated_at": "2025-11-07T19:51:05.744123+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "039ca029-8971-4005-bc46-263c9240676c",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.278046+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.379905+00:00",
+            "updated_at": "2025-11-07T19:51:06.379905+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:06.878239+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:06.974811+00:00",
+            "updated_at": "2025-11-07T19:51:06.974811+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:07.512478+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:07.604561+00:00",
+            "updated_at": "2025-11-07T19:51:07.604561+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:09.278643+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:09.392573+00:00",
+            "updated_at": "2025-11-07T19:51:09.392573+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:10.198815+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:10.309605+00:00",
+            "updated_at": "2025-11-07T19:51:10.309605+00:00",
+            "_source": "hunches"
+          },
+          {
+            "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+            "timestamp": "2025-11-07T19:51:11.178319+00:00",
+            "status": "completed",
+            "cost": 0,
+            "links": null,
+            "created_at": "2025-11-07T19:51:11.2868+00:00",
+            "updated_at": "2025-11-07T19:51:11.2868+00:00",
+            "_source": "hunches"
+          }
+        ]
+      },
+      "data": [
+        {
+          "id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:05.543016+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:05.744123+00:00",
+          "updated_at": "2025-11-07T19:51:05.744123+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "039ca029-8971-4005-bc46-263c9240676c",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.278046+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.379905+00:00",
+          "updated_at": "2025-11-07T19:51:06.379905+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:06.878239+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:06.974811+00:00",
+          "updated_at": "2025-11-07T19:51:06.974811+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "cbbc4a7c-911c-4579-b459-93132e765384",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:07.512478+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:07.604561+00:00",
+          "updated_at": "2025-11-07T19:51:07.604561+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:09.278643+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:09.392573+00:00",
+          "updated_at": "2025-11-07T19:51:09.392573+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:10.198815+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:10.309605+00:00",
+          "updated_at": "2025-11-07T19:51:10.309605+00:00",
+          "_source": "hunches"
+        },
+        {
+          "id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+          "content": "Ingestion pass #1 complete: 0 items ingested, avg relevance 0.000",
+          "timestamp": "2025-11-07T19:51:11.178319+00:00",
+          "status": "completed",
+          "cost": 0,
+          "links": null,
+          "created_at": "2025-11-07T19:51:11.2868+00:00",
+          "updated_at": "2025-11-07T19:51:11.2868+00:00",
+          "_source": "hunches"
+        }
+      ],
+      "context": {
+        "detected_patterns": [],
+        "pattern_count": 0,
+        "term_frequencies": {},
+        "gematria_processed": [
+          {
+            "source_id": "5de25382-1c71-4d91-b5ac-5c32b7a4d5fe",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "039ca029-8971-4005-bc46-263c9240676c",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "5986de12-49da-4399-b4e1-d9ce0445f0a8",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "cbbc4a7c-911c-4579-b459-93132e765384",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "4a36018f-d759-48bd-ba4f-626f10d531b3",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "06488577-5f1e-425b-ac59-1c5da2a39e10",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          },
+          {
+            "source_id": "db10d286-f7d1-4dfb-b14d-fa5ebafe93d0",
+            "processed": {
+              "terms": [
+                {
+                  "term": "ingestion",
+                  "term_id": "ea86d5f2-055d-458a-941e-7d06a52fad45",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 112,
+                    "simple_gematria": 112,
+                    "latin_gematria": 102,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "pass",
+                  "term_id": "a66108b4-50db-48d7-b924-11d73a8ca650",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 55,
+                    "simple_gematria": 55,
+                    "latin_gematria": 49,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "complete",
+                  "term_id": "36f77056-9e97-4fc8-ae0f-b7493c609bf4",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 89,
+                    "simple_gematria": 89,
+                    "latin_gematria": 79,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "items",
+                  "term_id": "cf02c312-1723-4f7f-b08b-a10e7b29551c",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 66,
+                    "simple_gematria": 66,
+                    "latin_gematria": 60,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "ingested",
+                  "term_id": "34273ef3-983f-4d1f-89f5-a911f570d619",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 83,
+                    "simple_gematria": 83,
+                    "latin_gematria": 77,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "avg",
+                  "term_id": "1c0f8ef8-f3c8-46a3-9243-e975be772f20",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 30,
+                    "simple_gematria": 30,
+                    "latin_gematria": 33,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                },
+                {
+                  "term": "relevance",
+                  "term_id": "81ac23eb-4c86-4d36-aed2-3233605619b1",
+                  "gematria_values": {
+                    "jewish_gematria": 0,
+                    "english_gematria": 85,
+                    "simple_gematria": 85,
+                    "latin_gematria": 82,
+                    "greek_gematria": 0,
+                    "hebrew_full": 0,
+                    "hebrew_musafi": 0,
+                    "hebrew_katan": 0,
+                    "hebrew_ordinal": 0,
+                    "hebrew_atbash": 0,
+                    "hebrew_kidmi": 0,
+                    "hebrew_perati": 1,
+                    "hebrew_shemi": 0,
+                    "search_num": 0
+                  }
+                }
+              ],
+              "related_terms": []
+            }
+          }
+        ],
+        "total_terms": 49,
+        "total_related_terms": 0
+      },
+      "results": [
+        {
+          "agent": "pattern_detector_agent",
+          "action": "detect_patterns",
+          "patterns_detected": 0,
+          "cross_domain": 0,
+          "temporal": 0,
+          "symbolic": 0,
+          "phonetic": 0,
+          "gematria": 0
+        },
+        {
+          "agent": "gematria_integrator_agent",
+          "action": "integrate_gematria",
+          "sources_processed": 7,
+          "total_terms": 49,
+          "total_related_terms": 0
+        }
+      ],
+      "cost": 0.0,
+      "status": "pending",
+      "memory_id": null
+    }
+  },
+  "proof_results": {},
+  "unification_results": {},
+  "timestamp": "2025-11-07T11:54:44.971372"
+}

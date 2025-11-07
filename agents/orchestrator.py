@@ -198,6 +198,10 @@ class MCPOrchestrator:
             self.graph.add_node("source_tracker", self.agents['source_tracker'].execute)
         if 'resource_discoverer' in self.agents:
             self.graph.add_node("resource_discoverer", self.agents['resource_discoverer'].execute)
+        if 'dark_matter_tracker' in self.agents:
+            self.graph.add_node("dark_matter_tracker", self.agents['dark_matter_tracker'].execute)
+        if 'claude_integrator' in self.agents:
+            self.graph.add_node("claude_integrator", self.agents['claude_integrator'].execute)
         
         # Define workflow - ALL AGENTS RUN SIMULTANEOUSLY (parallel execution)
         self.graph.set_entry_point("extraction")
@@ -240,16 +244,18 @@ class MCPOrchestrator:
                 agents_to_run.append("claude_integrator")
             return agents_to_run
         
-        # Add conditional edge to run all agents in parallel
+        # Add conditional edge to run all agents in parallel (exclude observer, advisor, mentor, cost_manager)
+        excluded_agents = ['extraction', 'proof', 'observer', 'advisor', 'mentor', 'cost_manager']
         self.graph.add_conditional_edges(
             "extraction",
             route_to_all_agents,
-            {agent: agent for agent in self.agents.keys() if agent not in ['extraction', 'proof']}
+            {agent: agent for agent in self.agents.keys() if agent not in excluded_agents}
         )
         
-        # All agents converge to proof
+        # All agents converge to proof (exclude observer, advisor, mentor, cost_manager as they're not workflow nodes)
+        excluded_agents = ['extraction', 'proof', 'observer', 'advisor', 'mentor', 'cost_manager']
         for agent_name in self.agents.keys():
-            if agent_name not in ['extraction', 'proof']:
+            if agent_name not in excluded_agents:
                 self.graph.add_edge(agent_name, "proof")
         
         self.graph.add_edge("proof", END)
