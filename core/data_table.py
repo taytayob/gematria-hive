@@ -278,17 +278,18 @@ class DataTable(ABC):
             return None
         
         try:
-            # Check for matching baseline
+            # Check for matching baseline - select full baseline records from 'baselines' table
             result = self.supabase.table('baselines')\
-                .select('id')\
+                .select('id, value')\
                 .eq('baseline_type', self.table_name)\
                 .execute()
             
             if result.data:
                 # Compare with baseline values
                 for baseline in result.data:
-                    baseline_data = self.read(baseline['id'])
-                    if baseline_data and self._compare_with_baseline(data, baseline_data):
+                    # baseline['value'] contains the baseline data from the 'baselines' table
+                    # No need to read from self.table_name - the baseline data is already in baseline['value']
+                    if baseline.get('value') and self._compare_with_baseline(data, baseline):
                         return baseline['id']
             
             return None
