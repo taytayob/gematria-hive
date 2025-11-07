@@ -349,6 +349,123 @@ class GematriaEngine:
             'search_num': self.calculate_search_num(text, 'jewish')
         }
     
+    def calculate_with_breakdown(self, text: str, method: str = 'english_gematria') -> Dict:
+        """
+        Calculate gematria value with step-by-step breakdown showing how each letter contributes.
+        
+        Args:
+            text: Text to calculate
+            method: Gematria method to use
+            
+        Returns:
+            Dictionary with total value and step-by-step breakdown
+        """
+        breakdown = {
+            'text': text,
+            'method': method,
+            'total': 0,
+            'steps': [],
+            'formula': ''
+        }
+        
+        text_upper = text.upper()
+        
+        # Map method to calculation function and values
+        method_map = {
+            'english_gematria': (self.english_values, 'English Gematria (A=1, B=2, ..., Z=26)'),
+            'simple_gematria': (self.english_values, 'Simple Gematria (same as English)'),
+            'jewish_gematria': (self.jewish_values, 'Jewish Gematria (Hebrew alphabet values)'),
+            'latin_gematria': (self.latin_values, 'Latin Gematria (Qabala Simplex)'),
+            'greek_gematria': (self.greek_values, 'Greek Gematria (Classical Greek alphabet)'),
+        }
+        
+        if method in method_map:
+            values_dict, formula_desc = method_map[method]
+            breakdown['formula'] = formula_desc
+            
+            if method == 'latin_gematria':
+                # Special handling for Latin (HI sequence)
+                i = 0
+                while i < len(text_upper):
+                    char = text_upper[i]
+                    if i < len(text_upper) - 1 and text_upper[i:i+2] == 'HI':
+                        value = 27
+                        breakdown['steps'].append({
+                            'char': 'HI',
+                            'value': value,
+                            'running_total': breakdown['total'] + value
+                        })
+                        breakdown['total'] += value
+                        i += 2
+                    elif char in values_dict:
+                        value = values_dict[char]
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': value,
+                            'running_total': breakdown['total'] + value
+                        })
+                        breakdown['total'] += value
+                        i += 1
+                    else:
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': 0,
+                            'running_total': breakdown['total'],
+                            'note': 'Not in alphabet'
+                        })
+                        i += 1
+            else:
+                # Standard handling for other methods
+                for char in text_upper:
+                    if char in values_dict:
+                        value = values_dict[char]
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': value,
+                            'running_total': breakdown['total'] + value
+                        })
+                        breakdown['total'] += value
+                    else:
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': 0,
+                            'running_total': breakdown['total'],
+                            'note': 'Not in alphabet'
+                        })
+        else:
+            # For methods without simple letter mapping, calculate total
+            method_func_map = {
+                'hebrew_full': self.calculate_hebrew_full,
+                'hebrew_musafi': self.calculate_hebrew_musafi,
+                'hebrew_katan': self.calculate_hebrew_katan,
+                'hebrew_ordinal': self.calculate_hebrew_ordinal,
+                'hebrew_atbash': self.calculate_hebrew_atbash,
+                'hebrew_kidmi': self.calculate_hebrew_kidmi,
+                'hebrew_perati': self.calculate_hebrew_perati,
+                'hebrew_shemi': self.calculate_hebrew_shemi,
+            }
+            
+            if method in method_func_map:
+                breakdown['total'] = method_func_map[method](text)
+                breakdown['formula'] = f'{method.replace("_", " ").title()} (complex calculation)'
+                # For complex methods, show character breakdown with Jewish values as reference
+                for char in text_upper:
+                    if char in self.jewish_values:
+                        value = self.jewish_values[char]
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': value,
+                            'note': 'Hebrew letter (reference)'
+                        })
+                    else:
+                        breakdown['steps'].append({
+                            'char': char,
+                            'value': 0,
+                            'note': 'Not in Hebrew alphabet'
+                        })
+        
+        return breakdown
+    
     def find_matching_values(self, value: int, method: str = 'jewish') -> List[Dict]:
         """
         Find all phrases with matching gematria value (requires database).
@@ -382,6 +499,239 @@ class GematriaEngine:
             matches[method] = self.find_matching_values(search_num, method)
         
         return matches
+    
+    # ============================================================================
+    # ADVANCED CALCULATION METHODS (Placeholders for Future Implementation)
+    # These will be implemented based on ingestion data and research
+    # ============================================================================
+    
+    def calculate_numerology(self, text: str, method: str = 'life_path') -> int:
+        """
+        Calculate numerology value.
+        
+        TODO: Implement based on ingestion data from CSV
+        Planned methods:
+        - life_path: Sum of birth date digits reduced to single digit
+        - expression: Sum of full name reduced to single digit
+        - soul: Sum of vowels reduced to single digit
+        - personality: Sum of consonants reduced to single digit
+        - birthday: Day of birth reduced to single digit
+        
+        Args:
+            text: Text to calculate (or birth date/name)
+            method: Numerology method ('life_path', 'expression', 'soul', 'personality', 'birthday')
+            
+        Returns:
+            Numerology value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Numerology calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_orthogonal(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate orthogonal gematria value (perpendicular relationships).
+        
+        TODO: Implement based on geometric relationships from ingestion data
+        Planned methods:
+        - sum: Sum of values at right angles
+        - product: Product of orthogonal values
+        - distance: Distance between orthogonal points
+        
+        Args:
+            text: Text to calculate
+            method: Orthogonal method ('sum', 'product', 'distance')
+            
+        Returns:
+            Orthogonal gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Orthogonal calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_orthodontal(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate orthodontal gematria value (straight-line relationships).
+        
+        TODO: Implement based on linear relationships from ingestion data
+        Planned methods:
+        - sum: Sum along straight line
+        - product: Product along straight line
+        - sequence: Sequential values along line
+        
+        Args:
+            text: Text to calculate
+            method: Orthodontal method ('sum', 'product', 'sequence')
+            
+        Returns:
+            Orthodontal gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Orthodontal calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_mirror(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate mirror gematria value (beyond Atbash).
+        
+        TODO: Implement based on mirror relationships from ingestion data
+        Planned methods:
+        - sum: Sum of original + reversed
+        - product: Product of original × reversed
+        - difference: Difference between original and reversed
+        - ratio: Ratio of original to reversed
+        
+        Args:
+            text: Text to calculate
+            method: Mirror method ('sum', 'product', 'difference', 'ratio')
+            
+        Returns:
+            Mirror gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Mirror calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_prime(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate prime-based gematria value.
+        
+        TODO: Implement based on prime number relationships from ingestion data
+        Planned methods:
+        - sum: Sum of prime factors
+        - product: Product of prime factors
+        - distance: Distance to nearest prime
+        - sequence: Position in prime sequence
+        
+        Args:
+            text: Text to calculate
+            method: Prime method ('sum', 'product', 'distance', 'sequence')
+            
+        Returns:
+            Prime-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Prime calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_fibonacci(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate Fibonacci-based gematria value.
+        
+        TODO: Implement based on Fibonacci sequence relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Fibonacci method
+            
+        Returns:
+            Fibonacci-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Fibonacci calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_golden_ratio(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate golden ratio-based gematria value.
+        
+        TODO: Implement based on golden ratio relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Golden ratio method
+            
+        Returns:
+            Golden ratio-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Golden ratio calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_sacred_geometry(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate sacred geometry-based gematria value.
+        
+        TODO: Implement based on geometric relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Sacred geometry method
+            
+        Returns:
+            Sacred geometry-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Sacred geometry calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_wave(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate wave/harmonic-based gematria value.
+        
+        TODO: Implement based on wave/harmonic relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Wave method
+            
+        Returns:
+            Wave-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Wave calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_quantum(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate quantum state-based gematria value.
+        
+        TODO: Implement based on quantum relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Quantum method
+            
+        Returns:
+            Quantum-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Quantum calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_temporal(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate temporal/time-based gematria value.
+        
+        TODO: Implement based on temporal relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Temporal method
+            
+        Returns:
+            Temporal-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Temporal calculation ({method}) not yet implemented - placeholder")
+        return 0
+    
+    def calculate_spatial(self, text: str, method: str = 'sum') -> int:
+        """
+        Calculate spatial/3D-based gematria value.
+        
+        TODO: Implement based on spatial relationships from ingestion data
+        
+        Args:
+            text: Text to calculate
+            method: Spatial method
+            
+        Returns:
+            Spatial-based gematria value
+        """
+        # Placeholder - will be implemented from CSV data
+        logger.warning(f"Spatial calculation ({method}) not yet implemented - placeholder")
+        return 0
 
 
 # Singleton instance

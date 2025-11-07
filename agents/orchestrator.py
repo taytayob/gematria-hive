@@ -132,6 +132,8 @@ class MCPOrchestrator:
             from .resource_discoverer import ResourceDiscovererAgent
             from .dark_matter_tracker import DarkMatterTrackerAgent
             from .claude_integrator import ClaudeIntegratorAgent
+            from .gemini_research import GeminiResearchAgent
+            from .google_drive_integrator import GoogleDriveIntegratorAgent
         except ImportError as e:
             logger.warning(f"Some agents not available: {e}")
         
@@ -160,6 +162,8 @@ class MCPOrchestrator:
             self.agents['resource_discoverer'] = ResourceDiscovererAgent()
             self.agents['dark_matter_tracker'] = DarkMatterTrackerAgent()
             self.agents['claude_integrator'] = ClaudeIntegratorAgent()
+            self.agents['gemini_research'] = GeminiResearchAgent()
+            self.agents['google_drive_integrator'] = GoogleDriveIntegratorAgent()
         except Exception as e:
             logger.warning(f"Error initializing new agents: {e}")
         
@@ -202,6 +206,10 @@ class MCPOrchestrator:
             self.graph.add_node("dark_matter_tracker", self.agents['dark_matter_tracker'].execute)
         if 'claude_integrator' in self.agents:
             self.graph.add_node("claude_integrator", self.agents['claude_integrator'].execute)
+        if 'gemini_research' in self.agents:
+            self.graph.add_node("gemini_research", self.agents['gemini_research'].execute)
+        if 'google_drive_integrator' in self.agents:
+            self.graph.add_node("google_drive_integrator", self.agents['google_drive_integrator'].execute)
         
         # Define workflow - ALL AGENTS RUN SIMULTANEOUSLY (parallel execution)
         self.graph.set_entry_point("extraction")
@@ -242,6 +250,10 @@ class MCPOrchestrator:
                 agents_to_run.append("dark_matter_tracker")
             if 'claude_integrator' in self.agents:
                 agents_to_run.append("claude_integrator")
+            if 'gemini_research' in self.agents:
+                agents_to_run.append("gemini_research")
+            if 'google_drive_integrator' in self.agents:
+                agents_to_run.append("google_drive_integrator")
             return agents_to_run
         
         # Add conditional edge to run all agents in parallel (exclude observer, advisor, mentor, cost_manager)
@@ -302,13 +314,42 @@ class MCPOrchestrator:
             except Exception as e:
                 logger.error(f"Error saving to memory: {e}")
         
-        # Check if this is a browser task - route directly to browser agent
+        # Check if this is a browser task - route directly to browser agent + Gemini research
         task_type = task.get("type", "")
         if task_type == "browser" or task.get("url"):
-            logger.info("Routing to browser agent")
+            logger.info("Routing to browser agent + Gemini research (parallel)")
             if "browser" in self.agents:
                 try:
-                    final_state = self.agents["browser"].execute(initial_state)
+                    import concurrent.futures
+                    
+                    # Run browser and Gemini research in parallel
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                        browser_future = executor.submit(self.agents["browser"].execute, initial_state.copy())
+                        gemini_future = None
+                        if "gemini_research" in self.agents:
+                            gemini_future = executor.submit(self.agents["gemini_research"].execute, initial_state.copy())
+                        
+                        # Get browser results
+                        final_state = browser_future.result()
+                        
+                        # Get Gemini research results and merge
+                        if gemini_future:
+                            try:
+                                gemini_state = gemini_future.result()
+                                # Merge data
+                                if gemini_state.get("data"):
+                                    final_state["data"].extend(gemini_state.get("data", []))
+                                # Merge results
+                                if gemini_state.get("results"):
+                                    final_state["results"].extend(gemini_state.get("results", []))
+                                # Merge context
+                                if gemini_state.get("context"):
+                                    final_state["context"].update(gemini_state.get("context", {}))
+                                # Merge costs
+                                final_state["cost"] = final_state.get("cost", 0.0) + gemini_state.get("cost", 0.0)
+                            except Exception as e:
+                                logger.warning(f"Gemini research error (non-fatal): {e}")
+                    
                     # Optionally continue through pipeline if data was scraped
                     if final_state.get("status") != "failed" and final_state.get("data"):
                         # Continue through extraction/distillation/ingestion
@@ -319,7 +360,7 @@ class MCPOrchestrator:
                         if "ingestion" in self.agents:
                             final_state = self.agents["ingestion"].execute(final_state)
                     final_state["status"] = "completed"
-                    logger.info(f"Browser task completed: {final_state['status']}")
+                    logger.info(f"Browser + Gemini task completed: {final_state['status']}")
                 except Exception as e:
                     logger.error(f"Browser task error: {e}")
                     final_state = initial_state

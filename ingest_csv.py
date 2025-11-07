@@ -111,12 +111,13 @@ def detect_csv_format(file_path: str) -> str:
         return 'gematrix789'
 
 
-def process_gematrix789_row(row: pd.Series) -> Dict:
+def process_gematrix789_row(row: pd.Series, source: str = 'gematrix789') -> Dict:
     """
     Process a row from gematrix789.csv format.
     
     Args:
         row: pandas Series with columns: phrase, jewish_gematria, english_gematria, simple_gematria, search_num
+        source: Source identifier (default: 'gematrix789', can be 'purchased-gematrix789' for purchased files)
         
     Returns:
         Dictionary ready for database insertion
@@ -140,23 +141,24 @@ def process_gematrix789_row(row: pd.Series) -> Dict:
         'english_gematria': safe_int(row.get('english gematria')),
         'simple_gematria': safe_int(row.get('simple gematria')),
         'search_num': safe_int(row.get('search num')),
-        'source': 'gematrix789'
+        'source': source
     }
 
 
-def process_gimatria789_row(row: pd.Series) -> Dict:
+def process_gimatria789_row(row: pd.Series, source: str = 'gimatria789') -> Dict:
     """
     Process a row from gimatria789.csv format.
     
     Args:
         row: pandas Series with Hebrew gematria columns
+        source: Source identifier (default: 'gimatria789', can be 'purchased-gimatria789' for purchased files)
         
     Returns:
         Dictionary ready for database insertion
     """
     # Get phrase from 'text' column (Hebrew text)
     phrase = str(row.get('text', '')).strip()
-    if not phrase:
+    if not phrase or phrase == 'nan':
         return None
     
     # Convert numeric values, handling NaN
@@ -179,7 +181,7 @@ def process_gimatria789_row(row: pd.Series) -> Dict:
         'hebrew_perati': safe_int(row.get('g_perati')),
         'hebrew_shemi': safe_int(row.get('g_shemi')),
         'search_num': safe_int(row.get('searchnum')),
-        'source': 'gimatria789'
+        'source': source
     }
 
 
@@ -330,9 +332,22 @@ def ingest_csv_file(file_path: str, chunk_size: int = 10000, max_rows: Optional[
     else:
         logger.warning("Supabase not configured - skipping database count check")
     
-    # Detect CSV format
+    # Detect CSV format and determine source
     csv_format = detect_csv_format(file_path)
+    file_name = os.path.basename(file_path).lower()
+    
+    # Determine source based on filename
+    if 'purchased-gematrix789' in file_name:
+        source = 'purchased-gematrix789'
+    elif 'purchased-gimatria789' in file_name:
+        source = 'purchased-gimatria789'
+    elif csv_format == 'gematrix789':
+        source = 'gematrix789'  # Scraped or sample
+    else:
+        source = 'gimatria789'  # Scraped or sample
+    
     logger.info(f"Detected CSV format: {csv_format}")
+    logger.info(f"Source identifier: {source}")
     
     # Get total row count for progress bar
     try:
@@ -393,9 +408,9 @@ def ingest_csv_file(file_path: str, chunk_size: int = 10000, max_rows: Optional[
                     
                     try:
                         if csv_format == 'gematrix789':
-                            processed_row = process_gematrix789_row(row)
+                            processed_row = process_gematrix789_row(row, source=source)
                         else:  # gimatria789
-                            processed_row = process_gimatria789_row(row)
+                            processed_row = process_gimatria789_row(row, source=source)
                         
                         if processed_row:
                             processed_rows.append(processed_row)

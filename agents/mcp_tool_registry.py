@@ -221,6 +221,45 @@ class MCPToolRegistry:
             ))
         except Exception as e:
             logger.warning(f"Could not register affinity analysis tools: {e}")
+        
+        # Gemini Deep Research tools
+        try:
+            from .gemini_research import GeminiResearchAgent
+            gemini_research = GeminiResearchAgent()
+            
+            self.register_tool(MCPTool(
+                name="gemini_research_report",
+                description="Generate comprehensive research report using Google Gemini Deep Research",
+                category="research",
+                agent="gemini_research",
+                execute_func=lambda url, query=None: gemini_research.generate_research_report(url, query),
+                cost_per_call=0.01
+            ))
+        except Exception as e:
+            logger.warning(f"Could not register Gemini Deep Research tools: {e}")
+        
+        # Google Drive integration tools
+        try:
+            from .google_drive_integrator import GoogleDriveIntegratorAgent
+            google_drive = GoogleDriveIntegratorAgent()
+            
+            self.register_tool(MCPTool(
+                name="list_drive_files",
+                description="List files in Google Drive folder or search Drive",
+                category="integration",
+                agent="google_drive_integrator",
+                execute_func=lambda folder_id=None, query=None: google_drive.list_files(folder_id, query)
+            ))
+            
+            self.register_tool(MCPTool(
+                name="extract_from_drive_file",
+                description="Extract bookmarks and links from Google Drive file",
+                category="integration",
+                agent="google_drive_integrator",
+                execute_func=lambda file_id: google_drive._extract_from_file(file_id)
+            ))
+        except Exception as e:
+            logger.warning(f"Could not register Google Drive integration tools: {e}")
     
     def get_tool_documentation(self, name: str) -> Dict:
         """Get tool documentation"""

@@ -1,0 +1,46 @@
+run = "cd webapp && npm run dev"
+entrypoint = "webapp/src/main.tsx"
+language = "nodejs"
+
+[env]
+NODE_ENV = "development"
+PORT = "3000"
+
+[deploy]
+run = ["sh", "-c", "cd webapp && npm run build && npx serve dist -p 3000"]
+
+[packager]
+language = "nodejs"
+ignoredPackages = ["unit_tests"]
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", ".gitignore"]
+
+[languages]
+
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
+
+[languages.javascript.languageServer]
+start = "typescript-language-server --stdio"
+
+[unitTest]
+language = "nodejs"
+
+[debugger]
+support = true
+
+[interpreter]
+command = ["node"]
+
+[interpreter.args]
+- "--experimental-loader"
+- "./.replit/node_repl.js"
+
+[ports]
+3000 = "webapp"

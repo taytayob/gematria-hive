@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gematria Hive Task Schema",
+  "description": "Schema for tasks with phases, metadata, resources, tags, and roles",
+  "type": "object",
+  "required": ["content", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique task identifier"
+    },
+    "content": {
+      "type": "string",
+      "description": "Task description/content",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "completed", "archived"],
+      "description": "Task status"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["phase1_basic", "phase2_deep", "phase3_advanced", "phase4_scale"],
+      "default": "phase1_basic",
+      "description": "Project phase"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["project_manager", "product_manager", "developer", "designer", "qa"],
+      "default": "developer",
+      "description": "Role assignment"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "default": "medium",
+      "description": "Task priority"
+    },
+    "cost": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.0,
+      "description": "Associated cost"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Tags for categorization"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Resource URLs/IDs"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Labels for organization"
+    },
+    "assigned_to": {
+      "type": ["string", "null"],
+      "description": "User assigned to task"
+    },
+    "project_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Associated project ID"
+    },
+    "parent_task_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Parent task ID for subtasks"
+    },
+    "due_date": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Due date"
+    },
+    "estimated_hours": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Estimated hours to complete"
+    },
+    "actual_hours": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Actual hours spent"
+    },
+    "progress": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0,
+      "description": "Progress percentage (0-100)"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "default": [],
+      "description": "Task IDs this task depends on"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "default": {},
+      "description": "Additional metadata (flexible JSONB)"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Related URLs/IDs (legacy support)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Task timestamp"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  }
+}
+

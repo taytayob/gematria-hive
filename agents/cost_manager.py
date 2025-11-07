@@ -238,12 +238,38 @@ Cost Breakdown by API:
             
             email_body += f"\nTime: {datetime.utcnow().isoformat()}\n"
             
-            # Send email (simplified - would need SMTP configuration)
-            logger.info(f"Cost alert email would be sent to {self.alert_email}: {message}")
-            logger.info(f"Email body:\n{email_body}")
+            # Send email via SMTP
+            smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+            smtp_port = int(os.getenv('SMTP_PORT', '587'))
+            smtp_user = os.getenv('SMTP_USER', '')
+            smtp_password = os.getenv('SMTP_PASSWORD', '')
             
-            # TODO: Implement actual email sending with SMTP
-            # For now, just log the alert
+            if smtp_server and smtp_user and smtp_password:
+                try:
+                    # Create message
+                    msg = MIMEMultipart()
+                    msg['From'] = smtp_user
+                    msg['To'] = self.alert_email
+                    msg['Subject'] = f"Gematria Hive Cost Alert: {message}"
+                    msg.attach(MIMEText(email_body, 'plain'))
+                    
+                    # Send email
+                    server = smtplib.SMTP(smtp_server, smtp_port)
+                    server.starttls()
+                    server.login(smtp_user, smtp_password)
+                    server.send_message(msg)
+                    server.quit()
+                    
+                    logger.info(f"✅ Cost alert email sent to {self.alert_email}")
+                except Exception as e:
+                    logger.error(f"Error sending email via SMTP: {e}")
+                    logger.info(f"Cost alert (email failed): {message}")
+                    logger.info(f"Email body:\n{email_body}")
+            else:
+                # Fallback: log the alert if SMTP not configured
+                logger.info(f"Cost alert (SMTP not configured): {message}")
+                logger.info(f"Email body:\n{email_body}")
+                logger.info("Configure SMTP_SERVER, SMTP_PORT, SMTP_USER, SMTP_PASSWORD to enable email alerts")
             
         except Exception as e:
             logger.error(f"Error sending cost alert: {e}")

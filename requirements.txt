@@ -44,3 +44,16 @@ matplotlib
 
 # Additional utilities
 json5
+
+# API Server
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Google Gemini Integration
+google-generativeai
+
+# Google Drive Integration
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib

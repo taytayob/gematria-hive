@@ -1,0 +1,11 @@
+{
+  "model": "gemini-2.0-flash-exp",
+  "temperature": 0.7,
+  "max_tokens": 8192,
+  "top_p": 0.95,
+  "top_k": 40,
+  "research_prompt_template": "Generate a comprehensive research report for the following URL: {url}\n\nPlease include:\n1. Main content summary\n2. Key themes and topics\n3. Related sources and citations\n4. Historical or contextual information\n5. Connections to gematria, numerology, sacred geometry, or esoteric knowledge if relevant\n6. Tags and categories",
+  "sources": ["google_search", "drive", "gmail", "chat"],
+  "cost_per_call": 0.01
+}
+

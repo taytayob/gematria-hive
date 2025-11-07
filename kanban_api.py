@@ -574,6 +574,40 @@ async def get_pipeline_status():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/api/gematria/related")
+async def get_related_terms(request: Dict):
+    """Get related terms with same gematria values"""
+    try:
+        calculations = request.get("calculations", {})
+        related_terms = []
+        
+        # Query database for matching gematria values
+        if HAS_SUPABASE and supabase:
+            for method, value in calculations.items():
+                if isinstance(value, (int, float)) and value > 0:
+                    try:
+                        result = supabase.table('gematria_words')\
+                            .select('word, gematria_value, calculation_method')\
+                            .eq('gematria_value', int(value))\
+                            .eq('calculation_method', method)\
+                            .limit(10)\
+                            .execute()
+                        
+                        if result.data:
+                            for row in result.data:
+                                related_terms.append({
+                                    'word': row.get('word'),
+                                    'value': row.get('gematria_value'),
+                                    'method': row.get('calculation_method', method)
+                                })
+                    except Exception as e:
+                        logger.warning(f"Error querying related terms for {method}: {e}")
+        
+        return {"related_terms": related_terms}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""

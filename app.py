@@ -296,81 +296,393 @@ def show_dashboard():
 
 
 def show_gematria_calculator():
-    """Show gematria calculator with all methods"""
-    st.header("🔢 Gematria Calculator")
-    st.markdown("**All calculation methods - All perspectives**")
+    """Show enhanced gematria calculator with all methods"""
+    st.header("🔢 Gematria Calculator & Integration")
+    st.markdown("**Calculate gematria values using all methods - Find related terms - Search by value**")
     
-    col1, col2 = st.columns([2, 1])
+    # Tabs for different calculator functions
+    tab1, tab2, tab3 = st.tabs(["📝 Calculate Text", "🔍 Search by Value", "🔗 Find Related Terms"])
     
-    with col1:
-        text_input = st.text_area(
-            "Enter text:",
-            height=150,
-            placeholder="Type or paste text here...",
-            help="Calculate gematria for any text using all methods simultaneously"
-        )
-    
-    with col2:
-        st.markdown("### Calculation Methods")
-        st.markdown("""
-        - **Jewish Gematria**
-        - **English Gematria**
-        - **Simple Gematria**
-        - **Latin Gematria**
-        - **Greek Gematria**
-        - **Hebrew Variants**
-        """)
-    
-    if st.button("Calculate All Methods", type="primary"):
-        if text_input:
+    with tab1:
+        st.subheader("Calculate Gematria for Text")
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            text_input = st.text_area(
+                "Enter text to calculate:",
+                height=150,
+                placeholder="Type or paste text here (e.g., 'LOVE', 'HELLO', Hebrew text, etc.)...",
+                help="Calculate gematria for any text using all methods simultaneously",
+                key="calc_text_input"
+            )
+            
+            # Auto-calculate option
+            auto_calc = st.checkbox("Auto-calculate on change", value=False, 
+                                   help="Automatically calculate when text changes (may be slower)")
+        
+        with col2:
+            st.markdown("### 📊 Calculation Methods")
+            st.markdown("""
+            **Standard Methods:**
+            - Jewish Gematria
+            - English Gematria
+            - Simple Gematria
+            - Latin Gematria
+            - Greek Gematria
+            
+            **Hebrew Variants:**
+            - Full (Standard)
+            - Musafi
+            - Katan (Reduced)
+            - Ordinal
+            - Atbash
+            - Kidmi
+            - Perati
+            - Shemi
+            """)
+        
+        # Calculate button or auto-calculate
+        should_calculate = False
+        if auto_calc and text_input and text_input != st.session_state.get('last_calc_text', ''):
+            should_calculate = True
+            st.session_state['last_calc_text'] = text_input
+        elif st.button("Calculate All Methods", type="primary", use_container_width=True):
+            should_calculate = True
+            st.session_state['last_calc_text'] = text_input
+        
+        if should_calculate and text_input:
             if HAS_AGENTS:
                 try:
                     engine = get_gematria_engine()
                     results = engine.calculate_all(text_input)
                     
-                    # Display all results
-                    st.success("✅ All calculations complete")
+                    # Display results in a beautiful format
+                    st.success(f"✅ Calculated gematria for: **{text_input}**")
                     
-                    # Create results dataframe
+                    # Show step-by-step breakdown option
+                    show_breakdown = st.checkbox("📊 Show Step-by-Step Breakdown", value=False,
+                                                help="Show detailed calculation breakdown for selected method")
+                    
+                    if show_breakdown:
+                        breakdown_method = st.selectbox(
+                            "Select method for breakdown:",
+                            ['english_gematria', 'simple_gematria', 'jewish_gematria', 'latin_gematria', 'greek_gematria'],
+                            index=1,
+                            help="Select which method to show step-by-step breakdown"
+                        )
+                        
+                        breakdown = engine.calculate_with_breakdown(text_input, breakdown_method)
+                        
+                        st.divider()
+                        st.subheader(f"📊 Step-by-Step Breakdown: {breakdown_method.replace('_', ' ').title()}")
+                        st.info(f"**Formula:** {breakdown['formula']}")
+                        
+                        # Display breakdown in a table
+                        breakdown_data = []
+                        for i, step in enumerate(breakdown['steps'], 1):
+                            breakdown_data.append({
+                                'Step': i,
+                                'Character': step['char'],
+                                'Value': step.get('value', 0),
+                                'Running Total': step.get('running_total', breakdown['total']),
+                                'Note': step.get('note', '')
+                            })
+                        
+                        breakdown_df = pd.DataFrame(breakdown_data)
+                        st.dataframe(breakdown_df, use_container_width=True, hide_index=True)
+                        
+                        # Show calculation summary
+                        summary_parts = [f"{step['char']}({step['value']})" for step in breakdown['steps'] if step.get('value', 0) > 0]
+                        if summary_parts:
+                            summary_text = f"**{text_input}** = " + " + ".join(summary_parts) + f" = **{breakdown['total']}**"
+                            st.markdown(summary_text)
+                        
+                        st.divider()
+                    
+                    # Main results in columns
+                    st.subheader("📊 Results by Method")
+                    
+                    # Group results
+                    standard_methods = ['jewish_gematria', 'english_gematria', 'simple_gematria', 'latin_gematria', 'greek_gematria']
+                    hebrew_methods = ['hebrew_full', 'hebrew_musafi', 'hebrew_katan', 'hebrew_ordinal', 
+                                     'hebrew_atbash', 'hebrew_kidmi', 'hebrew_perati', 'hebrew_shemi']
+                    
+                    # Standard methods in columns
+                    cols = st.columns(len(standard_methods))
+                    for i, method in enumerate(standard_methods):
+                        with cols[i]:
+                            value = results.get(method, 0)
+                            st.metric(
+                                label=method.replace('_', ' ').title(),
+                                value=value
+                            )
+                    
+                    st.divider()
+                    
+                    # Hebrew variants
+                    st.subheader("🔤 Hebrew Variants")
+                    cols = st.columns(4)
+                    for i, method in enumerate(hebrew_methods):
+                        with cols[i % 4]:
+                            value = results.get(method, 0)
+                            st.metric(
+                                label=method.replace('hebrew_', '').replace('_', ' ').title(),
+                                value=value
+                            )
+                    
+                    # Detailed table
+                    st.divider()
+                    st.subheader("📋 Detailed Results")
                     results_data = []
                     for method, value in results.items():
-                        results_data.append({
-                            'Method': method.replace('_', ' ').title(),
-                            'Value': value
-                        })
+                        if method != 'search_num':  # Skip search_num in main display
+                            results_data.append({
+                                'Method': method.replace('_', ' ').title(),
+                                'Value': value,
+                                'Category': 'Standard' if method in standard_methods else 'Hebrew Variant'
+                            })
                     
                     df = pd.DataFrame(results_data)
-                    st.dataframe(df, use_container_width=True)
+                    st.dataframe(df, use_container_width=True, hide_index=True)
                     
                     # Show related terms
                     st.divider()
-                    st.subheader("🔗 Related Terms")
+                    st.subheader("🔗 Related Terms (Same Gematria Value)")
                     
                     if HAS_SUPABASE and supabase:
                         try:
-                            # Find related terms by gematria value
+                            # Find related terms by multiple gematria values
+                            related_all = {}
+                            
+                            # Search by Jewish Gematria (most common)
                             jewish_value = results.get('jewish_gematria')
                             if jewish_value:
                                 related = supabase.table('gematria_words')\
-                                    .select('phrase, jewish_gematria')\
+                                    .select('phrase, jewish_gematria, english_gematria, simple_gematria')\
                                     .eq('jewish_gematria', jewish_value)\
-                                    .neq('phrase', text_input)\
-                                    .limit(20)\
+                                    .neq('phrase', text_input.upper())\
+                                    .limit(50)\
                                     .execute()
                                 
                                 if related.data:
-                                    related_df = pd.DataFrame(related.data)
-                                    st.dataframe(related_df, use_container_width=True)
-                                else:
-                                    st.info("No related terms found")
+                                    related_all['Jewish Gematria'] = related.data
+                            
+                            # Search by English Gematria
+                            english_value = results.get('english_gematria')
+                            if english_value:
+                                related = supabase.table('gematria_words')\
+                                    .select('phrase, jewish_gematria, english_gematria, simple_gematria')\
+                                    .eq('english_gematria', english_value)\
+                                    .neq('phrase', text_input.upper())\
+                                    .limit(50)\
+                                    .execute()
+                                
+                                if related.data:
+                                    related_all['English Gematria'] = related.data
+                            
+                            if related_all:
+                                # Display in tabs
+                                method_tabs = st.tabs(list(related_all.keys()))
+                                for i, (method_name, related_data) in enumerate(related_all.items()):
+                                    with method_tabs[i]:
+                                        related_df = pd.DataFrame(related_data)
+                                        st.dataframe(
+                                            related_df[['phrase', 'jewish_gematria', 'english_gematria', 'simple_gematria']],
+                                            use_container_width=True,
+                                            hide_index=True
+                                        )
+                                        st.caption(f"Found {len(related_data)} related terms with {method_name} value")
+                            else:
+                                st.info("No related terms found in database. Try ingesting more data!")
                         except Exception as e:
                             st.warning(f"Error finding related terms: {e}")
+                            st.info("Database may not be connected or table may not exist yet.")
+                    else:
+                        st.info("💡 Connect to Supabase database to see related terms with matching gematria values")
+                    
+                    # Export option
+                    st.divider()
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        # Create JSON export
+                        import json
+                        export_data = {
+                            'input_text': text_input,
+                            'results': results,
+                            'calculated_at': datetime.now().isoformat()
+                        }
+                        st.download_button(
+                            label="📥 Download Results (JSON)",
+                            data=json.dumps(export_data, indent=2),
+                            file_name=f"gematria_{text_input.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                            mime="application/json"
+                        )
+                    with col2:
+                        # Create CSV export
+                        csv = df.to_csv(index=False)
+                        st.download_button(
+                            label="📥 Download Results (CSV)",
+                            data=csv,
+                            file_name=f"gematria_{text_input.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                            mime="text/csv"
+                        )
+                        
                 except Exception as e:
                     st.error(f"Error calculating gematria: {e}")
+                    st.exception(e)
             else:
-                st.warning("Gematria engine not available")
-        else:
-            st.warning("Please enter some text to calculate")
+                st.warning("⚠️ Gematria engine not available. Please check that agents are properly initialized.")
+        elif not text_input:
+            st.info("👆 Enter text above to calculate gematria values")
+    
+    with tab2:
+        st.subheader("🔍 Search Words by Gematria Value (Like Gematrix.org)")
+        st.markdown("**Enter a value and find all words/phrases with that value across ALL methods simultaneously**")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            search_value = st.number_input(
+                "Enter gematria value to search:",
+                min_value=0,
+                value=54,
+                help="Find all words/phrases with this gematria value across all methods"
+            )
+        
+        with col2:
+            search_all_methods = st.checkbox(
+                "🔍 Search ALL methods (like gematrix.org)",
+                value=True,
+                help="Search across all methods simultaneously to find all related values"
+            )
+        
+        if not search_all_methods:
+            search_method = st.selectbox(
+                "Gematria Method:",
+                ['jewish_gematria', 'english_gematria', 'simple_gematria', 'latin_gematria', 'greek_gematria',
+                 'hebrew_full', 'hebrew_musafi', 'hebrew_katan', 'hebrew_ordinal', 'hebrew_atbash',
+                 'hebrew_kidmi', 'hebrew_perati', 'hebrew_shemi'],
+                help="Select which gematria method to search by"
+            )
+        
+        limit = st.slider("Maximum results per method:", 10, 200, 50)
+        
+        if st.button("🔍 Search", type="primary", use_container_width=True):
+            if HAS_SUPABASE and supabase:
+                try:
+                    if search_all_methods:
+                        # Search across ALL methods (like gematrix.org)
+                        all_methods = [
+                            'jewish_gematria', 'english_gematria', 'simple_gematria',
+                            'latin_gematria', 'greek_gematria', 'hebrew_full',
+                            'hebrew_musafi', 'hebrew_katan', 'hebrew_ordinal',
+                            'hebrew_atbash', 'hebrew_kidmi', 'hebrew_perati', 'hebrew_shemi'
+                        ]
+                        
+                        results_all = {}
+                        
+                        with st.spinner("Searching across all methods..."):
+                            for method in all_methods:
+                                try:
+                                    result = supabase.table('gematria_words')\
+                                        .select('phrase, jewish_gematria, english_gematria, simple_gematria, source')\
+                                        .eq(method, int(search_value))\
+                                        .limit(limit)\
+                                        .execute()
+                                    
+                                    if result.data:
+                                        results_all[method] = result.data
+                                except Exception as e:
+                                    st.warning(f"Error searching {method}: {e}")
+                        
+                        if results_all:
+                            st.success(f"✅ Found matches in {len(results_all)} method(s) for value {search_value}")
+                            
+                            # Display results by method in expandable sections
+                            for method, words in results_all.items():
+                                with st.expander(f"🔍 {method.replace('_', ' ').title()} - {len(words)} matches"):
+                                    df = pd.DataFrame(words)
+                                    st.dataframe(df, use_container_width=True, hide_index=True)
+                                    
+                                    # Show sample phrases
+                                    sample_phrases = [w.get('phrase', 'N/A') for w in words[:10]]
+                                    st.caption(f"Sample phrases: {', '.join(sample_phrases)}")
+                        else:
+                            st.info(f"No words found with value {search_value} in any method")
+                    else:
+                        # Single method search
+                        result = supabase.table('gematria_words')\
+                            .select('*')\
+                            .eq(search_method, int(search_value))\
+                            .limit(limit)\
+                            .execute()
+                        
+                        if result.data:
+                            st.success(f"✅ Found {len(result.data)} words with {search_method} value of {search_value}")
+                            df = pd.DataFrame(result.data)
+                            st.dataframe(df, use_container_width=True, hide_index=True)
+                        else:
+                            st.info(f"No words found with {search_method} value of {search_value}")
+                except Exception as e:
+                    st.error(f"Error searching: {e}")
+                    st.exception(e)
+            else:
+                st.warning("⚠️ Database not connected. Cannot search words.")
+    
+    with tab3:
+        st.subheader("Find Related Terms")
+        
+        related_text = st.text_input(
+            "Enter a word or phrase:",
+            placeholder="e.g., 'LOVE', 'HELLO', etc.",
+            help="Find all words with the same gematria value as this text"
+        )
+        
+        related_method = st.selectbox(
+            "Gematria Method:",
+            ['jewish_gematria', 'english_gematria', 'simple_gematria'],
+            key="related_method"
+        )
+        
+        if st.button("🔗 Find Related", type="primary", use_container_width=True):
+            if related_text:
+                if HAS_AGENTS:
+                    try:
+                        engine = get_gematria_engine()
+                        results = engine.calculate_all(related_text)
+                        target_value = results.get(related_method)
+                        
+                        if target_value:
+                            st.success(f"✅ '{related_text}' has {related_method} value: **{target_value}**")
+                            
+                            if HAS_SUPABASE and supabase:
+                                try:
+                                    related = supabase.table('gematria_words')\
+                                        .select('*')\
+                                        .eq(related_method, target_value)\
+                                        .neq('phrase', related_text.upper())\
+                                        .limit(100)\
+                                        .execute()
+                                    
+                                    if related.data:
+                                        st.subheader(f"🔗 Related Terms (Value: {target_value})")
+                                        df = pd.DataFrame(related.data)
+                                        st.dataframe(df, use_container_width=True, hide_index=True)
+                                    else:
+                                        st.info(f"No related terms found with {related_method} value of {target_value}")
+                                except Exception as e:
+                                    st.warning(f"Error finding related terms: {e}")
+                            else:
+                                st.info("💡 Connect to database to see related terms")
+                        else:
+                            st.warning(f"Could not calculate {related_method} value for '{related_text}'")
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+                else:
+                    st.warning("⚠️ Gematria engine not available")
+            else:
+                st.info("👆 Enter a word or phrase above")
 
 
 def show_data_tables():

@@ -473,6 +473,166 @@ Generate proof report with accuracy metric."
 
 ---
 
+## 🔢 Gematria Calculator System
+
+### Overview
+
+**Purpose:** Comprehensive gematria calculation and integration system for all calculation methods
+
+**Status:** ✅ Fully Functional & Tested (January 6, 2025)
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              GEMATRIA CALCULATOR SYSTEM                 │
+└─────────────────────────────────────────────────────────┘
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+┌───────▼────────┐  ┌───────▼────────┐  ┌───────▼────────┐
+│  Frontend      │  │  Core Engine   │  │  Database       │
+│  (Streamlit)   │  │  (Calculations)│  │  (Supabase)     │
+└───────┬────────┘  └───────┬────────┘  └───────┬────────┘
+        │                   │                   │
+        └───────────────────┼───────────────────┘
+                            │
+                    ┌───────▼────────┐
+                    │  Integration   │
+                    │  (Agents)      │
+                    └────────────────┘
+```
+
+### Components
+
+#### 1. Core Engine (`core/gematria_engine.py`)
+**Purpose:** Pure calculation logic (no dependencies)
+
+**Features:**
+- ✅ 13 calculation methods:
+  - Jewish Gematria (Hebrew letter values)
+  - English Gematria (A=1, B=2, ..., Z=26)
+  - Simple Gematria (same as English)
+  - Latin Gematria (Qabala Simplex)
+  - Greek Gematria (classical Greek alphabet)
+  - Hebrew Full (same as Jewish)
+  - Hebrew Musafi (base + letter_count × 1000)
+  - Hebrew Katan (reduced to single digit)
+  - Hebrew Ordinal (position in alphabet)
+  - Hebrew Atbash (reversed alphabet)
+  - Hebrew Kidmi (cumulative sum)
+  - Hebrew Perati (product of values)
+  - Hebrew Shemi (full letter name values)
+
+**Design:**
+- Singleton pattern for efficiency
+- Pure calculation (no external dependencies)
+- Exact gematrix.org algorithms
+
+**Usage:**
+```python
+from core.gematria_engine import get_gematria_engine
+
+engine = get_gematria_engine()
+results = engine.calculate_all("LOVE")
+# Returns: {'jewish_gematria': 0, 'english_gematria': 54, ...}
+```
+
+#### 2. Frontend (`app.py` - Calculator Page)
+**Purpose:** User interface for calculator
+
+**Features:**
+- ✅ Three-tab interface:
+  - **Calculate Text:** Calculate gematria for any text
+  - **Search by Value:** Find words/phrases by gematria value
+  - **Find Related Terms:** Discover words with matching values
+- ✅ Real-time calculations
+- ✅ Metric cards display
+- ✅ Detailed results table
+- ✅ Export to JSON/CSV
+- ✅ Related terms search (if database connected)
+
+**Design:**
+- Integrated into main Streamlit dashboard
+- Optional auto-calculate
+- Session state management
+- Graceful degradation (works without DB)
+
+#### 3. Database Integration (`gematria_calculator.py`)
+**Purpose:** Query database for related terms
+
+**Features:**
+- ✅ Optional Supabase integration
+- ✅ Find words by gematria value
+- ✅ Find related terms (same gematria value)
+- ✅ Semantic search (if embeddings available)
+- ✅ Graceful degradation (works without DB)
+
+**Design:**
+- Optional connection (works without DB)
+- Query optimization
+- Error handling
+
+#### 4. Agent Integration (`agents/gematria_integrator.py`)
+**Purpose:** Process sources and calculate gematria for key terms
+
+**Features:**
+- ✅ Extract key terms from content
+- ✅ Calculate gematria for each term
+- ✅ Store in `key_terms` table
+- ✅ Find related terms
+- ✅ Return processed terms and relationships
+
+**Design:**
+- Agent-based processing
+- Batch operations
+- Integration with orchestrator
+
+### Calculation Methods Reference
+
+| Method | Algorithm | Source | Status |
+|--------|-----------|--------|--------|
+| **Jewish Gematria** | Hebrew letter values (א=1, ב=2, etc.) | Traditional | ✅ Verified |
+| **English Gematria** | A=1, B=2, ..., Z=26 | Standard | ✅ Verified (LOVE=54) |
+| **Simple Gematria** | Same as English | Standard | ✅ Verified |
+| **Latin Gematria** | Qabala Simplex (23-letter alphabet) | Qabala | ✅ Verified |
+| **Greek Gematria** | Classical Greek alphabet values | Classical | ✅ Verified |
+| **Hebrew Full** | Same as Jewish | Traditional | ✅ Verified |
+| **Hebrew Musafi** | Base + (letter_count × 1000) | Variant | ✅ Verified |
+| **Hebrew Katan** | Reduced to single digit (1-9) | Variant | ✅ Verified |
+| **Hebrew Ordinal** | Position in alphabet | Variant | ✅ Verified |
+| **Hebrew Atbash** | Reversed alphabet mapping | Variant | ✅ Verified |
+| **Hebrew Kidmi** | Cumulative sum | Variant | ✅ Verified |
+| **Hebrew Perati** | Product of values | Variant | ✅ Verified |
+| **Hebrew Shemi** | Full letter name values | Variant | ✅ Verified |
+
+### Design Principles
+
+1. **Graceful Degradation:** Works without database
+2. **Clean Separation:** Frontend, core, database clearly separated
+3. **User Choice:** Optional features (auto-calculate, DB)
+4. **Export Functionality:** JSON and CSV downloads
+5. **Comprehensive Methods:** All 13 calculation methods
+
+### Integration Points
+
+1. **Main Dashboard:** Calculator page in Streamlit app
+2. **Agent Framework:** GematriaIntegratorAgent processes sources
+3. **Database:** Optional Supabase integration
+4. **Export:** JSON/CSV downloads
+
+### Status
+
+- ✅ **Core Engine:** Fully functional, tested
+- ✅ **Frontend:** Enhanced UI with 3 tabs
+- ✅ **Database Integration:** Optional, graceful degradation
+- ✅ **Agent Integration:** Fully integrated
+- ✅ **Documentation:** Comprehensive analysis complete
+
+**Last Updated:** January 6, 2025
+
+---
+
 ## 🔍 Inference & Synergy Mapping
 
 ### Data Flow

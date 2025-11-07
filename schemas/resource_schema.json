@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gematria Hive Resource Schema",
+  "description": "Schema for task resources",
+  "type": "object",
+  "required": ["task_id", "resource_type", "resource_name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique resource identifier"
+    },
+    "task_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated task ID"
+    },
+    "resource_type": {
+      "type": "string",
+      "enum": ["url", "file", "document", "code", "image", "video", "audio", "data", "other"],
+      "description": "Resource type"
+    },
+    "resource_name": {
+      "type": "string",
+      "description": "Resource name",
+      "minLength": 1
+    },
+    "resource_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Resource URL"
+    },
+    "resource_path": {
+      "type": ["string", "null"],
+      "description": "Resource file path"
+    },
+    "resource_content": {
+      "type": ["string", "null"],
+      "description": "Resource content (for text-based resources)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Resource tags"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "default": {},
+      "description": "Additional metadata"
+    },
+    "created_by": {
+      "type": ["string", "null"],
+      "description": "User who created the resource"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  }
+}
+

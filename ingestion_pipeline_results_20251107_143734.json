@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "duration": 0.395828,
+  "start_time": "2025-11-07T14:37:33.790100",
+  "end_time": "2025-11-07T14:37:34.185928",
+  "sources": {
+    "database": {
+      "success": true,
+      "count": 0,
+      "items": 0,
+      "data": []
+    }
+  },
+  "validation_enabled": true
+}

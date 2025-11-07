@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "duration": 4.152356,
+  "start_time": "2025-11-07T14:37:58.915026",
+  "end_time": "2025-11-07T14:38:03.067382",
+  "sources": {
+    "csv": {
+      "files_found": 4,
+      "total_ingested": 75,
+      "total_processed": 75,
+      "results": {
+        "gimatria789.csv": {
+          "success": true,
+          "total_processed": 25,
+          "total_ingested": 25,
+          "initial_count": 125,
+          "final_count": 150,
+          "records_added": 25,
+          "errors": 0,
+          "source": "gimatria789"
+        },
+        "gematrix789.csv": {
+          "success": true,
+          "total_processed": 50,
+          "total_ingested": 50,
+          "initial_count": 75,
+          "final_count": 125,
+          "records_added": 50,
+          "errors": 0,
+          "source": "gematrix789"
+        }
+      }
+    }
+  },
+  "validation_enabled": true
+}

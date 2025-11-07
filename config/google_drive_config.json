@@ -1,0 +1,13 @@
+{
+  "scopes": ["https://www.googleapis.com/auth/drive.readonly"],
+  "file_types": ["text/plain", "text/html", "application/json", "text/markdown"],
+  "search_queries": {
+    "bookmarks": "name contains 'bookmark' or name contains 'link'",
+    "research": "name contains 'research' or name contains 'notes'",
+    "documents": "mimeType = 'application/vnd.google-apps.document'"
+  },
+  "max_files_per_query": 100,
+  "extract_links": true,
+  "extract_bookmarks": true
+}
+
