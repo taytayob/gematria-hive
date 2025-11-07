@@ -337,6 +337,121 @@ async def agent_health(api_key: str = Depends(verify_internal_api_key)):
     
     return {"agents": agent_status}
 
+# --- MCP Tool Registry Endpoints (Aliases for clarity) ---
+
+@app.get("/internal/mcp/tools", summary="List All MCP Tools")
+async def list_mcp_tools(
+    category: Optional[str] = None,
+    agent: Optional[str] = None,
+    api_key: str = Depends(verify_internal_api_key)
+):
+    """
+    List all available MCP tools, optionally filtered by category or agent.
+    This is an alias for /internal/tools with MCP-specific naming.
+    """
+    if not HAS_AGENTS or not tool_registry:
+        raise HTTPException(status_code=503, detail="MCP tool registry not available")
+    
+    try:
+        tools = tool_registry.list_tools(category=category, agent=agent)
+        all_tools = tool_registry.list_all_tools()
+        return {
+            "total": len(tools),
+            "tools_by_category": all_tools.get("tools_by_category", {}),
+            "tools_by_agent": all_tools.get("tools_by_agent", {}),
+            "tools": [
+                {
+                    "name": tool.name,
+                    "description": tool.description,
+                    "category": tool.category,
+                    "agent": tool.agent,
+                    "cost_per_call": tool.cost_per_call
+                }
+                for tool in tools
+            ]
+        }
+    except Exception as e:
+        logger.error(f"Error listing MCP tools: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing tools: {str(e)}")
+
+@app.get("/internal/mcp/tools/{tool_name}", summary="Get MCP Tool Details")
+async def get_mcp_tool(
+    tool_name: str,
+    api_key: str = Depends(verify_internal_api_key)
+):
+    """
+    Get details about a specific MCP tool.
+    This is an alias for /internal/tools/{tool_name} with MCP-specific naming.
+    """
+    if not HAS_AGENTS or not tool_registry:
+        raise HTTPException(status_code=503, detail="MCP tool registry not available")
+    
+    try:
+        tool = tool_registry.get_tool(tool_name)
+        if not tool:
+            raise HTTPException(status_code=404, detail=f"Tool not found: {tool_name}")
+        
+        return tool_registry.get_tool_documentation(tool_name)
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting MCP tool: {e}")
+        raise HTTPException(status_code=500, detail=f"Error getting tool: {str(e)}")
+
+@app.post("/internal/mcp/tools/{tool_name}/execute", summary="Execute MCP Tool")
+async def execute_mcp_tool(
+    tool_name: str,
+    parameters: Dict[str, Any],
+    api_key: str = Depends(verify_internal_api_key)
+):
+    """
+    Execute an MCP tool with provided parameters.
+    This is an alias for /internal/tools/{tool_name}/execute with MCP-specific naming.
+    """
+    if not HAS_AGENTS or not tool_registry:
+        raise HTTPException(status_code=503, detail="MCP tool registry not available")
+    
+    start_time = datetime.now()
+    
+    try:
+        result = tool_registry.execute_tool(tool_name, **parameters)
+        execution_time = (datetime.now() - start_time).total_seconds()
+        
+        tool = tool_registry.get_tool(tool_name)
+        cost = tool.cost_per_call if tool else 0.0
+        
+        return {
+            "tool": tool_name,
+            "result": result,
+            "execution_time": execution_time,
+            "cost": cost,
+            "success": True
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error executing MCP tool: {e}")
+        raise HTTPException(status_code=500, detail=f"Error executing tool: {str(e)}")
+
+@app.get("/internal/mcp/tools/categories", summary="List Tool Categories")
+async def list_tool_categories(api_key: str = Depends(verify_internal_api_key)):
+    """
+    List all available tool categories from MCP registry.
+    """
+    if not HAS_AGENTS or not tool_registry:
+        raise HTTPException(status_code=503, detail="MCP tool registry not available")
+    
+    try:
+        all_tools = tool_registry.list_all_tools()
+        return {
+            "categories": list(all_tools.get("tools_by_category", {}).keys()),
+            "counts": all_tools.get("tools_by_category", {}),
+            "agents": list(all_tools.get("tools_by_agent", {}).keys())
+        }
+    except Exception as e:
+        logger.error(f"Error listing categories: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing categories: {str(e)}")
+
 if __name__ == "__main__":
     import uvicorn
     

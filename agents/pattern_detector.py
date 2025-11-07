@@ -50,6 +50,16 @@ class PatternDetectorAgent:
         """Initialize pattern detector agent"""
         self.name = "pattern_detector_agent"
         self.supabase = supabase if HAS_SUPABASE else None
+        
+        # Initialize MCP tool registry access
+        try:
+            from agents.mcp_tool_registry import get_tool_registry
+            self.tool_registry = get_tool_registry()
+            logger.info(f"Agent {self.name} initialized with MCP tool registry access")
+        except Exception as e:
+            logger.warning(f"Could not initialize MCP tool registry for {self.name}: {e}")
+            self.tool_registry = None
+        
         logger.info(f"Initialized {self.name}")
     
     def analyze_key_term_frequency(self, sources: List[Dict]) -> Dict[str, int]:

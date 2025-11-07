@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # Frontend Webapp (React/Vite)
+  webapp:
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./webapp/dist:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+    networks:
+      - gematria-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Backend API (FastAPI) - Public Kanban API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app
+      - ./data:/app/data
+    networks:
+      - gematria-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  # Internal API (FastAPI) - Agent Communication & MCP
+  internal-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.internal-api
+    ports:
+      - "8001:8001"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - INTERNAL_API_KEY=${INTERNAL_API_KEY:-internal-api-key-change-in-production}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app
+      - ./data:/app/data
+    networks:
+      - gematria-network
+    restart: unless-stopped
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/internal/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+networks:
+  gematria-network:
+    driver: bridge
+
