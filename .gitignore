@@ -53,8 +53,15 @@ data/
 *.db
 *.sqlite
 
+# Temporary/archive files
+docs/archive/
+
 # Logs
 *.log
+*.log.txt
+gematria_calculator_log.txt
+ingestion_log.txt
+scraping_log.txt
 
 # PyInstaller
 *.manifest

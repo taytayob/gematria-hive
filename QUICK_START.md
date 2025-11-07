@@ -1,131 +1,64 @@
-# Gematria Hive - Quick Start
+# Quick Start - Gematria Hive
 
-**Get up and running in 5 minutes**
-
----
-
-## 🚀 Prerequisites
-
-- Python 3.12+
-- Supabase account (free tier works)
-- Git
+**Get started in 30 seconds!**
 
 ---
 
-## ⚡ Quick Setup
-
-### 1. Clone and Install (2 min)
+## 🚀 Start Kanban Board
 
 ```bash
-# Clone repo (if not already)
-git clone <repo-url>
-cd gematria-hive
+# Start the kanban board
+python run_kanban.py
 
-# Create virtual environment
-python -m venv gematria_env
-source gematria_env/bin/activate  # On Windows: gematria_env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+# Or use the script
+./START_KANBAN.sh
 ```
 
-### 2. Configure Database (2 min)
-
-```bash
-# Create .env file
-cat > .env << EOF
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-anon-key-here
-EOF
-
-# Get credentials from:
-# 1. Go to https://supabase.com
-# 2. Create project: gematria-hive
-# 3. Settings → API → Copy URL and anon key
-```
-
-### 3. Setup Database (1 min)
-
-```bash
-# Verify connection
-python setup_database.py --verify-only
-
-# If tables don't exist, run migrations in Supabase SQL Editor:
-# - migrations/create_gematria_tables.sql
-# - migrations/create_complete_schema.sql
-```
-
-### 4. Run Application (30 sec)
-
-```bash
-# Option 1: Streamlit Dashboard
-streamlit run app.py
-
-# Option 2: Run Agents
-python run_agents.py
-
-# Option 3: Critical Path
-python execute_critical_path.py
-```
+Then open **http://localhost:8000** in your browser.
 
 ---
 
-## 🎯 What Each Command Does
+## ✅ System Verified
 
-### `streamlit run app.py`
-- Launches web dashboard
-- View data, run analyses
-- Interactive UI
-
-### `python run_agents.py`
-- Runs agent orchestrator
-- Processes data through agents
-- Generates insights
-
-### `python execute_critical_path.py`
-- Full pipeline execution
-- Data → Agents → Patterns → Proofs → Unifications
-- Maximum concurrency
+- ✅ FastAPI installed
+- ✅ Uvicorn installed  
+- ✅ Task Manager initialized
+- ✅ Kanban API loads successfully
+- ✅ Database connected
+- ✅ 11 tasks in database
 
 ---
 
-## ✅ Verification
+## 📋 What You Can Do
 
-```bash
-# Test database connection
-python setup_database.py --verify-only
+### 1. Create Tasks
+- Click "➕ New Task" button
+- Fill in content, status, cost, links
+- Save
 
-# Test imports
-python -c "from agents import MCPOrchestrator; print('✅ Agents OK')"
+### 2. Manage Tasks
+- **Drag and drop** tasks between columns
+- **Edit** tasks by clicking "✏️ Edit"
+- **Delete** tasks by clicking "🗑️ Delete"
 
-# Test Streamlit
-streamlit --version
-```
-
----
-
-## 🐛 Troubleshooting
-
-### "SUPABASE_URL not set"
-- Create `.env` file with credentials
-- Or set environment variables directly
-
-### "Table does not exist"
-- Run migrations in Supabase SQL Editor
-- Check `migrations/` folder
-
-### "Module not found"
-- Activate virtual environment
-- Run `pip install -r requirements.txt`
+### 3. View Statistics
+- See total tasks, costs, and status breakdown
+- Real-time updates
 
 ---
 
-## 📚 Next Steps
+## 🔗 More Commands
 
-1. **Ingest Data:** Use `execute_ingestions.py` or `scripts/ingest.py`
-2. **Run Agents:** Use `run_agents.py` for agent workflows
-3. **View Dashboard:** Use `streamlit run app.py` for UI
-4. **Read Docs:** Check `docs/` folder (after consolidation)
+See `COMMAND_HUB.md` for complete command reference.
+
+---
+
+## 🎯 Next Steps
+
+1. **Start Kanban Board** - `python run_kanban.py`
+2. **Create Tasks** - Use the kanban UI
+3. **Run Agents** - `python run_agents.py`
+4. **Check Status** - See `COMMAND_HUB.md`
 
 ---
 

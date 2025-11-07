@@ -30,43 +30,77 @@ python run_all.py --run critical   # Critical path execution
 
 ## 📊 System Status
 
-**Current Status:** 🟡 Partially Operational
+**Current Status:** ✅ **Operational**
 
 - ✅ **Codebase:** Complete with 36+ agents
 - ✅ **Database Schema:** 22 tables defined
-- ⚠️ **Environment:** Needs SUPABASE_URL and SUPABASE_KEY
-- ✅ **Documentation:** Organized in `docs/` folder
+- ✅ **Kanban Board:** Enhanced with phases, roles, tags, metadata
+- ✅ **Internal API:** Agent communication layer ready
+- ✅ **React Webapp:** Modern frontend with all enhanced features
+- ✅ **Documentation:** Consolidated in `COMMAND_HUB.md`
 
-**See [STATUS.md](STATUS.md) for full system status.**
+**See [COMMAND_HUB.md](COMMAND_HUB.md) for complete system documentation.**
 
 ---
 
 ## 🎯 Main Entry Points
 
-### 1. Streamlit Dashboard
+### 1. Kanban Board (Recommended)
+```bash
+# Start kanban board (HTML + API)
+python run_kanban.py
+# Open http://localhost:8000
+```
+
+**Features:**
+- Standalone HTML/JS interface
+- Enhanced task management (phases, roles, tags, metadata)
+- Drag-and-drop functionality
+- Real-time statistics
+- Full CRUD operations
+
+**See [COMMAND_HUB.md](COMMAND_HUB.md) for all commands.**
+
+### 2. Modern Webapp Frontend (React/TypeScript)
+```bash
+# Start backend API
+python run_kanban.py
+
+# In another terminal, start frontend
+cd webapp
+npm install
+npm run dev
+```
+Modern React/TypeScript frontend with shadcn/ui and TanStack Query. Available at `http://localhost:3000`.
+
+**See [webapp/README.md](webapp/README.md) and [webapp/SETUP.md](webapp/SETUP.md) for details.**
+
+### 3. Internal API (Agent Communication)
+```bash
+# Start internal API for agent-to-agent communication
+python run_internal_api.py
+# Runs on http://localhost:8001
+```
+
+**See [INTERNAL_API_DESIGN.md](INTERNAL_API_DESIGN.md) for details.**
+
+### 4. Streamlit Dashboard
 ```bash
 streamlit run app.py
 ```
 Interactive web dashboard for viewing data and running analyses.
 
-### 2. Agent Orchestrator
+### 5. Agent Orchestrator
 ```bash
 python run_agents.py
 ```
 Runs the agent framework to process data through all agents.
 
-### 3. Critical Path Execution
+### 6. Critical Path Execution
 ```bash
 python execute_critical_path.py
 ```
 Full pipeline: Data → Agents → Patterns → Proofs → Unifications.
-
-### 4. Master Run Script
-```bash
-python run_all.py --status    # Show system status
-python run_all.py --setup     # Setup database
-python run_all.py --run <component>  # Run specific component
-```
 
 ---
 
@@ -74,7 +108,15 @@ python run_all.py --run <component>  # Run specific component
 
 ```
 gematria-hive/
+├── webapp/                   # Modern React/TypeScript frontend
+│   ├── src/                 # Source code
+│   │   ├── components/     # React components (shadcn/ui + custom)
+│   │   ├── lib/            # API client, queries, utilities
+│   │   └── hooks/          # Custom React hooks
+│   ├── package.json        # Node.js dependencies
+│   └── vite.config.ts      # Vite configuration
 ├── app.py                    # Streamlit dashboard
+├── kanban_api.py            # FastAPI backend for webapp
 ├── run_all.py               # Master run script
 ├── run_agents.py            # Agent orchestrator
 ├── execute_critical_path.py  # Critical path execution
@@ -87,7 +129,7 @@ gematria-hive/
 │   ├── guides/              # Usage guides
 │   └── architecture/        # Architecture docs
 ├── migrations/              # Database migrations
-└── requirements.txt         # Dependencies
+└── requirements.txt         # Python dependencies
 ```
 
 ---
@@ -128,18 +170,31 @@ SUPABASE_KEY=your-anon-key-here
 - **36+ Modular Agents** - Extraction, distillation, ingestion, inference, proofs
 - **MCP Orchestrator** - Coordinate agents with LangGraph
 - **Database Integration** - Supabase with pgvector for embeddings
-- **Streamlit Dashboard** - Interactive web UI
+- **Modern Webapp Frontend** - React/TypeScript with shadcn/ui and TanStack
+- **Streamlit Dashboard** - Legacy interactive web UI
 - **Critical Path Execution** - Full pipeline with maximum concurrency
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Backend
 - **Python 3.12+** - Core language
+- **FastAPI** - REST API for webapp
 - **Supabase** - PostgreSQL + pgvector
-- **Streamlit** - Web dashboard
+- **Streamlit** - Legacy web dashboard
 - **LangChain/LangGraph** - Agent orchestration
 - **Sentence-Transformers** - Embeddings
+
+### Frontend (Webapp)
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **shadcn/ui** - Accessible component system (Radix UI + Tailwind CSS)
+- **TanStack Query** - Server state management
+- **TanStack Table** - Data tables (available)
+- **TanStack Router** - Type-safe routing (available)
+- **TanStack Form** - Form management (available)
 
 ---
 
