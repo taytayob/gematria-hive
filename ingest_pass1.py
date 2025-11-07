@@ -90,14 +90,8 @@ except ImportError:
 from dotenv import load_dotenv
 load_dotenv()
 
-# Environment variables (set in .replit or .env)
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
-
-if not SUPABASE_URL or not SUPABASE_KEY:
-    raise ValueError("SUPABASE_URL and SUPABASE_KEY must be set in environment variables")
-
 # Logging setup (consolidate to file/console for full visibility/hunches)
+# Must be before Supabase check to use logger
 logging.basicConfig(
     filename='ingestion_log.txt',
     level=logging.INFO,
@@ -109,6 +103,15 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 logger.addHandler(console_handler)
 
+# Environment variables (set in .replit or .env)
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+
+# Make Supabase optional for imports - fail gracefully at runtime
+HAS_SUPABASE = bool(SUPABASE_URL and SUPABASE_KEY)
+if not HAS_SUPABASE:
+    logger.warning("SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled")
+
 # Consolidated vision keywords for relevance (from project—expand dynamically)
 VISION_KEYWORDS = [
     'gematria', 'numerology', 'sacred geometry', 'vibration', 'harmonics',
@@ -118,7 +121,11 @@ VISION_KEYWORDS = [
 ]
 
 # Supabase client (consolidate connection)
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+supabase: Optional[Client] = None
+if HAS_SUPABASE:
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+else:
+    logger.warning("Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable")
 
 # Embedding model (consolidate for relevance scoring)
 embed_model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -132,14 +139,36 @@ def pull_data(source: str = 'dewey_json.json') -> List[Dict]:
     Pull/extract data (manual/JSON for pass #1; future: agents/Dewey API).
     
     Args:
-        source: Path to JSON file, image file, or URL
+        source: Path to JSON file, CSV file, image file, or URL
         
     Returns:
         List of dictionaries with 'url', 'summary', and 'tags' keys
     """
     data = []
     
-    if source.endswith('.json'):
+    # CSV file detection and routing
+    if source.endswith('.csv'):
+        try:
+            from ingest_csv import ingest_csv_file
+            logger.info(f"Detected CSV file: {source}, routing to CSV ingestion module")
+            # CSV ingestion handles its own processing and database insertion
+            # Return empty list as CSV ingestion is handled separately
+            results = ingest_csv_file(source)
+            if results.get('success'):
+                logger.info(f"CSV ingestion completed: {results.get('total_ingested', 0)} rows ingested")
+                # Return minimal data structure for compatibility
+                return [{'url': source, 'summary': f"CSV ingestion completed: {results.get('total_ingested', 0)} rows", 'tags': ['csv', 'gematria']}]
+            else:
+                logger.error(f"CSV ingestion failed: {results.get('error', 'Unknown error')}")
+                return []
+        except ImportError:
+            logger.error("CSV ingestion module (ingest_csv.py) not found")
+            return []
+        except Exception as e:
+            logger.error(f"Error routing CSV file to ingestion module: {e}")
+            return []
+    
+    elif source.endswith('.json'):
         try:
             with open(source, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -229,35 +258,98 @@ def ingest_to_db(data: List[Dict]) -> int:
     Returns:
         Number of items successfully ingested
     """
-    insert_data = []
-    successful = 0
+    # First pass: categorize all items and collect summaries for batch embedding
+    items_with_metadata = []
+    summaries = []
+    summary_to_index = {}
     
-    for item in data:
+    for idx, item in enumerate(data):
         try:
             phase, score, tags = categorize_relevance(item)
+            summary = item.get('summary', '')
             
-            # Prepare data for Supabase
-            supabase_item = {
-                'url': item.get('url', ''),
-                'summary': item.get('summary', ''),
-                'tags': tags,
+            items_with_metadata.append({
+                'item': item,
                 'phase': phase,
-                'relevance_score': score,
-                'timestamp': datetime.utcnow().isoformat()
-            }
+                'score': score,
+                'tags': tags,
+                'summary': summary
+            })
             
-            # Generate embedding
-            if item.get('summary'):
-                embedding = embed_model.encode(item['summary']).tolist()
-                supabase_item['embedding'] = embedding
-            
-            insert_data.append(supabase_item)
-            
+            # Collect unique summaries for batch embedding
+            if summary and summary not in summary_to_index:
+                summary_to_index[summary] = len(summaries)
+                summaries.append(summary)
+                
         except Exception as e:
             logger.error(f"Error processing item {item.get('url', 'unknown')}: {e}")
             continue
     
+    # Batch generate embeddings (5-10x faster than sequential)
+    embedding_dict = {}
+    if summaries:
+        try:
+            logger.info(f"Generating embeddings for {len(summaries)} unique summaries in batch...")
+            # Use batch_size=32 for optimal performance
+            embeddings_batch = embed_model.encode(
+                summaries,
+                batch_size=32,
+                show_progress_bar=True,
+                convert_to_numpy=True
+            )
+            
+            # Map embeddings back to summaries
+            for summary, embedding in zip(summaries, embeddings_batch):
+                embedding_dict[summary] = embedding.tolist()
+            
+            logger.info(f"Batch embedding generation complete: {len(embeddings_batch)} embeddings")
+        except Exception as e:
+            logger.error(f"Error in batch embedding generation: {e}")
+            # Fallback to sequential if batch fails
+            logger.warning("Falling back to sequential embedding generation")
+            for summary in summaries:
+                try:
+                    embedding = embed_model.encode(summary).tolist()
+                    embedding_dict[summary] = embedding
+                except Exception as e2:
+                    logger.warning(f"Error generating embedding for summary: {e2}")
+    
+    # Second pass: create insert data with batch-generated embeddings
+    insert_data = []
+    successful = 0
+    
+    for metadata in items_with_metadata:
+        try:
+            item = metadata['item']
+            summary = metadata['summary']
+            
+            # Prepare data for Supabase
+            supabase_item = {
+                'url': item.get('url', ''),
+                'summary': summary,
+                'tags': metadata['tags'],
+                'phase': metadata['phase'],
+                'relevance_score': metadata['score'],
+                'timestamp': datetime.utcnow().isoformat()
+            }
+            
+            # Get embedding from batch-generated dict
+            if summary:
+                embedding = embedding_dict.get(summary)
+                if embedding:
+                    supabase_item['embedding'] = embedding
+            
+            insert_data.append(supabase_item)
+            
+        except Exception as e:
+            logger.error(f"Error preparing item {item.get('url', 'unknown')}: {e}")
+            continue
+    
     # Batch insert to Supabase
+    if not HAS_SUPABASE or not supabase:
+        logger.error("Supabase not configured - cannot insert data. Set SUPABASE_URL and SUPABASE_KEY.")
+        return 0
+    
     if insert_data:
         try:
             # Insert in chunks to avoid payload limits
@@ -345,10 +437,10 @@ def run_ingestion_pass1(source: str = 'dewey_json.json', chunk_size: int = 50) -
 
 
 # MCP/Agent Prep (self-scaffolding foundation—expand later)
+# Note: StateGraph is handled by agents/orchestrator.py
+# This is just a placeholder for future expansion
 if HAS_LANGGRAPH:
-    graph = StateGraph()
-    # Add nodes/layers (e.g., extraction -> distill -> ingest); use LangGraph for flow
-    logger.info("LangGraph initialized for future agent workflows")
+    logger.info("LangGraph available for future agent workflows")
 
 
 # Claude Skill Prompt Template (copy to Claude after export)

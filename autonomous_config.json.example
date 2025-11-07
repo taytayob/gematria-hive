@@ -1,0 +1,11 @@
+{
+  "max_commits": 10,
+  "max_time_hours": 8.0,
+  "max_tasks": 50,
+  "commit_interval_seconds": 300,
+  "auto_push": false,
+  "branch": null,
+  "work_dir": null,
+  "description": "Autonomous agent configuration file. Copy this to autonomous_config.json and customize as needed."
+}
+

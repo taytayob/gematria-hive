@@ -1,0 +1,33 @@
+2025-11-07 11:14:06,835 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:14:06,835 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:14:06,853 - INFO - Use pytorch device_name: mps
+2025-11-07 11:14:06,853 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:14:17,582 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:14:24,902 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:14:24,903 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:14:24,916 - INFO - Use pytorch device_name: mps
+2025-11-07 11:14:24,916 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:14:27,055 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:14:40,382 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:14:40,382 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:14:40,396 - INFO - Use pytorch device_name: mps
+2025-11-07 11:14:40,396 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:14:42,568 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:14:42,568 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:14:48,685 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:14:48,685 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:14:48,699 - INFO - Use pytorch device_name: mps
+2025-11-07 11:14:48,699 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:14:50,766 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:14:50,767 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:15:04,577 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:15:04,578 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:15:04,591 - INFO - Use pytorch device_name: mps
+2025-11-07 11:15:04,591 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:15:07,097 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:15:07,097 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:15:07,100 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:15:07,100 - WARNING - Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable
+2025-11-07 11:15:07,101 - INFO - Use pytorch device_name: mps
+2025-11-07 11:15:07,101 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:15:09,204 - INFO - CSV Ingestion Module initialized

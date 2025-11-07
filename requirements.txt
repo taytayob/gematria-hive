@@ -28,6 +28,7 @@ vllm
 # Web scraping
 requests
 beautifulsoup4
+tqdm
 
 # Image/OCR processing
 opencv-python
@@ -36,3 +37,10 @@ pillow
 
 # Quantum sims (future-proofing)
 qiskit
+
+# Visualization
+plotly
+matplotlib
+
+# Additional utilities
+json5

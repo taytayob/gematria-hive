@@ -1,0 +1,19 @@
+[
+  {
+    "type": "commit",
+    "action": "commit",
+    "description": "Commit current changes"
+  },
+  {
+    "type": "wait",
+    "action": "wait",
+    "seconds": 60,
+    "description": "Wait 60 seconds before next action"
+  },
+  {
+    "type": "process",
+    "action": "process",
+    "description": "Process a generic task"
+  }
+]
+
