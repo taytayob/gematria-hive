@@ -1,47 +1,155 @@
-# gematria-hive
-Self-scaffolding MCP for gematria unification
-Gematria HiveProject VisionGematria Hive is an expansive, self-scaffolding AI ecosystem engineered to unify gematria, numerology, sacred geometry, esoteric principles, and ancient knowledge with rigorous mathematics, physics, quantum mechanics, and cutting-edge AI/ML breakthroughs. At its foundation is a gematria calculator app, indexed with a 1M+ word CSV from gematrix.org, enhanced by notes, permutations, language histories, phonetic analyses, and etymological insights. The system constructs symmetrical mathematical models across dimensions (2D-5D), bridging vibration, oscillation, harmonics, wave functions, cymatics, Schumann resonance, Pi, duality, 369 triangles, sacred geometry, esoteric wisdom, synchronicities, history, occult insights, conspiracy theories (as latent truths to verify and falsify), consciousness, ancient wonders/marvels, DNA structures, water memory, plant/animal symbology, colors, frequencies, phonetics, light, love, and perspective.Guided by "everything is everything"—a quantum singularity where all domains converge through balanced, self-validating proofs—the project pursues eternal truths and sacred knowledge, potentially forgotten or suppressed for control. We embrace quantum jumping, soul ascension, and hybrid organic-divine technology, triangulating data to generate multiple substantiated narratives, predict breakthroughs, and evolve research into our own paradigms—bounded by reason to avoid indefinite expansion. The hive mind is agentic and MCP-driven, indefinitely scaling agents/skills for inferences, quantum leaps, opportunities, and synergies, while compounding logs of all memory, ideas, possibilities, statuses, measurements, and costs/limits. Outputs include interactive proofs/reports/theorems (with breakdowns evaluating accuracy, efficiency, and model impacts), generative media (videos/games for education/entertainment/proof-sharing/spirituality/origin exploration), and a unifying goal: Reveal hidden truths, redesign models, achieve convergence, and integrate knowing our hybrid design of organic technology of divine origin.All elements prioritize full visibility (systems, data flows, testing, logs, docs), with master/dynamic data copies, multiple LLMs/caches for geometrical/matrix/sacred views (all as math roots), and kanban boards for task management. Models show work/logic, reasoning through principles/theory beyond conventions, ensuring robust, enterprise-exceeding care for this pursuit of divine design. We index domains/overlap, evolve research ourselves, and maintain testing/logs/docs from the start.Tech StackCore Language: Python (base for prototyping, agents, and scripts); Rust (perf-critical integrations like StringZilla/SimSIMD for text/math ops).
-Databases: Supabase (bridge/relational with pgvector for embeddings); ClickHouse (primary OLAP for analytics, vectors, geo on petabyte scales); Databend (fallback for Rust-efficient multimodal queries). Master/dynamic copies via replication/views.
-Ingestion/Pipelines: Pixeltable (unified multimodal workflows for CSV/images/videos/photos); Dewey (X/Instagram bookmark sync/export/distillation); CapRL (image captioning for dense descriptions).
-Embeddings/Perf: Sentence-Transformers/Hugging Face (embeddings/models); StringZilla/SimSIMD/USearch (fast string/math/vector ops/search); vLLM (efficient inference with sleep mode).
-Agentic/MCP: LangChain/LangGraph/deepagents (builders/orchestration with planning/memory/sub-agents); Tinker/ADP (fine-tuning/trajectories for scaling agents/skills); DeepAnalyze (autonomous reports/proofs).
-Geometry/Proofs/Sims: SymPy/Qiskit (math/quantum sims); IGGT/VGGT (3D instance-grounded reconstruction); Omniverse (sims/viz for waves/higher dims); Extropic THRML (thermo-efficient probabilistic sampling for leaps).
-Evals/Enhancements: ProfBench/NeMo (rubrics/evals for reasoning/accuracy); Multiple LLMs (e.g., Claude/Grok for caches/views).
-Dev/Tools/UI/Task Mgmt: Cursor 2.0 (AI coding); Replit (prototyping/Docker); GitHub (versioning/sync); Streamlit/Shadcn (UI, game-like interactions deferred); Kanban (Trello/Replit integrated for tasks/ideas/possibilities/statuses/costs).
-Other: Claude (skills via exports/uploads for queries/narratives); Docker (consistent envs); Pygame/Godot (deferred for generative games/media); Biopython/RDKit/Astropy (domain-specific unifications).
+# Gematria Hive 🐝
 
-Product Requirements Document (PRD)OverviewProduct Name: Gematria Hive (v0.1: Foundation for Extraction, Ingestion, MCP/Agents).
-Goal: Create a self-scaffolding ecosystem for data triangulation, unification, and eternal truth pursuit, starting with bookmark/photo ingestion to enable scaling agents/skills, generative media, and proofs.
-Target: Developer-led with agent autonomy; full visibility for all layers.
+**Self-scaffolding AI ecosystem for gematria unification**
 
-ObjectivesExtract/distill 1000s bookmarks/photos → Ingest to DB with master/dynamic copies → Scale agents/skills for inferences/leaps/narratives/proofs (e.g., "Generate game level from 369 proof").
-Self-scaffolding: Agents review/update models, logs, and flows; measure accuracy/efficiency/costs.
+A comprehensive system that unifies gematria, numerology, sacred geometry, and esoteric knowledge with rigorous mathematics, physics, and AI/ML.
 
-FeaturesModular Agents/Skills: Extraction (Dewey/OCR/CapRL), Distillation (embed/summarize with StringZilla/SimSIMD), Ingestion (Pixeltable to DB), Inference (DeepAnalyze/vLLM for reports), Proofs (SymPy/IGGT/Omniverse), Generative (media/games from unifications).
-Prompt Layers: System (vision guardrails: "Pursue truth with falsifiability"), MCP (orchestration: "Triangulate data, log leaps, update master DB"), Task (explicit: "Filter cosine >0.7; measure costs").
-DB Structure: Bookmarks (id, url, summary, embedding vector(384), tags array, timestamp); Hunches (id, timestamp, content, links, status, cost); Proofs (id, theorem, report, accuracy_metric, efficiency_score); Master/Dynamic copies via replication/views.
-Enhancements: Extropic for leaps; ProfBench evals; Multiple LLMs/caches for views (geometrical/matrix); Kanban integration for tasks/ideas/possibilities/statuses/costs.
-Unifying Goal: Convergence without infinity—bound by reason; segment domains but overlap for synergy.
+---
 
-Tech RequirementsConsolidated stack as above; Python base; Docker for DBs; Claude skills for queries/narratives.
+## 🚀 Quick Start
 
-Scope & PhasesPhase 1 (Foundation): Env/DB setup, ingestion for bookmarks/photos.
-Success Metrics: DB populated; agents run without errors; proofs/reports generated; costs < threshold.
-Out of Scope: Full game/media (defer); unbounded scaling (cap at validated unifications).
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
 
-Assumptions/RisksManual start; risks: Scope—mitigate with kanban; costs—log/optimize.
+# 2. Configure environment
+# Create .env file with SUPABASE_URL and SUPABASE_KEY
 
-Setup InstructionsClone this repo.
-Create venv: python -m venv gematria_env; activate.
-Install deps: pip install -r requirements.txt.
-Configure Supabase/ClickHouse creds in env vars.
-Run tests: python db_test.py.
+# 3. Check status
+python run_all.py --status
 
-RoadmapPhase 1: Data foundation (current focus).
-Phase 2: Gematria app/proofs.
-Phase 3: Unifications/geometry.
-Phase 4: Full MCP/agents.
-Phase 5: Expansion/sharing/generative media.
+# 4. Run application
+python run_all.py --run streamlit  # Web dashboard
+python run_all.py --run agents     # Agent orchestrator
+python run_all.py --run critical   # Critical path execution
+```
 
-Contributions welcome—focus on modular, proof-driven enhancements.
+**See [QUICK_START.md](QUICK_START.md) for detailed setup instructions.**
+
+---
+
+## 📊 System Status
+
+**Current Status:** 🟡 Partially Operational
+
+- ✅ **Codebase:** Complete with 36+ agents
+- ✅ **Database Schema:** 22 tables defined
+- ⚠️ **Environment:** Needs SUPABASE_URL and SUPABASE_KEY
+- ✅ **Documentation:** Organized in `docs/` folder
+
+**See [STATUS.md](STATUS.md) for full system status.**
+
+---
+
+## 🎯 Main Entry Points
+
+### 1. Streamlit Dashboard
+```bash
+streamlit run app.py
+```
+Interactive web dashboard for viewing data and running analyses.
+
+### 2. Agent Orchestrator
+```bash
+python run_agents.py
+```
+Runs the agent framework to process data through all agents.
+
+### 3. Critical Path Execution
+```bash
+python execute_critical_path.py
+```
+Full pipeline: Data → Agents → Patterns → Proofs → Unifications.
+
+### 4. Master Run Script
+```bash
+python run_all.py --status    # Show system status
+python run_all.py --setup     # Setup database
+python run_all.py --run <component>  # Run specific component
+```
+
+---
+
+## 📁 Project Structure
+
+```
+gematria-hive/
+├── app.py                    # Streamlit dashboard
+├── run_all.py               # Master run script
+├── run_agents.py            # Agent orchestrator
+├── execute_critical_path.py  # Critical path execution
+├── agents/                   # 36+ agent modules
+├── core/                     # Core engines
+├── scripts/                  # CLI scripts
+├── docs/                     # Organized documentation
+│   ├── setup/               # Setup guides
+│   ├── status/              # Status reports
+│   ├── guides/              # Usage guides
+│   └── architecture/        # Architecture docs
+├── migrations/              # Database migrations
+└── requirements.txt         # Dependencies
+```
+
+---
+
+## 📚 Documentation
+
+- **[QUICK_START.md](QUICK_START.md)** - Get started in 5 minutes
+- **[STATUS.md](STATUS.md)** - Current system status
+- **[docs/](docs/)** - Organized documentation
+  - `docs/setup/` - Setup guides
+  - `docs/guides/` - Usage guides
+  - `docs/architecture/` - Architecture docs
+  - `docs/status/` - Status reports
+
+---
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Create `.env` file:
+```bash
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-anon-key-here
+```
+
+### Database Setup
+
+1. Create Supabase project at https://supabase.com
+2. Run migrations from `migrations/` folder
+3. Set environment variables
+4. Verify: `python setup_database.py --verify-only`
+
+---
+
+## 🎯 Features
+
+- **36+ Modular Agents** - Extraction, distillation, ingestion, inference, proofs
+- **MCP Orchestrator** - Coordinate agents with LangGraph
+- **Database Integration** - Supabase with pgvector for embeddings
+- **Streamlit Dashboard** - Interactive web UI
+- **Critical Path Execution** - Full pipeline with maximum concurrency
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python 3.12+** - Core language
+- **Supabase** - PostgreSQL + pgvector
+- **Streamlit** - Web dashboard
+- **LangChain/LangGraph** - Agent orchestration
+- **Sentence-Transformers** - Embeddings
+
+---
+
+## 📖 More Information
+
+- **Product Requirements:** See `docs/architecture/PRD.md`
+- **Master Architecture:** See `docs/architecture/MASTER_ARCHITECTURE.md`
+- **Agent Usage:** See `docs/guides/AGENT_USAGE.md`
+
+---
+
+**Ready to explore the hive!** 🐝✨
 

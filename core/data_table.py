@@ -17,7 +17,6 @@ from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime
 from abc import ABC, abstractmethod
 
-from supabase import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,15 +24,21 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 # Supabase client
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
-
-if SUPABASE_URL and SUPABASE_KEY:
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-    HAS_SUPABASE = True
-else:
+try:
+    from supabase import create_client, Client
+    SUPABASE_URL = os.getenv('SUPABASE_URL')
+    SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+    if SUPABASE_URL and SUPABASE_KEY:
+        supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+        HAS_SUPABASE = True
+    else:
+        HAS_SUPABASE = False
+        supabase = None
+        logger.warning("Supabase not configured, DataTable operations disabled")
+except Exception:
     HAS_SUPABASE = False
-    logger.warning("Supabase not configured, DataTable operations disabled")
+    supabase = None
+    logger.warning("Supabase not available, DataTable operations disabled")
 
 
 class DataTable(ABC):

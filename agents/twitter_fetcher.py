@@ -44,7 +44,9 @@ except Exception:
 logger = logging.getLogger(__name__)
 
 # Grok API configuration
-GROK_API_KEY = os.getenv('GROK_API_KEY', 'xai-l9iXGr1J9KRMuL8njqY3WjHZpWHVPpCckoQFjUfRJamA4pjHbiHnhGkvHekcbGTxaTVOPPJ4LW1An1')
+GROK_API_KEY = os.getenv('GROK_API_KEY')
+if not GROK_API_KEY:
+    logger.warning("GROK_API_KEY not set - Twitter fetcher will be limited")
 GROK_API_URL = 'https://api.x.ai/v1/chat/completions'
 GROK_MODEL = 'grok-beta'
 
@@ -63,7 +65,11 @@ class TwitterFetcherAgent:
         self.supabase = supabase if HAS_SUPABASE else None
         self.rate_limit_delay = 1.0  # Delay between requests (seconds)
         self.last_request_time = 0
-        logger.info(f"Initialized {self.name}")
+        
+        if not self.api_key:
+            logger.warning(f"{self.name}: GROK_API_KEY not set - Twitter fetching will be disabled")
+        else:
+            logger.info(f"Initialized {self.name}")
     
     def extract_tweet_id(self, url: str) -> Optional[str]:
         """
@@ -177,6 +183,10 @@ class TwitterFetcherAgent:
         Returns:
             Thread data or None
         """
+        if not self.api_key:
+            logger.error("GROK_API_KEY not set - cannot fetch thread")
+            return None
+        
         tweet_id = self.extract_tweet_id(tweet_url)
         if not tweet_id:
             logger.error(f"Could not extract tweet ID from {tweet_url}")

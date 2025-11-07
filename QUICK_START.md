@@ -1,113 +1,132 @@
-# Quick Start Guide - Gematria Hive
+# Gematria Hive - Quick Start
 
-**Purpose:** Fast setup for all platforms
-
-**Last Updated:** November 6, 2025
+**Get up and running in 5 minutes**
 
 ---
 
-## 🚀 5-Minute Setup
+## 🚀 Prerequisites
 
-### CLI (Mac Terminal) - ✅ Already Complete
-
-```bash
-conda activate gematria_env
-./verify_setup.sh
-streamlit run app.py
-```
+- Python 3.12+
+- Supabase account (free tier works)
+- Git
 
 ---
 
-### Cursor - ✅ Already Complete
+## ⚡ Quick Setup
+
+### 1. Clone and Install (2 min)
 
 ```bash
-# Terminal should auto-activate conda
-conda activate gematria_env
-streamlit run app.py
-```
+# Clone repo (if not already)
+git clone <repo-url>
+cd gematria-hive
 
-**If not working:**
-1. `Cmd+Shift+P` → `Python: Select Interpreter`
-2. Choose: `/Users/cooperladd/anaconda3/envs/gematria_env/bin/python`
+# Create virtual environment
+python -m venv gematria_env
+source gematria_env/bin/activate  # On Windows: gematria_env\Scripts\activate
 
----
-
-### Replit - ⚠️ Do This Now
-
-**In Replit Shell:**
-
-```bash
-# 1. Pull latest
-git pull origin feat-agent-framework-9391b --rebase
-
-# 2. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
-
-# 3. Verify
-python -c "import streamlit, pandas, supabase; print('✅ Ready')"
-
-# 4. Run (or click Run button)
-streamlit run app.py --server.port 5000
 ```
 
-**See `REPLIT_SETUP_COMPLETE.md` for detailed instructions.**
-
----
-
-## 📋 Verification
-
-**Run this on any platform:**
+### 2. Configure Database (2 min)
 
 ```bash
-# CLI/Cursor
-conda activate gematria_env
-./verify_setup.sh
+# Create .env file
+cat > .env << EOF
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-anon-key-here
+EOF
 
-# Replit
-python -c "import streamlit, pandas, supabase, sentence_transformers; print('✅ All packages installed')"
+# Get credentials from:
+# 1. Go to https://supabase.com
+# 2. Create project: gematria-hive
+# 3. Settings → API → Copy URL and anon key
 ```
 
----
-
-## 🔄 Daily Workflow
-
-**All Platforms:**
+### 3. Setup Database (1 min)
 
 ```bash
-# 1. Pull latest
-git pull origin feat-agent-framework-9391b --rebase
+# Verify connection
+python setup_database.py --verify-only
 
-# 2. Activate environment (CLI/Cursor)
-conda activate gematria_env
+# If tables don't exist, run migrations in Supabase SQL Editor:
+# - migrations/create_gematria_tables.sql
+# - migrations/create_complete_schema.sql
+```
 
-# 3. Work on code...
+### 4. Run Application (30 sec)
 
-# 4. Commit and push
-git add .
-git commit -m "Your message"
-git push origin feat-agent-framework-9391b
+```bash
+# Option 1: Streamlit Dashboard
+streamlit run app.py
+
+# Option 2: Run Agents
+python run_agents.py
+
+# Option 3: Critical Path
+python execute_critical_path.py
 ```
 
 ---
 
-## 🎯 Next Steps
+## 🎯 What Each Command Does
 
-1. **✅ CLI Setup** - Complete
-2. **✅ Cursor Setup** - Complete
-3. **⚠️ Replit Setup** - Do now (5 minutes)
-4. **⚠️ Supabase Setup** - After Replit (15 minutes)
-5. **⚠️ Test Ingestion** - After Supabase (10 minutes)
+### `streamlit run app.py`
+- Launches web dashboard
+- View data, run analyses
+- Interactive UI
+
+### `python run_agents.py`
+- Runs agent orchestrator
+- Processes data through agents
+- Generates insights
+
+### `python execute_critical_path.py`
+- Full pipeline execution
+- Data → Agents → Patterns → Proofs → Unifications
+- Maximum concurrency
 
 ---
 
-## 📚 Full Documentation
+## ✅ Verification
 
-- **REPLIT_SETUP_COMPLETE.md** - Replit setup guide
-- **NEXT_STEPS.md** - Complete next steps
-- **SUPABASE_SETUP.md** - Database setup
-- **GIT_COMMIT_COMMANDS.md** - Git workflow
+```bash
+# Test database connection
+python setup_database.py --verify-only
+
+# Test imports
+python -c "from agents import MCPOrchestrator; print('✅ Agents OK')"
+
+# Test Streamlit
+streamlit --version
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### "SUPABASE_URL not set"
+- Create `.env` file with credentials
+- Or set environment variables directly
+
+### "Table does not exist"
+- Run migrations in Supabase SQL Editor
+- Check `migrations/` folder
+
+### "Module not found"
+- Activate virtual environment
+- Run `pip install -r requirements.txt`
+
+---
+
+## 📚 Next Steps
+
+1. **Ingest Data:** Use `execute_ingestions.py` or `scripts/ingest.py`
+2. **Run Agents:** Use `run_agents.py` for agent workflows
+3. **View Dashboard:** Use `streamlit run app.py` for UI
+4. **Read Docs:** Check `docs/` folder (after consolidation)
 
 ---
 
 **Ready to go!** 🐝✨
-

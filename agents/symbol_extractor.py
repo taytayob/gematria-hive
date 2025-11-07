@@ -163,7 +163,7 @@ class SymbolExtractorAgent:
             ]
         }
         
-        # Esoteric terminology
+        # Esoteric terminology - literal terms
         self.esoteric_terms = [
             'vibration', 'frequency', 'resonance', 'harmonics', 'oscillation',
             'quantum', 'consciousness', 'awareness', 'enlightenment', 'awakening',
@@ -174,8 +174,14 @@ class SymbolExtractorAgent:
             'karma', 'dharma', 'samsara', 'nirvana', 'moksha',
             'reincarnation', 'rebirth', 'transmigration', 'soul', 'spirit',
             'divine', 'sacred', 'holy', 'blessed', 'anointed',
-            'prophecy', 'revelation', 'apocalypse', 'eschatology', 'end\s+times',
-            'messiah', 'savior', 'redeemer', 'christ', 'anointed\s+one'
+            'prophecy', 'revelation', 'apocalypse', 'eschatology',
+            'messiah', 'savior', 'redeemer', 'christ'
+        ]
+        
+        # Esoteric terminology - regex patterns (handled separately)
+        self.esoteric_regex_patterns = [
+            r'end\s+times',
+            r'anointed\s+one'
         ]
         
         logger.info(f"Initialized {self.name}")
@@ -230,8 +236,22 @@ class SymbolExtractorAgent:
         terms = []
         text_lower = text.lower()
         
+        # Handle literal terms with word boundaries
         for term in self.esoteric_terms:
             pattern = r'\b' + re.escape(term) + r'\b'
+            matches = re.finditer(pattern, text_lower, re.IGNORECASE)
+            for match in matches:
+                term_dict = {
+                    'term': match.group(0),
+                    'type': 'esoteric',
+                    'start_pos': match.start(),
+                    'end_pos': match.end(),
+                    'context': text[max(0, match.start()-50):min(len(text), match.end()+50)]
+                }
+                terms.append(term_dict)
+        
+        # Handle regex patterns directly (without re.escape)
+        for pattern in self.esoteric_regex_patterns:
             matches = re.finditer(pattern, text_lower, re.IGNORECASE)
             for match in matches:
                 term_dict = {

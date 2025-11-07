@@ -249,3 +249,64 @@
 2025-11-07 11:46:04,591 - INFO - Initialized resource_discoverer_agent
 2025-11-07 11:46:04,591 - INFO - Initialized dark_matter_tracker_agent
 2025-11-07 11:46:04,591 - INFO - Initialized claude_integrator_agent
+2025-11-07 12:13:56,495 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 12:13:56,495 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:13:56,495 - INFO - Initialized with 22 vision keywords
+2025-11-07 12:13:56,497 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 12:13:56,497 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:13:56,497 - INFO - CSV Ingestion Module initialized
+2025-11-07 12:16:58,354 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:16:58,354 - INFO - Initialized with 22 vision keywords
+2025-11-07 12:16:58,367 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:16:58,367 - INFO - CSV Ingestion Module initialized
+2025-11-07 12:17:05,331 - WARNING - Matplotlib is building the font cache; this may take a moment.
+2025-11-07 12:17:07,303 - INFO - Failed to extract font properties from /System/Library/PrivateFrameworks/FontServices.framework/Resources/Reserved/PingFangUI.ttc: Can not load face (locations (loca) table missing; error code 0x90)
+2025-11-07 12:17:07,320 - INFO - Failed to extract font properties from /System/Library/Fonts/SFCompactItalic.ttf: <flag 'StyleFlags'> invalid value 2686977
+    given 0b0 1010010000000000000001
+  allowed 0b0 0000000000000000000011
+2025-11-07 12:17:07,324 - INFO - Failed to extract font properties from /System/Library/Fonts/Supplemental/NISC18030.ttf: Could not set the fontsize (invalid pixel size; error code 0x17)
+2025-11-07 12:17:07,337 - INFO - Failed to extract font properties from /System/Library/Fonts/SFCompact.ttf: <flag 'StyleFlags'> invalid value 2686976
+    given 0b0 1010010000000000000000
+  allowed 0b0 0000000000000000000011
+2025-11-07 12:17:07,360 - INFO - Failed to extract font properties from /System/Library/Fonts/Apple Color Emoji.ttc: Could not set the fontsize (invalid pixel size; error code 0x17)
+2025-11-07 12:17:07,376 - INFO - Failed to extract font properties from /System/Library/Fonts/LastResort.otf: tuple indices must be integers or slices, not str
+2025-11-07 12:17:07,395 - INFO - Failed to extract font properties from /System/Library/Fonts/SFNSMono.ttf: <flag 'StyleFlags'> invalid value 393216
+    given 0b0 1100000000000000000
+  allowed 0b0 0000000000000000011
+2025-11-07 12:17:07,437 - INFO - generated new fontManager
+2025-11-07 12:17:07,720 - INFO - Supabase connected for agent memory
+2025-11-07 12:17:07,731 - INFO - Observer: Supabase connected for persistent storage
+2025-11-07 12:17:07,731 - INFO - Initialized observer_agent with notes directory: notes/observations
+2025-11-07 12:17:07,742 - INFO - Advisor: Supabase connected for persistent storage
+2025-11-07 12:17:07,742 - INFO - Initialized advisor_agent with notes directory: notes/advice
+2025-11-07 12:17:07,753 - INFO - Mentor: Supabase connected for persistent storage
+2025-11-07 12:17:07,753 - INFO - Initialized mentor_agent with notes directory: notes/mentoring
+2025-11-07 12:17:07,753 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 12:17:07,754 - INFO - Cost manager initialized
+2025-11-07 12:17:07,754 - INFO - Observer, Advisor, and Mentor agents initialized
+2025-11-07 12:17:07,754 - WARNING - LangGraph not available, using simple workflow
+2025-11-07 12:17:13,459 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:17:13,459 - INFO - Initialized with 22 vision keywords
+2025-11-07 12:17:13,472 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 12:17:13,472 - INFO - CSV Ingestion Module initialized
+2025-11-07 12:17:14,005 - INFO - Supabase connected for agent memory
+2025-11-07 12:17:14,017 - INFO - Observer: Supabase connected for persistent storage
+2025-11-07 12:17:14,017 - INFO - Initialized observer_agent with notes directory: notes/observations
+2025-11-07 12:17:14,028 - INFO - Advisor: Supabase connected for persistent storage
+2025-11-07 12:17:14,028 - INFO - Initialized advisor_agent with notes directory: notes/advice
+2025-11-07 12:17:14,039 - INFO - Mentor: Supabase connected for persistent storage
+2025-11-07 12:17:14,039 - INFO - Initialized mentor_agent with notes directory: notes/mentoring
+2025-11-07 12:17:14,039 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 12:17:14,039 - INFO - Cost manager initialized
+2025-11-07 12:17:14,039 - INFO - Observer, Advisor, and Mentor agents initialized
+2025-11-07 12:17:14,040 - WARNING - LangGraph not available, using simple workflow
+2025-11-07 13:40:04,470 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 13:40:04,470 - INFO - Initialized with 22 vision keywords
+2025-11-07 13:40:04,485 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 13:40:04,485 - INFO - CSV Ingestion Module initialized
+2025-11-07 13:40:05,223 - INFO - Initialized symbol_extractor_agent
+2025-11-07 13:40:53,990 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 13:40:53,990 - INFO - Initialized with 22 vision keywords
+2025-11-07 13:40:54,003 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 13:40:54,003 - INFO - CSV Ingestion Module initialized
+2025-11-07 13:40:54,531 - INFO - Initialized symbol_extractor_agent

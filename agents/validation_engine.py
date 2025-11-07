@@ -50,8 +50,9 @@ class ValidationEngineAgent(DataTable):
         """Initialize validation engine agent"""
         super().__init__('validations')
         self.name = "validation_engine_agent"
-        self.proofs_table = DataTable('proofs')
-        self.baselines_table = DataTable('baselines')
+        # Use supabase directly instead of abstract DataTable
+        self.proofs_table_name = 'proofs'
+        self.baselines_table_name = 'baselines'
         logger.info(f"Initialized {self.name}")
     
     def check_baseline(self, entity_type: str, entity_id: str, value: Dict) -> Tuple[bool, Optional[str], float]:
@@ -237,10 +238,21 @@ class ValidationEngineAgent(DataTable):
                 'research_topic_id': research_topic_id
             }
             
-            result = self.proofs_table.create(proof_data)
+            # Use supabase directly instead of abstract DataTable
+            if self.supabase:
+                try:
+                    result = self.supabase.table(self.proofs_table_name).insert(proof_data).execute()
+                    if result.data:
+                        proof_id = result.data[0]['id']
+                    else:
+                        proof_id = None
+                except Exception as e:
+                    logger.error(f"Error creating proof: {e}")
+                    proof_id = None
+            else:
+                proof_id = None
             
-            if result:
-                proof_id = result['id']
+            if proof_id:
                 logger.info(f"Created proof: {proof_name} (accuracy: {accuracy:.2f}, efficiency: {efficiency:.2f})")
                 
                 # Check if accuracy is 100%
@@ -358,8 +370,16 @@ class ValidationEngineAgent(DataTable):
             }
         
         try:
-            # Get proof
-            proof = self.proofs_table.read(proof_id)
+            # Get proof using supabase directly
+            if self.supabase:
+                try:
+                    result = self.supabase.table(self.proofs_table_name).select('*').eq('id', proof_id).execute()
+                    proof = result.data[0] if result.data else None
+                except Exception as e:
+                    logger.error(f"Error reading proof: {e}")
+                    proof = None
+            else:
+                proof = None
             
             if not proof:
                 return {

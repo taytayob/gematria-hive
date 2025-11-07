@@ -111,16 +111,33 @@ def scrape_websites() -> List[Dict]:
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(urls)) as executor:
             futures = {}
             for url in urls:
-                future = executor.submit(browser.scrape_url, url, max_depth=2, delay=1.0)
+                # Create proper AgentState for browser.execute()
+                state = {
+                    "task": {
+                        "url": url,
+                        "max_depth": 2,
+                        "delay": 1.0,
+                        "use_sitemap": True,
+                        "respect_robots": True
+                    },
+                    "data": [],
+                    "context": {},
+                    "results": [],
+                    "cost": 0.0,
+                    "status": "pending",
+                    "memory_id": None
+                }
+                future = executor.submit(browser.execute, state)
                 futures[future] = url
             
             for future in concurrent.futures.as_completed(futures):
                 url = futures[future]
                 try:
-                    result = future.result()
-                    if result:
-                        scraped_data.extend(result)
-                        logger.info(f"✅ Scraped {len(result)} pages from {url}")
+                    result_state = future.result()
+                    # Extract scraped data from state
+                    if result_state.get("data"):
+                        scraped_data.extend(result_state["data"])
+                        logger.info(f"✅ Scraped {len(result_state['data'])} pages from {url}")
                 except Exception as e:
                     logger.warning(f"⚠️  Error scraping {url}: {e}")
         
@@ -154,15 +171,28 @@ def ingest_csv_files() -> List[Dict]:
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(csv_files)) as executor:
             futures = {}
             for csv_file in csv_files:
-                future = executor.submit(ingestion.ingest_csv_file, str(csv_file))
+                # Create proper AgentState for ingestion.execute()
+                state = {
+                    "task": {},
+                    "data": [],
+                    "data_type": "csv",
+                    "source": str(csv_file),
+                    "context": {},
+                    "results": [],
+                    "cost": 0.0,
+                    "status": "pending",
+                    "memory_id": None
+                }
+                future = executor.submit(ingestion.execute, state)
                 futures[future] = csv_file
             
             for future in concurrent.futures.as_completed(futures):
                 csv_file = futures[future]
                 try:
-                    result = future.result()
-                    if result.get('success'):
-                        ingested = result.get('total_ingested', 0)
+                    result_state = future.result()
+                    # Extract ingestion results from state
+                    ingested = result_state.get("context", {}).get("ingestion_count", 0)
+                    if ingested > 0 or result_state.get("status") == "completed":
                         all_data.append({
                             'file': str(csv_file),
                             'ingested': ingested,
@@ -189,16 +219,52 @@ def process_bookmarks() -> List[Dict]:
         
         bookmark_agent = BookmarkIngestionAgent()
         
-        # Process bookmarks
-        result = bookmark_agent.process_bookmarks()
+        # Find bookmark files (JSON or markdown)
+        bookmark_files = []
+        bookmark_files.extend(Path('.').glob('*.json'))
+        bookmark_files.extend(Path('.').glob('*.md'))
+        bookmark_files.extend(Path('.').glob('*.markdown'))
         
-        if result.get('success'):
-            processed = result.get('bookmarks_processed', 0)
-            logger.info(f"✅ Processed {processed} bookmarks")
-            return result.get('bookmarks', [])
-        else:
-            logger.warning(f"⚠️  Bookmark processing failed: {result.get('error')}")
+        if not bookmark_files:
+            logger.info("ℹ️  No bookmark files found")
             return []
+        
+        all_bookmarks = []
+        
+        # Process all bookmark files concurrently
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(bookmark_files)) as executor:
+            futures = {}
+            for bookmark_file in bookmark_files:
+                # Create proper AgentState for bookmark_agent.execute()
+                state = {
+                    "task": {
+                        "source": str(bookmark_file),
+                        "type": "bookmark_ingestion"
+                    },
+                    "data": [],
+                    "context": {},
+                    "results": [],
+                    "cost": 0.0,
+                    "status": "pending",
+                    "memory_id": None
+                }
+                future = executor.submit(bookmark_agent.execute, state)
+                futures[future] = bookmark_file
+            
+            for future in concurrent.futures.as_completed(futures):
+                bookmark_file = futures[future]
+                try:
+                    result_state = future.result()
+                    # Extract bookmarks from state
+                    if result_state.get("data"):
+                        all_bookmarks.extend(result_state["data"])
+                        processed = len(result_state["data"])
+                        logger.info(f"✅ Processed {processed} bookmarks from {bookmark_file}")
+                except Exception as e:
+                    logger.warning(f"⚠️  Error processing {bookmark_file}: {e}")
+        
+        logger.info(f"✅ Total bookmarks processed: {len(all_bookmarks)}")
+        return all_bookmarks
         
     except Exception as e:
         logger.error(f"❌ Error processing bookmarks: {e}")

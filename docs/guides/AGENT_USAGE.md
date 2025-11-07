@@ -61,28 +61,67 @@ print(f"Processed {len(processed)} items")
 
 ```python
 from agents.ingestion import IngestionAgent
+from agents.orchestrator import AgentState
 
 # Initialize agent
 agent = IngestionAgent()
 
-# Ingest gematria words
+# Method 1: Use execute() method (recommended for orchestrator)
+state: AgentState = {
+    "task": {
+        "type": "ingestion",
+        "data_type": "csv",  # or "bookmarks", "gematria_words"
+        "source": "data.csv"
+    },
+    "data": [],
+    "context": {},
+    "results": [],
+    "cost": 0.0,
+    "status": "pending",
+    "memory_id": None
+}
+result_state = agent.execute(state)
+ingested_count = result_state.get("context", {}).get("ingestion_count", 0)
+print(f"Ingested {ingested_count} items")
+
+# Method 2: Direct methods (for convenience in scripts)
 count = agent.ingest_gematria_words(words, batch_size=1000)
 print(f"Ingested {count} words")
 
-# Ingest CSV file
-results = agent.ingest_csv_file("data.csv", chunk_size=10000)
-print(f"Results: {results}")
+# Note: ingest_csv_file() is an internal method, use execute() instead
 ```
 
 ### Browser Agent
 
 ```python
 from agents.browser import BrowserAgent
+from agents.orchestrator import AgentState
 
 # Initialize agent
 agent = BrowserAgent()
 
-# Scrape URL directly
+# Method 1: Use execute() method (recommended for orchestrator)
+state: AgentState = {
+    "task": {
+        "type": "browser",
+        "url": "https://example.com",
+        "max_depth": 3,
+        "delay": 1.0,
+        "use_sitemap": True,
+        "respect_robots": True
+    },
+    "data": [],
+    "context": {},
+    "results": [],
+    "cost": 0.0,
+    "status": "pending",
+    "memory_id": None
+}
+result_state = agent.execute(state)
+scraped_data = result_state.get("data", [])
+print(f"Scraped {len(scraped_data)} pages")
+
+# Method 2: Direct method (for convenience in CLI scripts)
 scraped = agent.scrape_url("https://example.com", max_depth=3)
 print(f"Scraped {len(scraped)} pages")
 
@@ -93,6 +132,34 @@ print(f"Sitemap: {sitemap}")
 # Parse sitemap
 urls = agent.parse_sitemap(sitemap_url)
 print(f"Found {len(urls)} URLs")
+```
+
+### Bookmark Ingestion Agent
+
+```python
+from agents.bookmark_ingestion import BookmarkIngestionAgent
+from agents.orchestrator import AgentState
+
+# Initialize agent
+agent = BookmarkIngestionAgent()
+
+# Use execute() method (required - no convenience methods)
+state: AgentState = {
+    "task": {
+        "type": "bookmark_ingestion",
+        "source": "bookmarks.json"  # or "bookmarks.md", "bookmarks.markdown"
+    },
+    "data": [],
+    "context": {},
+    "results": [],
+    "cost": 0.0,
+    "status": "pending",
+    "memory_id": None
+}
+result_state = agent.execute(state)
+bookmarks = result_state.get("data", [])
+stored_count = result_state.get("context", {}).get("stored_count", 0)
+print(f"Processed {len(bookmarks)} bookmarks, stored {stored_count}")
 ```
 
 ### Inference Agent
