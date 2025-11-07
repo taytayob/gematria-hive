@@ -1,0 +1,4 @@
+2025-11-07 11:16:47,958 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:16:47,958 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:16:47,958 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:16:47,958 - INFO - Gematria calculator initialized

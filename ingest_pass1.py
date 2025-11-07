@@ -18,9 +18,27 @@ from typing import List, Dict, Tuple, Optional
 from datetime import datetime
 
 # Core dependencies
-from supabase import create_client, Client
-from sentence_transformers import SentenceTransformer, util
-import pandas as pd
+try:
+    from supabase import create_client, Client
+    HAS_SUPABASE_LIB = True
+except ImportError:
+    HAS_SUPABASE_LIB = False
+    Client = None
+
+try:
+    from sentence_transformers import SentenceTransformer, util
+    HAS_SENTENCE_TRANSFORMERS = True
+except ImportError:
+    HAS_SENTENCE_TRANSFORMERS = False
+    SentenceTransformer = None
+    util = None
+
+try:
+    import pandas as pd
+    HAS_PANDAS = True
+except ImportError:
+    HAS_PANDAS = False
+    pd = None
 
 # Performance optimizations
 try:
@@ -122,14 +140,31 @@ VISION_KEYWORDS = [
 
 # Supabase client (consolidate connection)
 supabase: Optional[Client] = None
-if HAS_SUPABASE:
-    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+if HAS_SUPABASE and HAS_SUPABASE_LIB:
+    try:
+        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        logger.warning(f"Could not initialize Supabase client: {e}")
+        supabase = None
 else:
-    logger.warning("Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable")
+    if not HAS_SUPABASE_LIB:
+        logger.warning("Supabase library not installed - install with: pip install supabase")
+    else:
+        logger.warning("Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable")
 
 # Embedding model (consolidate for relevance scoring)
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
-vision_embeds = embed_model.encode(VISION_KEYWORDS)  # Pre-embed for cosine checks
+embed_model = None
+vision_embeds = None
+if HAS_SENTENCE_TRANSFORMERS:
+    try:
+        embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+        vision_embeds = embed_model.encode(VISION_KEYWORDS)  # Pre-embed for cosine checks
+    except Exception as e:
+        logger.warning(f"Could not initialize embedding model: {e}")
+        embed_model = None
+        vision_embeds = None
+else:
+    logger.warning("sentence-transformers not installed - embeddings will be disabled")
 
 logger.info(f"Initialized with {len(VISION_KEYWORDS)} vision keywords")
 

@@ -2,8 +2,10 @@ modules = ["python-3.12"]
 
 [env]
 PYTHON_VERSION = "3.12"
-SUPABASE_URL = "your_supabase_url_here"
-SUPABASE_KEY = "your_anon_key_here"
+# Set SUPABASE_URL and SUPABASE_KEY via Replit Secrets (lock icon in sidebar)
+# Or uncomment and set here:
+# SUPABASE_URL = "https://your-project.supabase.co"
+# SUPABASE_KEY = "your-anon-key-here"
 
 [agent]
 expertMode = true
@@ -13,16 +15,7 @@ channel = "stable-25_05"
 packages = ["glibcLocales"]
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Streamlit App"
+runButton = "Streamlit App"
 
 [[workflows.workflow]]
 name = "Streamlit App"
@@ -30,7 +23,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "streamlit run app.py --server.port 5000"
+args = "pip install -r requirements.txt && streamlit run app.py --server.port 5000 --server.address 0.0.0.0"
 waitForPort = 5000
 
 [workflows.workflow.metadata]
@@ -42,4 +35,4 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-run = "streamlit run app.py --server.port 5000"
+run = "streamlit run app.py --server.port 5000 --server.address 0.0.0.0"

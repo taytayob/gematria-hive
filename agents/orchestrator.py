@@ -10,6 +10,7 @@ Date: November 6, 2025
 
 import os
 import logging
+import concurrent.futures
 from typing import Dict, List, Optional, TypedDict
 from datetime import datetime
 from dotenv import load_dotenv
@@ -376,8 +377,19 @@ class MCPOrchestrator:
         return final_state
     
     def _execute_sequential(self, state: AgentState) -> AgentState:
-        """Fallback sequential execution - ALL AGENTS RUN SIMULTANEOUSLY"""
-        import concurrent.futures
+        """
+        Execute agents in parallel - ALL AGENTS RUN SIMULTANEOUSLY
+        
+        This method runs all analysis agents in parallel using ThreadPoolExecutor
+        for maximum efficiency. Only extraction runs first (sequential dependency),
+        then all other agents execute simultaneously.
+        
+        Args:
+            state: Agent state with task and data
+            
+        Returns:
+            Updated state with all agent results merged
+        """
         from .extraction import ExtractionAgent
         from .distillation import DistillationAgent
         from .ingestion import IngestionAgent

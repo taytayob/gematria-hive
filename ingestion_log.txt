@@ -31,3 +31,35 @@
 2025-11-07 11:15:07,101 - INFO - Use pytorch device_name: mps
 2025-11-07 11:15:07,101 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
 2025-11-07 11:15:09,204 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:16:18,165 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:16:18,165 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:16:18,165 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:16:18,165 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:16:29,249 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:16:29,249 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:16:29,249 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:16:29,249 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:16:48,704 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:16:48,704 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:16:48,704 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:16:48,704 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:16:48,706 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:16:48,706 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:16:48,706 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:16:48,706 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:19:26,829 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:19:26,829 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:19:26,829 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:19:26,829 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:19:26,898 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:19:26,899 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:19:26,899 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:19:26,899 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:19:26,899 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - calculator will be limited
+2025-11-07 11:19:26,899 - WARNING - Supabase not configured - calculator will be limited
+2025-11-07 11:19:26,899 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 11:19:26,899 - INFO - Gematria calculator initialized
+2025-11-07 11:19:39,033 - WARNING - SUPABASE_URL and SUPABASE_KEY not set - database operations will be disabled
+2025-11-07 11:19:39,034 - WARNING - Supabase library not installed - install with: pip install supabase
+2025-11-07 11:19:39,034 - WARNING - sentence-transformers not installed - embeddings will be disabled
+2025-11-07 11:19:39,034 - INFO - CSV Ingestion Module initialized

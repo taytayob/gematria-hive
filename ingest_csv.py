@@ -17,8 +17,19 @@ import pandas as pd
 from tqdm import tqdm
 
 # Core dependencies
-from supabase import create_client, Client
-from sentence_transformers import SentenceTransformer
+try:
+    from supabase import create_client, Client
+    HAS_SUPABASE_LIB = True
+except ImportError:
+    HAS_SUPABASE_LIB = False
+    Client = None
+
+try:
+    from sentence_transformers import SentenceTransformer
+    HAS_SENTENCE_TRANSFORMERS = True
+except ImportError:
+    HAS_SENTENCE_TRANSFORMERS = False
+    SentenceTransformer = None
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -47,13 +58,28 @@ if not HAS_SUPABASE:
 
 # Supabase client
 supabase: Optional[Client] = None
-if HAS_SUPABASE:
-    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+if HAS_SUPABASE and HAS_SUPABASE_LIB:
+    try:
+        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        logger.warning(f"Could not initialize Supabase client: {e}")
+        supabase = None
 else:
-    logger.warning("Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable")
+    if not HAS_SUPABASE_LIB:
+        logger.warning("Supabase library not installed - install with: pip install supabase")
+    else:
+        logger.warning("Supabase client not initialized - set SUPABASE_URL and SUPABASE_KEY to enable")
 
 # Embedding model for semantic search
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+embed_model = None
+if HAS_SENTENCE_TRANSFORMERS:
+    try:
+        embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+    except Exception as e:
+        logger.warning(f"Could not initialize embedding model: {e}")
+        embed_model = None
+else:
+    logger.warning("sentence-transformers not installed - embeddings will be disabled")
 
 logger.info("CSV Ingestion Module initialized")
 
@@ -168,11 +194,20 @@ def generate_embeddings(phrases: List[str], batch_size: int = 100) -> List[List[
     Returns:
         List of embedding vectors
     """
+    if not embed_model:
+        logger.warning("Embedding model not available - skipping embeddings")
+        return []
+    
     embeddings = []
-    for i in range(0, len(phrases), batch_size):
-        batch = phrases[i:i+batch_size]
-        batch_embeddings = embed_model.encode(batch, show_progress_bar=False)
-        embeddings.extend(batch_embeddings.tolist())
+    try:
+        for i in range(0, len(phrases), batch_size):
+            batch = phrases[i:i+batch_size]
+            batch_embeddings = embed_model.encode(batch, show_progress_bar=False)
+            embeddings.extend(batch_embeddings.tolist())
+    except Exception as e:
+        logger.error(f"Error generating embeddings: {e}")
+        return []
+    
     return embeddings
 
 
@@ -285,12 +320,15 @@ def ingest_csv_file(file_path: str, chunk_size: int = 10000, max_rows: Optional[
     
     # Check current database count before ingestion
     initial_count = 0
-    try:
-        result = supabase.table('gematria_words').select('id', count='exact').limit(1).execute()
-        initial_count = result.count if hasattr(result, 'count') else 0
-        logger.info(f"Initial database count: {initial_count} records")
-    except Exception as e:
-        logger.warning(f"Could not get initial database count: {e}")
+    if HAS_SUPABASE and supabase:
+        try:
+            result = supabase.table('gematria_words').select('id', count='exact').limit(1).execute()
+            initial_count = result.count if hasattr(result, 'count') else 0
+            logger.info(f"Initial database count: {initial_count} records")
+        except Exception as e:
+            logger.warning(f"Could not get initial database count: {e}")
+    else:
+        logger.warning("Supabase not configured - skipping database count check")
     
     # Detect CSV format
     csv_format = detect_csv_format(file_path)
@@ -372,7 +410,7 @@ def ingest_csv_file(file_path: str, chunk_size: int = 10000, max_rows: Optional[
                     total_ingested += ingested
                     
                     # Verify database count increased
-                    if validate and ingested > 0:
+                    if validate and ingested > 0 and HAS_SUPABASE and supabase:
                         try:
                             verify_result = supabase.table('gematria_words').select('id', count='exact').limit(1).execute()
                             current_count = verify_result.count if hasattr(verify_result, 'count') else 0
@@ -419,31 +457,35 @@ def ingest_csv_file(file_path: str, chunk_size: int = 10000, max_rows: Optional[
     
     # Final validation: check database count
     final_count = 0
-    try:
-        result = supabase.table('gematria_words').select('id', count='exact').limit(1).execute()
-        final_count = result.count if hasattr(result, 'count') else 0
-        records_added = final_count - initial_count
-        logger.info(f"Final database count: {final_count} records (added {records_added}, ingested {total_ingested})")
-        
-        if records_added != total_ingested:
-            logger.warning(f"Count mismatch: {records_added} records added vs {total_ingested} ingested")
-    except Exception as e:
-        logger.warning(f"Could not get final database count: {e}")
+    if HAS_SUPABASE and supabase:
+        try:
+            result = supabase.table('gematria_words').select('id', count='exact').limit(1).execute()
+            final_count = result.count if hasattr(result, 'count') else 0
+            records_added = final_count - initial_count
+            logger.info(f"Final database count: {final_count} records (added {records_added}, ingested {total_ingested})")
+            
+            if records_added != total_ingested:
+                logger.warning(f"Count mismatch: {records_added} records added vs {total_ingested} ingested")
+        except Exception as e:
+            logger.warning(f"Could not get final database count: {e}")
+    else:
+        final_count = initial_count
     
     # Log completion
     logger.info(f"CSV ingestion complete: {total_processed} rows processed, {total_ingested} ingested")
     
     # Log to hunches table
-    try:
-        hunch_content = f"CSV ingestion from {os.path.basename(file_path)}: {total_ingested}/{total_processed} rows ingested (DB: {initial_count} -> {final_count})"
-        supabase.table('hunches').insert({
-            'content': hunch_content,
-            'timestamp': datetime.utcnow().isoformat(),
-            'status': 'completed',
-            'cost': 0.0
-        }).execute()
-    except Exception as e:
-        logger.error(f"Error logging hunch: {e}")
+    if HAS_SUPABASE and supabase:
+        try:
+            hunch_content = f"CSV ingestion from {os.path.basename(file_path)}: {total_ingested}/{total_processed} rows ingested (DB: {initial_count} -> {final_count})"
+            supabase.table('hunches').insert({
+                'content': hunch_content,
+                'timestamp': datetime.utcnow().isoformat(),
+                'status': 'completed',
+                'cost': 0.0
+            }).execute()
+        except Exception as e:
+            logger.error(f"Error logging hunch: {e}")
     
     return {
         'success': True,
