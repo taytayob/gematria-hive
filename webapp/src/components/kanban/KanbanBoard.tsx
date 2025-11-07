@@ -3,6 +3,7 @@ import { KanbanColumn } from './KanbanColumn'
 import { StatisticsPanel } from './StatisticsPanel'
 import { FilterPanel } from './FilterPanel'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { Plus } from 'lucide-react'
 import { TaskDialog } from './TaskDialog'
 import { useState, useMemo } from 'react'
@@ -16,11 +17,10 @@ const COLUMNS = [
 ] as const
 
 export function KanbanBoard() {
-  const { data: tasks = [], isLoading } = useTasks()
+  const { data: tasks = [], isLoading, error } = useTasks()
   const updateStatus = useUpdateTaskStatus()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
-  const [phaseFilter, setPhaseFilter] = useState<string | null>(null)
   const [filters, setFilters] = useState<{
     phase?: string
     role?: string
@@ -75,6 +75,43 @@ export function KanbanBoard() {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-muted-foreground">Loading tasks...</div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">Kanban Board</h1>
+          <p className="text-muted-foreground mt-2">
+            Manage and track your tasks with drag-and-drop
+          </p>
+        </div>
+        <Card className="p-6 border-destructive">
+          <div className="space-y-2">
+            <h3 className="text-lg font-semibold text-destructive">Error Loading Tasks</h3>
+            <p className="text-sm text-muted-foreground">
+              {error instanceof Error ? error.message : 'Failed to load tasks'}
+            </p>
+            <div className="text-xs text-muted-foreground mt-4">
+              <p>Possible issues:</p>
+              <ul className="list-disc list-inside mt-2 space-y-1">
+                <li>Backend API not running (check if FastAPI server is running on port 8000)</li>
+                <li>Supabase credentials not configured (check .env file)</li>
+                <li>Network connectivity issues</li>
+                <li>CORS configuration problems</li>
+              </ul>
+            </div>
+            <Button
+              variant="outline"
+              onClick={() => window.location.reload()}
+              className="mt-4"
+            >
+              🔄 Retry
+            </Button>
+          </div>
+        </Card>
       </div>
     )
   }
