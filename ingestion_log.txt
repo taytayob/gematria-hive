@@ -191,3 +191,61 @@
 2025-11-07 11:25:23,375 - WARNING - Supabase not configured, DataTable operations disabled
 2025-11-07 11:25:23,377 - WARNING - Plotly not installed, 3D visualization disabled
 2025-11-07 11:25:23,377 - WARNING - Matplotlib not installed, 3D visualization disabled
+2025-11-07 11:45:53,112 - INFO - Use pytorch device_name: mps
+2025-11-07 11:45:53,112 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:45:55,916 - INFO - Initialized with 22 vision keywords
+2025-11-07 11:45:55,916 - INFO - LangGraph available for future agent workflows
+2025-11-07 11:45:55,923 - INFO - Use pytorch device_name: mps
+2025-11-07 11:45:55,923 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:45:58,123 - INFO - CSV Ingestion Module initialized
+2025-11-07 11:45:58,153 - WARNING - Plotly not installed, 3D visualization disabled
+2025-11-07 11:45:58,153 - WARNING - Matplotlib not installed, 3D visualization disabled
+2025-11-07 11:45:58,252 - INFO - Supabase connected for agent memory
+2025-11-07 11:45:58,256 - INFO - Observer: Supabase connected for persistent storage
+2025-11-07 11:45:58,256 - INFO - Initialized observer_agent with notes directory: notes/observations
+2025-11-07 11:45:58,260 - INFO - Advisor: Supabase connected for persistent storage
+2025-11-07 11:45:58,260 - INFO - Initialized advisor_agent with notes directory: notes/advice
+2025-11-07 11:45:58,264 - INFO - Mentor: Supabase connected for persistent storage
+2025-11-07 11:45:58,264 - INFO - Initialized mentor_agent with notes directory: notes/mentoring
+2025-11-07 11:45:58,264 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 11:45:58,264 - INFO - Cost manager initialized
+2025-11-07 11:45:58,264 - INFO - Observer, Advisor, and Mentor agents initialized
+2025-11-07 11:45:58,264 - INFO - Initialized extraction_agent
+2025-11-07 11:45:58,264 - INFO - Initialized distillation_agent
+2025-11-07 11:45:58,264 - INFO - Initialized ingestion_agent
+2025-11-07 11:45:58,268 - INFO - Use pytorch device_name: mps
+2025-11-07 11:45:58,269 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:46:00,202 - INFO - Initialized inference_agent
+2025-11-07 11:46:00,214 - INFO - Initialized proof_agent
+2025-11-07 11:46:00,214 - INFO - Initialized browser_agent
+2025-11-07 11:46:00,221 - INFO - Use pytorch device_name: mps
+2025-11-07 11:46:00,221 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:46:02,265 - INFO - Use pytorch device_name: mps
+2025-11-07 11:46:02,265 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 11:46:04,590 - INFO - Gematria calculator initialized
+2025-11-07 11:46:04,590 - INFO - Gematria calculator initialized
+2025-11-07 11:46:04,590 - INFO - Initialized affinity_agent
+2025-11-07 11:46:04,590 - INFO - Initialized bookmark_ingestion_agent
+2025-11-07 11:46:04,590 - INFO - Initialized twitter_fetcher_agent
+2025-11-07 11:46:04,590 - INFO - Initialized DataTable for authors
+2025-11-07 11:46:04,591 - INFO - Initialized author_indexer_agent
+2025-11-07 11:46:04,591 - INFO - Initialized symbol_extractor_agent
+2025-11-07 11:46:04,591 - INFO - Initialized phonetic_analyzer_agent
+2025-11-07 11:46:04,591 - INFO - Initialized pattern_detector_agent
+2025-11-07 11:46:04,591 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 11:46:04,591 - INFO - Initialized gematria_integrator_agent
+2025-11-07 11:46:04,591 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 11:46:04,591 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 11:46:04,591 - INFO - Initialized perplexity_integrator_agent
+2025-11-07 11:46:04,591 - INFO - Initialized browser_agent
+2025-11-07 11:46:04,591 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 11:46:04,591 - INFO - Initialized perplexity_integrator_agent
+2025-11-07 11:46:04,591 - INFO - Initialized deep_research_browser_agent
+2025-11-07 11:46:04,591 - INFO - Initialized DataTable for sources
+2025-11-07 11:46:04,591 - INFO - Initialized source_tracker_agent
+2025-11-07 11:46:04,591 - INFO - Initialized DataTable for discovered_resources
+2025-11-07 11:46:04,591 - INFO - Initialized cost_manager_agent with $10.0 cap
+2025-11-07 11:46:04,591 - INFO - Initialized perplexity_integrator_agent
+2025-11-07 11:46:04,591 - INFO - Initialized resource_discoverer_agent
+2025-11-07 11:46:04,591 - INFO - Initialized dark_matter_tracker_agent
+2025-11-07 11:46:04,591 - INFO - Initialized claude_integrator_agent

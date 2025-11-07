@@ -147,6 +147,28 @@ CREATE INDEX IF NOT EXISTS idx_patterns_type ON patterns(pattern_type);
 CREATE INDEX IF NOT EXISTS idx_patterns_confidence ON patterns(confidence_score);
 CREATE INDEX IF NOT EXISTS idx_patterns_name ON patterns(pattern_name);
 
+-- 6.5. Dark Matter Patterns Table (hidden patterns, latent connections)
+CREATE TABLE IF NOT EXISTS dark_matter_patterns (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  pattern_name TEXT NOT NULL,
+  pattern_type TEXT,  -- 'latent', 'implicit', 'hidden', 'quantum', 'temporal_dark_matter', 'semantic_shadow'
+  description TEXT,
+  elements TEXT[],
+  confidence FLOAT,
+  perspectives JSONB,  -- Multi-perspective analysis
+  quantum_state JSONB,  -- Quantum-like superposition state
+  inference_logic JSONB,
+  cross_domain_connections JSONB,
+  first_principles TEXT[],  -- First principles analysis
+  persona_insights JSONB,  -- Insights from different personas
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_dark_matter_type ON dark_matter_patterns(pattern_type);
+CREATE INDEX IF NOT EXISTS idx_dark_matter_confidence ON dark_matter_patterns(confidence);
+CREATE INDEX IF NOT EXISTS idx_dark_matter_name ON dark_matter_patterns(pattern_name);
+
 -- 7. Research Topics Table
 CREATE TABLE IF NOT EXISTS research_topics (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

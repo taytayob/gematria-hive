@@ -374,6 +374,116 @@ class PersonaManagerAgent(DataTable):
             'errors': errors
         }
     
+    def apply_highest_persona_thinking(self, query: str, context: Dict = None) -> Dict:
+        """
+        Apply highest persona thinking to a query
+        
+        Uses first principles and highest-level thinking from relevant personas
+        
+        Args:
+            query: Query string
+            context: Optional context dictionary
+            
+        Returns:
+            Dictionary with persona insights
+        """
+        insights = {}
+        
+        # Get relevant personas based on query
+        relevant_personas = self._get_relevant_personas(query)
+        
+        # Apply first principles from each persona
+        for persona_name in relevant_personas:
+            persona = self.get_persona(persona_name)
+            if persona:
+                # Apply first principles thinking
+                first_principles = self._extract_first_principles(persona, query)
+                
+                # Get persona framework insights
+                framework_insights = self._apply_persona_framework(persona, query)
+                
+                insights[persona_name] = {
+                    'persona': persona,
+                    'first_principles': first_principles,
+                    'framework_insights': framework_insights,
+                    'perspective': f"{persona.get('name', persona_name)} perspective"
+                }
+        
+        return {
+            'query': query,
+            'personas_used': relevant_personas,
+            'insights': insights,
+            'synthesis': self._synthesize_persona_insights(insights)
+        }
+    
+    def _get_relevant_personas(self, query: str) -> List[str]:
+        """Get relevant personas for a query"""
+        query_lower = query.lower()
+        relevant = []
+        
+        # Check for domain keywords
+        if any(kw in query_lower for kw in ['physics', 'relativity', 'quantum', 'einstein']):
+            relevant.append('einstein')
+        
+        if any(kw in query_lower for kw in ['electricity', 'resonance', 'frequency', '369', 'tesla']):
+            relevant.append('tesla')
+        
+        if any(kw in query_lower for kw in ['geometry', 'mathematics', 'pythagoras', 'theorem', '369']):
+            relevant.append('pythagoras')
+        
+        if any(kw in query_lower for kw in ['gematria', 'kabbalah', 'occult', 'agrippa']):
+            relevant.append('agrippa')
+        
+        if any(kw in query_lower for kw in ['hermetic', 'alchemy', 'thoth', 'hermes']):
+            relevant.append('thoth')
+        
+        if any(kw in query_lower for kw in ['schumann', 'resonance', 'frequency', 'earth']):
+            relevant.append('schumann')
+        
+        # Default to all personas if none match
+        if not relevant:
+            relevant = ['einstein', 'tesla', 'pythagoras']
+        
+        return relevant
+    
+    def _extract_first_principles(self, persona: Dict, query: str) -> List[str]:
+        """Extract first principles from persona for query"""
+        principles = []
+        
+        # Get persona frameworks
+        frameworks = persona.get('frameworks', [])
+        contributions = persona.get('contributions', [])
+        models = persona.get('models', [])
+        
+        # Build first principles
+        principles.append(f"Core domain: {persona.get('domain', 'unknown')}")
+        principles.append(f"Key frameworks: {', '.join(frameworks[:3])}")
+        principles.append(f"Fundamental contributions: {', '.join(contributions[:3])}")
+        principles.append(f"Core models: {', '.join(models[:3])}")
+        
+        return principles
+    
+    def _apply_persona_framework(self, persona: Dict, query: str) -> Dict:
+        """Apply persona framework to query"""
+        return {
+            'domain': persona.get('domain', 'unknown'),
+            'frameworks': persona.get('frameworks', []),
+            'models': persona.get('models', []),
+            'contributions': persona.get('contributions', []),
+            'knowledge': persona.get('knowledge', {})
+        }
+    
+    def _synthesize_persona_insights(self, insights: Dict) -> str:
+        """Synthesize insights from multiple personas"""
+        synthesis_parts = []
+        synthesis_parts.append("Synthesis of highest persona thinking:")
+        
+        for persona_name, insight in insights.items():
+            synthesis_parts.append(f"\n{persona_name}:")
+            synthesis_parts.append(f"  First principles: {', '.join(insight.get('first_principles', [])[:2])}")
+        
+        return "\n".join(synthesis_parts)
+    
     def execute(self, state: AgentState) -> AgentState:
         """
         Execute persona management task.
@@ -438,6 +548,20 @@ class PersonaManagerAgent(DataTable):
                         "agent": self.name,
                         "action": "get_by_tag",
                         "personas": personas
+                    })
+            
+            elif action == "apply_highest_persona_thinking":
+                # Apply highest persona thinking to query
+                query = task.get("query", "")
+                context = state.get("context", {})
+                
+                if query:
+                    insights = self.apply_highest_persona_thinking(query, context)
+                    state["context"]["persona_insights"] = insights
+                    state["results"].append({
+                        "agent": self.name,
+                        "action": "apply_highest_persona_thinking",
+                        "insights": insights
                     })
             
             logger.info(f"Persona management complete: {action}")

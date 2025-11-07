@@ -130,6 +130,8 @@ class MCPOrchestrator:
             from .deep_research_browser import DeepResearchBrowserAgent
             from .source_tracker import SourceTrackerAgent
             from .resource_discoverer import ResourceDiscovererAgent
+            from .dark_matter_tracker import DarkMatterTrackerAgent
+            from .claude_integrator import ClaudeIntegratorAgent
         except ImportError as e:
             logger.warning(f"Some agents not available: {e}")
         
@@ -156,6 +158,8 @@ class MCPOrchestrator:
             self.agents['deep_research_browser'] = DeepResearchBrowserAgent()
             self.agents['source_tracker'] = SourceTrackerAgent()
             self.agents['resource_discoverer'] = ResourceDiscovererAgent()
+            self.agents['dark_matter_tracker'] = DarkMatterTrackerAgent()
+            self.agents['claude_integrator'] = ClaudeIntegratorAgent()
         except Exception as e:
             logger.warning(f"Error initializing new agents: {e}")
         
@@ -230,6 +234,10 @@ class MCPOrchestrator:
                 agents_to_run.append("resource_discoverer")
             if 'perplexity_integrator' in self.agents:
                 agents_to_run.append("perplexity_integrator")
+            if 'dark_matter_tracker' in self.agents:
+                agents_to_run.append("dark_matter_tracker")
+            if 'claude_integrator' in self.agents:
+                agents_to_run.append("claude_integrator")
             return agents_to_run
         
         # Add conditional edge to run all agents in parallel
@@ -468,11 +476,15 @@ class MCPOrchestrator:
                 from .deep_research_browser import DeepResearchBrowserAgent
                 from .resource_discoverer import ResourceDiscovererAgent
                 from .inference import InferenceAgent
+                from .dark_matter_tracker import DarkMatterTrackerAgent
+                from .claude_integrator import ClaudeIntegratorAgent
                 agents_to_run.extend([
                     ('source_tracker', SourceTrackerAgent()),
                     ('deep_research_browser', DeepResearchBrowserAgent()),
                     ('resource_discoverer', ResourceDiscovererAgent()),
                     ('inference', InferenceAgent()),
+                    ('dark_matter_tracker', DarkMatterTrackerAgent()),
+                    ('claude_integrator', ClaudeIntegratorAgent()),
                 ])
             except ImportError as e:
                 logger.warning(f"Some agents not available: {e}")

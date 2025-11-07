@@ -126,6 +126,23 @@ try:
 except ImportError:
     ProjectManagerAgent = None
 
+try:
+    from .dark_matter_tracker import DarkMatterTrackerAgent
+except ImportError:
+    DarkMatterTrackerAgent = None
+
+try:
+    from .claude_integrator import ClaudeIntegratorAgent
+except ImportError:
+    ClaudeIntegratorAgent = None
+
+try:
+    from .mcp_tool_registry import MCPToolRegistry, MCPTool, get_tool_registry
+except ImportError:
+    MCPToolRegistry = None
+    MCPTool = None
+    get_tool_registry = None
+
 __all__ = [
     'MCPOrchestrator',
     'AgentState',
@@ -170,5 +187,10 @@ __all__ = [
     'AlphabetManagerAgent',
     'ValidationEngineAgent',
     'ProjectManagerAgent',
+    'DarkMatterTrackerAgent',
+    'ClaudeIntegratorAgent',
+    'MCPToolRegistry',
+    'MCPTool',
+    'get_tool_registry',
 ]
 
