@@ -76,34 +76,44 @@ echo ""
 # Check Python Packages
 echo "📦 Checking Python Packages..."
 if [ "$CONDA_DEFAULT_ENV" = "gematria_env" ]; then
-    python -c "
+    python - <<'PYCODE'
 import sys
-packages = [
-    'streamlit', 'pandas', 'numpy', 'supabase', 
-    'sentence_transformers', 'transformers', 'langchain',
-    'pixeltable', 'stringzilla', 'simsimd', 'requests',
-    'beautifulsoup4', 'opencv2', 'pytesseract', 'PIL', 'qiskit'
-]
+
+packages = {
+    'streamlit': 'streamlit',
+    'pandas': 'pandas',
+    'numpy': 'numpy',
+    'supabase': 'supabase',
+    'sentence-transformers': 'sentence_transformers',
+    'transformers': 'transformers',
+    'langchain': 'langchain',
+    'pixeltable': 'pixeltable',
+    'stringzilla': 'stringzilla',
+    'simsimd': 'simsimd',
+    'requests': 'requests',
+    'beautifulsoup4': 'bs4',
+    'opencv-python': 'cv2',
+    'pytesseract': 'pytesseract',
+    'Pillow': 'PIL',
+    'qiskit': 'qiskit'
+}
+
 missing = []
-for pkg in packages:
+
+for display_name, module_name in packages.items():
     try:
-        if pkg == 'opencv2':
-            __import__('cv2')
-        elif pkg == 'PIL':
-            __import__('PIL')
-        else:
-            __import__(pkg.replace('-', '_'))
-        print(f'  ✅ {pkg}')
+        __import__(module_name)
+        print(f"  ✅ {display_name}")
     except ImportError:
-        print(f'  ❌ {pkg} - MISSING')
-        missing.append(pkg)
+        print(f"  ❌ {display_name} - MISSING")
+        missing.append(display_name)
 
 if missing:
-    print(f'\n  ⚠️  Missing packages: {', '.join(missing)}')
+    print(f"\n  ⚠️  Missing packages: {', '.join(missing)}")
     sys.exit(1)
 else:
-    print('\n  ✅ All packages installed!')
-" 2>&1
+    print("\n  ✅ All packages installed!")
+PYCODE
 else
     echo "  ⚠️  Activate conda environment first: conda activate gematria_env"
 fi
