@@ -1,0 +1,35 @@
+{
+  "api_key_setup": {
+    "variations": {
+      "browser_required": {
+        "description": "Requires browser agent for web scraping",
+        "required_tools": ["browser"],
+        "prompt_template": "Use browser agent to navigate to {url} and extract API key setup information. Document all steps and reasoning.",
+        "compliance_checks": ["browser_executed", "pages_scraped"],
+        "expert_board": ["web_scraping_expert", "api_security_expert"],
+        "show_work": true,
+        "multi_perspective": true,
+        "geometric_analysis": true
+      },
+      "api_only": {
+        "description": "Uses API only, no browser",
+        "required_tools": ["api_client"],
+        "prompt_template": "Use API to retrieve {resource} and extract API key information. Document all steps and reasoning.",
+        "compliance_checks": ["api_called", "data_retrieved"],
+        "expert_board": ["api_expert", "security_expert"],
+        "show_work": true,
+        "multi_perspective": true
+      }
+    },
+    "auto_generated": true,
+    "version": "1.0",
+    "proof_documentation": true,
+    "decision_flow": true
+  },
+  "learning_progression": {
+    "regression_enabled": true,
+    "stages": ["crawl", "roll_over", "stand", "walk", "run"],
+    "framework_consistency": true
+  }
+}
+

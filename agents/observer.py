@@ -84,6 +84,15 @@ class ObserverAgent:
             logger.warning(f"Could not initialize MCP tool registry for {self.name}: {e}")
             self.tool_registry = None
         
+        # Initialize compliance auditor for compliance logging
+        try:
+            from agents.compliance_auditor import get_compliance_auditor
+            self.compliance_auditor = get_compliance_auditor()
+            logger.info(f"Agent {self.name} initialized with compliance auditor access")
+        except Exception as e:
+            logger.warning(f"Could not initialize compliance auditor for {self.name}: {e}")
+            self.compliance_auditor = None
+        
         logger.info(f"Initialized {self.name} with notes directory: {self.notes_dir}")
     
     def observe(self, event_type: str, data: Dict, agent_name: str = None) -> str:
@@ -183,6 +192,19 @@ class ObserverAgent:
             "data_count": len(state.get("data", [])),
             "results_count": len(state.get("results", []))
         }, agent_name)
+        
+        # Log compliance violations if present
+        compliance_audit = state.get("context", {}).get("compliance_audit")
+        if compliance_audit and self.compliance_auditor:
+            violations = compliance_audit.get("violations", [])
+            if violations:
+                self.observe("compliance_violations", {
+                    "agent": agent_name,
+                    "violations": violations,
+                    "compliance_score": compliance_audit.get("compliance_score", 1.0),
+                    "missing_items": compliance_audit.get("missing_items", {})
+                }, agent_name)
+                logger.warning(f"Compliance violations detected for {agent_name}: {len(violations)} violations")
     
     def record_error(self, agent_name: str, error: Exception, context: Dict = None) -> None:
         """

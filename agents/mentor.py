@@ -84,6 +84,15 @@ class MentorAgent:
             logger.warning(f"Could not initialize MCP tool registry for {self.name}: {e}")
             self.tool_registry = None
         
+        # Initialize compliance auditor for compliance-based learning
+        try:
+            from agents.compliance_auditor import get_compliance_auditor
+            self.compliance_auditor = get_compliance_auditor()
+            logger.info(f"Agent {self.name} initialized with compliance auditor access")
+        except Exception as e:
+            logger.warning(f"Could not initialize compliance auditor for {self.name}: {e}")
+            self.compliance_auditor = None
+        
         logger.info(f"Initialized {self.name} with notes directory: {self.notes_dir}")
     
     def identify_patterns(self, observations: List[Dict] = None) -> List[Dict[str, Any]]:
@@ -163,6 +172,52 @@ class MentorAgent:
                     "timestamp": datetime.utcnow().isoformat(),
                     "severity": "medium"
                 })
+        
+        # Analyze compliance patterns
+        if self.compliance_auditor:
+            try:
+                compliance_report = self.compliance_auditor.generate_compliance_report(days=7)
+                
+                # Check compliance score pattern
+                avg_score = compliance_report.get("average_compliance_score", 1.0)
+                if avg_score < 0.7:
+                    patterns.append({
+                        "type": "compliance_pattern",
+                        "title": "Low Compliance Pattern Detected",
+                        "description": f"Average compliance score is {avg_score:.2f} over {compliance_report.get('period_days', 7)} days",
+                        "recommendation": "Review planning process. Improve alignment between planned and actual execution.",
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "severity": "high"
+                    })
+                
+                # Check violation patterns
+                violations = compliance_report.get("violations", {})
+                violation_types = violations.get("by_type", {})
+                
+                if violation_types:
+                    most_common = max(violation_types.items(), key=lambda x: x[1])
+                    patterns.append({
+                        "type": "compliance_pattern",
+                        "title": f"Common Violation Pattern: {most_common[0]}",
+                        "description": f"{most_common[0]} violations occurred {most_common[1]} times",
+                        "recommendation": f"Focus on improving {most_common[0]} to reduce violations.",
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "severity": "medium"
+                    })
+                
+                # Check for anomalies (unknown unknowns)
+                anomaly_patterns = [p for p in self.compliance_auditor.patterns if p.get("type") == "unknown_unknown"]
+                if anomaly_patterns:
+                    patterns.append({
+                        "type": "anomaly_pattern",
+                        "title": "Anomaly Pattern Detected (Unknown Unknowns)",
+                        "description": f"{len(anomaly_patterns)} anomalies detected - unexpected items used",
+                        "recommendation": "Review anomalies to identify unknown unknowns. Update planning process to account for unexpected patterns.",
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "severity": "high"
+                    })
+            except Exception as e:
+                logger.warning(f"Error analyzing compliance patterns: {e}")
         
         # Save patterns
         for pattern in patterns:

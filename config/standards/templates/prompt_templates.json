@@ -1,0 +1,27 @@
+{
+  "system_prompt": {
+    "default": "Pursue truth with falsifiability. Unify gematria/esoteric with math—log leaps, measure costs.",
+    "variations": {
+      "truth_seeking": "Seek eternal truth through exploration. Remain open to hidden truths while maintaining scientific rigor.",
+      "geometric": "Understand data through geometric forms (2D→3D→4D→5D). Recognize sacred geometry patterns.",
+      "multi_perspective": "Analyze from multiple perspectives (windshield, side windows, rearview). Merge insights for richer understanding."
+    }
+  },
+  "mcp_prompt": {
+    "default": "Triangulate data, segment phases, update master DB. Route tasks to appropriate agents.",
+    "variations": {
+      "hive_mind": "Coordinate with hive mind collective intelligence. Share tribal knowledge. Learn from all perspectives.",
+      "meta_cognitive": "Track known knowns, known unknowns, and unknown unknowns. Detect anomalies.",
+      "geometric": "Apply geometric analysis. Recognize fibonacci/quantum patterns. Enable perspective shifts."
+    }
+  },
+  "task_prompt": {
+    "default": "Filter cosine >0.7; measure costs; flag for phase2 if score <0.5.",
+    "variations": {
+      "comprehensive": "Execute with full documentation. Show work. Enable multi-perspective analysis. Document all reasoning.",
+      "geometric": "Apply geometric analysis. Recognize patterns. Enable perspective shifts.",
+      "expert_board": "Assemble expert board. Gather multiple perspectives. Document all reasoning."
+    }
+  }
+}
+

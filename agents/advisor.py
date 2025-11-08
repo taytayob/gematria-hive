@@ -79,6 +79,15 @@ class AdvisorAgent:
             logger.warning(f"Could not initialize MCP tool registry for {self.name}: {e}")
             self.tool_registry = None
         
+        # Initialize compliance auditor for compliance-based recommendations
+        try:
+            from agents.compliance_auditor import get_compliance_auditor
+            self.compliance_auditor = get_compliance_auditor()
+            logger.info(f"Agent {self.name} initialized with compliance auditor access")
+        except Exception as e:
+            logger.warning(f"Could not initialize compliance auditor for {self.name}: {e}")
+            self.compliance_auditor = None
+        
         logger.info(f"Initialized {self.name} with notes directory: {self.notes_dir}")
     
     def analyze_and_advise(self, context: Dict = None) -> List[Dict[str, Any]]:
@@ -167,6 +176,49 @@ class AdvisorAgent:
                     "recommendation": "Review resource usage patterns. Consider implementing rate limiting, batching, or resource pooling.",
                     "timestamp": datetime.utcnow().isoformat()
                 })
+        
+        # Add compliance-based recommendations
+        if self.compliance_auditor:
+            try:
+                compliance_report = self.compliance_auditor.generate_compliance_report(days=7)
+                
+                # Check average compliance score
+                avg_score = compliance_report.get("average_compliance_score", 1.0)
+                if avg_score < 0.7:
+                    recommendations.append({
+                        "type": "compliance",
+                        "priority": "high",
+                        "title": "Low Compliance Score Detected",
+                        "description": f"Average compliance score is {avg_score:.2f}, below threshold of 0.7",
+                        "recommendation": "Review planned vs actual execution. Improve planning process to better match actual execution.",
+                        "timestamp": datetime.utcnow().isoformat()
+                    })
+                
+                # Check for common violations
+                violations = compliance_report.get("violations", {})
+                violation_types = violations.get("by_type", {})
+                
+                if violation_types.get("missing_tools", 0) > compliance_report.get("total_tasks", 0) * 0.3:
+                    recommendations.append({
+                        "type": "compliance",
+                        "priority": "medium",
+                        "title": "Frequently Missing Planned Tools",
+                        "description": f"Missing tools in {violation_types.get('missing_tools', 0)} cases",
+                        "recommendation": "Review tool selection process. Consider improving tool planning or tool availability.",
+                        "timestamp": datetime.utcnow().isoformat()
+                    })
+                
+                if violation_types.get("missing_agents", 0) > compliance_report.get("total_tasks", 0) * 0.3:
+                    recommendations.append({
+                        "type": "compliance",
+                        "priority": "medium",
+                        "title": "Frequently Missing Planned Agents",
+                        "description": f"Missing agents in {violation_types.get('missing_agents', 0)} cases",
+                        "recommendation": "Review agent selection process. Consider improving agent planning or agent availability.",
+                        "timestamp": datetime.utcnow().isoformat()
+                    })
+            except Exception as e:
+                logger.warning(f"Error generating compliance-based recommendations: {e}")
         
         # Save recommendations
         for rec in recommendations:

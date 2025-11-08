@@ -1,0 +1,16 @@
+{
+  "agent_name": "browser_agent",
+  "version": "1.0",
+  "last_updated": "2025-01-06",
+  "required_tools": ["browser"],
+  "template_variations": ["browser_required", "headless", "interactive"],
+  "compliance_checks": ["browser_used", "pages_scraped", "data_stored"],
+  "show_work": true,
+  "create_instance": true,
+  "bidirectional_rails": true,
+  "perspectives": ["windshield", "side_window", "rearview"],
+  "multi_perspective": true,
+  "geometric_analysis": false,
+  "expert_board": ["web_scraping_expert", "browser_automation_expert"]
+}
+

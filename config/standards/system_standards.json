@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-01-06",
+  "system_level": {
+    "enforce_template_checks": true,
+    "require_compliance_audit": true,
+    "mandatory_tools": ["observer", "cost_manager"],
+    "default_template": "standard",
+    "meta_cognitive_enabled": true,
+    "multi_perspective_learning": true,
+    "geometric_visualization": true,
+    "truth_seeking_mode": true
+  },
+  "hive_mind": {
+    "collective_intelligence": true,
+    "knowledge_sharing": true,
+    "tribal_knowledge": true,
+    "multi_timeline": true
+  },
+  "meta_cognitive": {
+    "track_known_knowns": true,
+    "track_known_unknowns": true,
+    "detect_unknown_unknowns": true,
+    "anomaly_detection": true,
+    "fibonacci_patterns": true
+  }
+}
+

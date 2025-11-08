@@ -1,0 +1,16 @@
+{
+  "agent_name": "orchestrator",
+  "version": "1.0",
+  "last_updated": "2025-01-06",
+  "required_tools": ["observer", "cost_manager"],
+  "template_variations": ["standard", "multi_perspective", "geometric", "expert_board"],
+  "compliance_checks": ["all_agents_executed", "state_managed", "cost_tracked"],
+  "show_work": true,
+  "create_instance": true,
+  "bidirectional_rails": true,
+  "perspectives": ["windshield", "side_window", "rearview"],
+  "multi_perspective": true,
+  "geometric_analysis": true,
+  "expert_board": ["orchestration_expert", "workflow_expert", "system_architect"]
+}
+

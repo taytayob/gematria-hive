@@ -100,6 +100,22 @@ class MCPOrchestrator:
         
         logger.info("Observer, Advisor, and Mentor agents initialized")
         
+        # Initialize standards manager, template manager, and compliance auditor
+        try:
+            from .standards_manager import get_standards_manager
+            from .template_manager import get_template_manager
+            from .compliance_auditor import get_compliance_auditor
+            
+            self.standards_manager = get_standards_manager()
+            self.template_manager = get_template_manager()
+            self.compliance_auditor = get_compliance_auditor()
+            logger.info("Standards Manager, Template Manager, and Compliance Auditor initialized")
+        except Exception as e:
+            logger.warning(f"Standards/Template/Compliance components not available: {e}")
+            self.standards_manager = None
+            self.template_manager = None
+            self.compliance_auditor = None
+        
         # Build graph if LangGraph available
         if HAS_LANGGRAPH:
             self._build_graph()
@@ -286,13 +302,36 @@ class MCPOrchestrator:
         Returns:
             Dictionary with results, cost, and status
         """
+        # Pre-execution: Validate task against standards (guidance mode - never block)
+        planned_execution = {
+            "tools": task.get("tools", []),
+            "agents": task.get("agents", []),
+            "parameters": task.get("parameters", {})
+        }
+        
+        if self.standards_manager:
+            validation_result = self.standards_manager.validate_task(task)
+            if validation_result.get("warnings"):
+                logger.info(f"Standards validation warnings: {validation_result['warnings']}")
+            if validation_result.get("suggestions"):
+                logger.info(f"Standards suggestions: {validation_result['suggestions']}")
+        
+        # Apply template if specified
+        if self.template_manager and task.get("template"):
+            task = self.template_manager.switch_template(
+                task,
+                task.get("template"),
+                task.get("template_variation")
+            )
+        
         # Initialize state
         initial_state: AgentState = {
             "task": task,
             "data": [],
             "context": {
                 "started_at": datetime.utcnow().isoformat(),
-                "task_type": task.get("type", "unknown")
+                "task_type": task.get("type", "unknown"),
+                "planned_execution": planned_execution
             },
             "results": [],
             "cost": 0.0,
@@ -432,6 +471,33 @@ class MCPOrchestrator:
                 )
             except Exception as e:
                 logger.warning(f"Error tracking cost: {e}")
+        
+        # Post-execution: Audit compliance (planned vs actual)
+        if self.compliance_auditor:
+            try:
+                # Extract actual execution data
+                actual_execution = {
+                    "tools_used": final_state.get("context", {}).get("tools_used", []),
+                    "agents_used": [result.get("agent") for result in final_state.get("results", []) if result.get("agent")],
+                    "parameters": final_state.get("context", {}).get("parameters", {})
+                }
+                
+                # Audit planned vs actual
+                audit_result = self.compliance_auditor.audit_execution(
+                    planned_execution,
+                    actual_execution,
+                    task_id=final_state.get("context", {}).get("started_at", "unknown")
+                )
+                
+                # Add audit result to context
+                final_state["context"]["compliance_audit"] = audit_result
+                
+                if audit_result.get("violations"):
+                    logger.info(f"Compliance audit found {len(audit_result['violations'])} violations")
+                if audit_result.get("suggestions"):
+                    logger.info(f"Compliance suggestions: {audit_result['suggestions']}")
+            except Exception as e:
+                logger.warning(f"Error auditing compliance: {e}")
         
         return final_state
     

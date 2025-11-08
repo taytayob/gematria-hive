@@ -1,0 +1,23 @@
+{
+  "standard": {
+    "description": "Standard execution template",
+    "steps": ["pre_execution", "execution", "post_execution"],
+    "compliance_checks": ["basic"]
+  },
+  "multi_perspective": {
+    "description": "Multi-perspective execution template",
+    "steps": ["pre_execution", "multi_perspective_setup", "parallel_execution", "perspective_merge", "post_execution"],
+    "compliance_checks": ["multi_perspective", "perspective_merge"]
+  },
+  "geometric": {
+    "description": "Geometric analysis execution template",
+    "steps": ["pre_execution", "geometric_setup", "execution", "geometric_analysis", "post_execution"],
+    "compliance_checks": ["geometric", "pattern_recognition"]
+  },
+  "expert_board": {
+    "description": "Expert board execution template",
+    "steps": ["pre_execution", "expert_board_assembly", "parallel_analysis", "expert_merge", "post_execution"],
+    "compliance_checks": ["expert_board", "expert_analysis"]
+  }
+}
+

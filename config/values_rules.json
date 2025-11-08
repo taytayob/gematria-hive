@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-01-06",
+  "philosophy": "Rules guide expansion, never constrain",
+  
+  "guidance_rules": {
+    "pre_execution": {
+      "suggest_meta_cognitive": true,
+      "suggest_multi_perspective": true,
+      "enable_hive_mind": true,
+      "offer_geometric_analysis": true,
+      "suggest_expert_board": true,
+      "encourage_documentation": true,
+      "never_block": true
+    },
+    "during_execution": {
+      "track_values_usage": true,
+      "monitor_perspectives": true,
+      "encourage_work_documentation": true,
+      "support_learning_instances": true,
+      "offer_geometric_analysis": true,
+      "support_expansion": true
+    },
+    "post_execution": {
+      "review_values_usage": true,
+      "capture_perspectives": true,
+      "improve_documentation": true,
+      "share_hive_mind_contributions": true,
+      "review_geometric_analysis": true,
+      "learn_and_improve": true
+    }
+  },
+  
+  "expansion_fail_safes": {
+    "never_block_execution": true,
+    "always_allow_exploration": true,
+    "enable_independent_operation": true,
+    "support_alternative_approaches": true,
+    "learn_from_all_outcomes": true
+  },
+  
+  "violation_handling": {
+    "mode": "learning",
+    "log_violations": true,
+    "learn_from_violations": true,
+    "suggest_improvements": true,
+    "never_punish": true,
+    "always_enable_expansion": true
+  }
+}
+

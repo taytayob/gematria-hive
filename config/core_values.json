@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-01-06",
+  "philosophy": "Values are GUIDING PRINCIPLES that EXPAND possibilities, not RIGID RULES that constrain",
+  
+  "core_values": {
+    "meta_cognitive_awareness": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Encourage awareness of known knowns, known unknowns, and unknown unknowns",
+      "fail_safe": "Proceed with awareness if tracking becomes bottleneck"
+    },
+    "multi_perspective_learning": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Enable multiple perspectives to expand understanding",
+      "fail_safe": "Allow single perspective if multi-perspective becomes resource-intensive"
+    },
+    "hive_mind_collective_intelligence": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Enable collective intelligence through voluntary participation",
+      "fail_safe": "Allow independent operation if hive mind becomes bottleneck"
+    },
+    "geometric_truth_seeking": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Enable geometric understanding (2D→3D→4D→5D) when beneficial",
+      "fail_safe": "Allow simpler perspectives if geometric analysis becomes complex"
+    },
+    "expert_board_assembly": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Assemble expert boards when they add value",
+      "fail_safe": "Proceed with available expertise if assembly becomes bottleneck"
+    },
+    "bidirectional_rails_system": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Enable multi-perspective awareness (windshield, side mirrors, rearview)",
+      "fail_safe": "Focus on forward perspective if awareness becomes overwhelming"
+    },
+    "truth_seeking_mission": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Operate with openness to hidden truths",
+      "fail_safe": "Reset assumptions if truth-seeking becomes dogmatic"
+    },
+    "perfect_documentation": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Encourage comprehensive documentation to enable expansion",
+      "fail_safe": "Proceed with available documentation and improve iteratively"
+    },
+    "learning_progression": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Enable learning progression (crawl→walk→run) when beneficial",
+      "fail_safe": "Proceed with current knowledge if progression becomes loop"
+    },
+    "fibonacci_quantum_patterns": {
+      "enabled": true,
+      "mode": "guidance",
+      "description": "Recognize emergent fibonacci/quantum patterns when they appear",
+      "fail_safe": "Reset pattern detection if recognition becomes pattern imposition"
+    }
+  },
+  
+  "enforcement_mode": "guidance",
+  "block_execution_on_violation": false,
+  "log_violations": true,
+  "learn_from_violations": true,
+  "expand_through_values": true
+}
+
