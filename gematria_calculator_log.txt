@@ -10,3 +10,26 @@
 2025-11-07 15:58:57,440 - WARNING - sentence-transformers not installed - semantic search will be disabled
 2025-11-07 15:58:57,441 - INFO - Gematria calculator initialized
 2025-11-07 15:58:57,441 - INFO - Gematria calculator initialized
+2025-11-07 16:03:00,492 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 16:03:00,492 - INFO - Gematria calculator initialized
+2025-11-07 16:03:00,492 - INFO - Gematria calculator initialized
+2025-11-07 16:03:00,493 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 16:03:00,493 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 16:03:00,863 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&jewish_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:01,001 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&english_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:01,163 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&simple_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:01,305 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&latin_gematria=eq.52&limit=5 "HTTP/2 400 Bad Request"
+2025-11-07 16:03:01,421 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&greek_gematria=eq.52&limit=5 "HTTP/2 400 Bad Request"
+2025-11-07 16:03:18,128 - WARNING - sentence-transformers not installed - semantic search will be disabled
+2025-11-07 16:03:18,128 - INFO - Gematria calculator initialized
+2025-11-07 16:03:18,128 - INFO - Gematria calculator initialized
+2025-11-07 16:03:18,128 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 16:03:18,483 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=%2A&english_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:18,484 - INFO - Found 4 words with english_gematria value 52
+2025-11-07 16:03:18,484 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 16:03:18,484 - INFO - Gematria engine initialized with all calculation methods
+2025-11-07 16:03:18,710 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&jewish_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:18,846 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&english_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:18,979 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&simple_gematria=eq.52&limit=5 "HTTP/2 200 OK"
+2025-11-07 16:03:19,129 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&latin_gematria=eq.52&limit=5 "HTTP/2 400 Bad Request"
+2025-11-07 16:03:19,264 - INFO - HTTP Request: GET https://ccpqsoykggzwpzapfxjh.supabase.co/rest/v1/gematria_words?select=phrase&greek_gematria=eq.52&limit=5 "HTTP/2 400 Bad Request"
