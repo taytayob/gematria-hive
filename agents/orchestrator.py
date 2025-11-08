@@ -826,9 +826,23 @@ class MCPOrchestrator:
         browser = BrowserAgent()
         final_state = browser.execute(initial_state)
         
+        # SYSTEM-LEVEL VALIDATION: Ensure data was stored
+        pages_scraped = final_state.get("context", {}).get("browser_pages_scraped", 0)
+        pages_stored = final_state.get("context", {}).get("browser_pages_stored", 0)
+        
+        if pages_scraped > 0 and pages_stored == 0:
+            logger.error(f"CRITICAL SYSTEM VIOLATION: {pages_scraped} pages scraped but 0 stored! Data loss occurred!")
+            final_state["status"] = "failed"
+            final_state["error"] = f"CRITICAL: Failed to store {pages_scraped} scraped pages - data loss occurred"
+        
+        if pages_scraped > 0 and pages_stored < pages_scraped:
+            logger.warning(f"WARNING: Only stored {pages_stored}/{pages_scraped} pages - partial data loss")
+        
         return {
             "status": final_state.get("status", "unknown"),
-            "pages_scraped": final_state.get("context", {}).get("browser_pages_scraped", 0),
+            "pages_scraped": pages_scraped,
+            "pages_stored": pages_stored,
+            "storage_success": pages_stored == pages_scraped if pages_scraped > 0 else True,
             "images_found": final_state.get("context", {}).get("browser_images_found", 0),
             "links_found": final_state.get("context", {}).get("browser_links_found", 0),
             "data": final_state.get("data", []),

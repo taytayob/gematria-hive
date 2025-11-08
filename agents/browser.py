@@ -16,7 +16,9 @@ import logging
 import os
 import sys
 from typing import Dict, List, Optional
+from datetime import datetime
 from agents.orchestrator import AgentState
+from dotenv import load_dotenv
 
 # Import BaseScraper from scraper.py
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -26,6 +28,22 @@ try:
 except ImportError:
     HAS_SCRAPER = False
     print("Warning: scraper module not available, browser agent disabled")
+
+# Supabase for data persistence
+load_dotenv()
+try:
+    from supabase import create_client, Client
+    SUPABASE_URL = os.getenv('SUPABASE_URL')
+    SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+    if SUPABASE_URL and SUPABASE_KEY:
+        supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+        HAS_SUPABASE = True
+    else:
+        HAS_SUPABASE = False
+        supabase = None
+except Exception:
+    HAS_SUPABASE = False
+    supabase = None
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +64,9 @@ class BrowserAgent:
         """Initialize browser agent"""
         self.name = "browser_agent"
         self.scraper: Optional[BaseScraper] = None
+        self.supabase = supabase if HAS_SUPABASE else None
+        if not self.supabase:
+            logger.warning(f"{self.name}: Supabase not available - data will NOT be persisted!")
         logger.info(f"Initialized {self.name}")
     
     def execute(self, state: AgentState) -> AgentState:
@@ -111,9 +132,20 @@ class BrowserAgent:
             existing_data = state.get("data", [])
             state["data"] = existing_data + formatted_data
             
+            # SYSTEM-LEVEL RULE: ALL SCRAPED DATA MUST BE STORED IN DATABASE
+            # This is a critical requirement - data cannot be lost
+            stored_count = self._store_scraped_data(formatted_data, url)
+            
+            if stored_count == 0 and len(formatted_data) > 0:
+                logger.error(f"CRITICAL: Failed to store {len(formatted_data)} scraped pages! Data will be lost!")
+                state["status"] = "failed"
+                state["error"] = f"Failed to store scraped data - {len(formatted_data)} pages not persisted"
+                return state
+            
             # Update context
             state["context"]["browser_url"] = url
             state["context"]["browser_pages_scraped"] = len(scraped_data)
+            state["context"]["browser_pages_stored"] = stored_count
             state["context"]["browser_images_found"] = len(self.scraper.images)
             state["context"]["browser_links_found"] = len(self.scraper.links)
             
@@ -123,13 +155,15 @@ class BrowserAgent:
                 "action": "scrape",
                 "url": url,
                 "pages_scraped": len(scraped_data),
+                "pages_stored": stored_count,
                 "images_found": len(self.scraper.images),
                 "links_found": len(self.scraper.links),
-                "max_depth": max_depth
+                "max_depth": max_depth,
+                "storage_success": stored_count == len(formatted_data)
             })
             
             logger.info(f"Browser scraping complete: {len(scraped_data)} pages scraped, "
-                       f"{len(self.scraper.images)} images, {len(self.scraper.links)} links")
+                       f"{stored_count} pages stored, {len(self.scraper.images)} images, {len(self.scraper.links)} links")
             
         except Exception as e:
             logger.error(f"Browser scraping error: {e}")
@@ -169,6 +203,75 @@ class BrowserAgent:
         except Exception as e:
             logger.error(f"Error scraping {url}: {e}")
             return []
+    
+    def _store_scraped_data(self, formatted_data: List[Dict], base_url: str) -> int:
+        """
+        Store scraped data in database.
+        
+        SYSTEM-LEVEL RULE: This method MUST succeed or the entire operation fails.
+        Data cannot be scraped without being stored - this wastes resources.
+        
+        Args:
+            formatted_data: List of scraped page data
+            base_url: Base URL that was scraped
+            
+        Returns:
+            Number of successfully stored items
+        """
+        if not self.supabase:
+            logger.error("CRITICAL: Supabase not available - cannot store scraped data!")
+            return 0
+        
+        if not formatted_data:
+            return 0
+        
+        stored_count = 0
+        
+        # Prepare data for insertion into scraped_content table
+        insert_data = []
+        for item in formatted_data:
+            insert_item = {
+                'url': item.get('url', ''),
+                'title': item.get('title', ''),
+                'content': item.get('summary', ''),
+                'content_type': item.get('content_type', 'html'),
+                'images': item.get('images', []),
+                'links': item.get('links', []),
+                'source_site': base_url,
+                'tags': item.get('tags', []),
+                'scraped_at': item.get('scraped_at', datetime.utcnow().isoformat())
+            }
+            insert_data.append(insert_item)
+        
+        # Insert in batches
+        batch_size = 50
+        for i in range(0, len(insert_data), batch_size):
+            batch = insert_data[i:i+batch_size]
+            try:
+                # Use upsert to avoid duplicates (on conflict with url)
+                result = self.supabase.table('scraped_content').upsert(
+                    batch,
+                    on_conflict='url'
+                ).execute()
+                stored_count += len(batch)
+                logger.info(f"✅ Stored batch of {len(batch)} scraped pages ({stored_count}/{len(insert_data)})")
+            except Exception as e:
+                logger.error(f"Error inserting batch to scraped_content: {e}")
+                # Try individual inserts as fallback
+                for item in batch:
+                    try:
+                        self.supabase.table('scraped_content').upsert(
+                            item,
+                            on_conflict='url'
+                        ).execute()
+                        stored_count += 1
+                    except Exception as e2:
+                        logger.error(f"Error inserting individual scraped page {item.get('url', 'unknown')}: {e2}")
+        
+        if stored_count != len(insert_data):
+            logger.error(f"CRITICAL: Only stored {stored_count}/{len(insert_data)} pages! Data loss occurred!")
+        
+        return stored_count
     
     def find_sitemap(self, url: str) -> Optional[str]:
         """
